@@ -1,0 +1,19 @@
+use_frameworks!
+
+target 'iZalo' do
+    pod 'RxSwift',    '~> 4.0'
+    pod 'RxCocoa',    '~> 4.0'
+    pod 'MBProgressHUD'
+    pod 'Toast'
+    
+    pod 'Realm'
+    pod 'RealmSwift'
+    pod 'RxRealm'
+    
+    pod 'RxDataSources'
+    
+    pod 'Firebase/Core'
+    pod 'Firebase/Database'
+    
+    pod 'ObjectMapper'
+end
