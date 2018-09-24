@@ -17,13 +17,15 @@ class ConversationCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        self.selectionStyle = .none
+        self.avtImageView.layer.cornerRadius = 20
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    func bind(item: ConversationItem) {
+        conversationNameLabel.text = item.conversation.name
+        timestampLabel.text = item.conversation.lastMessage.timestampInString
+        lastMessageLabel.text = item.conversation.lastMessage.content as? String
     }
     
 }

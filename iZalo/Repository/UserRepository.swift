@@ -19,7 +19,7 @@ protocol UserRepository {
     
 //    func logout() -> Observable<Bool>
     
-//    func loadUser() -> Observable<User?>
+    func loadUser() -> Observable<User?>
     
 //    func loadProfile() -> Observable<User>
     

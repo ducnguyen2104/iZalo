@@ -43,6 +43,6 @@ class UserFirebaseSource: UserRemoteSource {
     }
     
     func signup(request: SignUpRequest) -> Observable<User> {
-        return Observable<User>.just(User(username: "ahihi", password: "ahihi", name: "a hi hi", phone: "123456"))
+        return Observable<User>.just(User(username: "ahihi", password: "ahihi", name: "a hi hi", phone: "123456", conversations: []))
     }
 }

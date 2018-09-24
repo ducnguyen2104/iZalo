@@ -13,6 +13,7 @@ class UserRepositoryImpl: UserRepository {
     
     private let remoteSource: UserRemoteSource
     private let localSource: UserLocalSource
+    private let userSubject = PublishSubject<User?>()
 
     init(remoteSource: UserRemoteSource,
          localSource: UserLocalSource) {
@@ -28,6 +29,14 @@ class UserRepositoryImpl: UserRepository {
                     return self.localSource
                         .persistUser(user: user)
             }
+        }
+    }
+    
+    func loadUser() -> Observable<User?> {
+        return Observable.deferred { [unowned self] in
+            return self.localSource
+                .getUser()
+                .concat(self.userSubject)
         }
     }
     

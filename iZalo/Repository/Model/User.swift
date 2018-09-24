@@ -13,4 +13,5 @@ struct User {
     let password: String
     let name: String
     let phone: String
+    let conversations: [String]
 }

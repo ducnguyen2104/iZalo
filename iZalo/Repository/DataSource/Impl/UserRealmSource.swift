@@ -13,17 +13,19 @@ import RxSwift
 class UserRealmSource: UserLocalSource {
     
     func getUser() -> Observable<User?> {
-        return Observable<User?>.just(nil)
+        return Observable.deferred {
+            let realm = try Realm()
+            return Observable.just(realm.objects(UserRealm.self).first?.convert())
+        }
     }
     
     func persistUser(user: User) -> Observable<Bool> {
-//        return Observable.deferred {
-//            let realm = try Realm()
-//            try realm.write {
-//                realm.add(UserRealm.from(user: user), update: true)
-//            }
-//            return Observable.just(true)
-//        }
-        return Observable<Bool>.just(true)
+        return Observable.deferred {
+            let realm = try Realm()
+            try realm.write {
+                realm.add(UserRealm.from(user: user), update: true)
+            }
+            return Observable.just(true)
+        }
     }
 }
