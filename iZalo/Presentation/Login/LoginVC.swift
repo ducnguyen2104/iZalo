@@ -11,7 +11,7 @@ import RxSwift
 
 protocol LoginDisplayLogic : class {
     func hideKeyboard()
-    func goToMain()
+    func gotoMain()
     func gotoSignup()
 }
 
@@ -98,7 +98,7 @@ extension LoginVC: LoginDisplayLogic {
         self.view.resignFirstResponder()
     }
     
-    func goToMain() {
+    func gotoMain() {
         showToast(message: "Go to main")
         let mainVC = MainVC.instance()
         self.navigationController?.setViewControllers([mainVC], animated: true)

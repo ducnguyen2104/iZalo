@@ -14,7 +14,7 @@ class UserRepositoryImpl: UserRepository {
     private let remoteSource: UserRemoteSource
     private let localSource: UserLocalSource
     private let userSubject = PublishSubject<User?>()
-
+    
     init(remoteSource: UserRemoteSource,
          localSource: UserLocalSource) {
         self.remoteSource = remoteSource
@@ -26,6 +26,7 @@ class UserRepositoryImpl: UserRepository {
             return self.remoteSource
                 .login(request: request)
                 .flatMap { [unowned self] (user) -> Observable<Bool> in
+                    print("UserRepoImpl persistUser \(user.username)")
                     return self.localSource
                         .persistUser(user: user)
             }

@@ -13,5 +13,7 @@ struct User {
     let password: String
     let name: String
     let phone: String
+    let avatarURL: String?
     let conversations: [String]
+    let contacts: [String]
 }

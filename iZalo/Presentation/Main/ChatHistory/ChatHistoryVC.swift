@@ -59,7 +59,15 @@ class ChatHistoryVC: BaseVC {
             cell.bind(item: item)
             return cell
         })
-
+        self.tableView.rx.itemSelected.asDriver()
+            .drive(onNext: {(ip) in
+                self.tableView.deselectRow(at: ip, animated: false)
+                let item = self.items.sectionModels[0].items[ip.row]
+                let vc = ChatVC.instance(conversationId: item.conversation.id)
+                self.navigationController?.setViewControllers([vc], animated: true)
+            
+            })
+            .disposed(by: self.disposeBag)
     }
     
     private func bindViewModel() {

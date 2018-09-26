@@ -12,21 +12,22 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="75" id="KGk-i7-Jjw" customClass="ContactCell" customModule="iZalo" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="80" id="KGk-i7-Jjw" customClass="ContactCell" customModule="iZalo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="74.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="contact_book" translatesAutoresizingMaskIntoConstraints="NO" id="No1-Kv-0Ix">
-                        <rect key="frame" x="10" y="10" width="54.5" height="54.5"/>
+                        <rect key="frame" x="10" y="10" width="59.5" height="59.5"/>
                         <constraints>
+                            <constraint firstAttribute="height" constant="59.5" id="D7Q-S3-YDY"/>
                             <constraint firstAttribute="width" secondItem="No1-Kv-0Ix" secondAttribute="height" multiplier="1:1" id="nHG-00-9iS"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8b-F3-SLg">
-                        <rect key="frame" x="74.5" y="27.5" width="102" height="19.5"/>
+                        <rect key="frame" x="79.5" y="30" width="102" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -48,7 +49,7 @@
                 <outlet property="avtImageView" destination="No1-Kv-0Ix" id="x0p-bo-21w"/>
                 <outlet property="contactNameLabel" destination="E8b-F3-SLg" id="HTz-Ps-A4e"/>
             </connections>
-            <point key="canvasLocation" x="132.80000000000001" y="152.47376311844079"/>
+            <point key="canvasLocation" x="132.80000000000001" y="154.72263868065968"/>
         </tableViewCell>
     </objects>
     <resources>

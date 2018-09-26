@@ -25,7 +25,19 @@ class ConversationCell: UITableViewCell {
     func bind(item: ConversationItem) {
         conversationNameLabel.text = item.conversation.name
         timestampLabel.text = item.conversation.lastMessage.timestampInString
-        lastMessageLabel.text = item.conversation.lastMessage.content as? String
+        switch item.conversation.lastMessage.type {
+        case Constant.textMessage:
+            lastMessageLabel.text = item.conversation.lastMessage.content
+        case Constant.imageMessage:
+            lastMessageLabel.text = " \(item.conversation.lastMessage.senderId) đã gửi một ảnh"
+        case Constant.voiceMessage:
+            lastMessageLabel.text = " \(item.conversation.lastMessage.senderId) đã gửi một đoạn ghi âm"
+        case Constant.videoMessage:
+            lastMessageLabel.text = " \(item.conversation.lastMessage.senderId) đã gửi một video"
+        default:
+            lastMessageLabel.text = item.conversation.lastMessage.content
+        }
+        
     }
     
 }

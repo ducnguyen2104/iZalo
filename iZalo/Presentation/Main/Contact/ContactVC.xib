@@ -12,7 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContactVC" customModule="iZalo" customModuleProvider="target">
             <connections>
+                <outlet property="addContactImageView" destination="B88-TY-cSO" id="aCQ-Uj-Q7e"/>
                 <outlet property="searchTextField" destination="lfm-tI-12w" id="jMv-n9-CB7"/>
+                <outlet property="tableView" destination="600-HU-Bco" id="OiU-cW-I2p"/>
                 <outlet property="view" destination="HCx-xQ-E1M" id="IQg-co-spk"/>
             </connections>
         </placeholder>

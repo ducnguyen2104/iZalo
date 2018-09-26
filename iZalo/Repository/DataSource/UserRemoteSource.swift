@@ -16,7 +16,7 @@ protocol UserRemoteSource {
 //    func autoLogin(user: User) -> Observable<User>
     
     func signup(request: SignUpRequest) -> Observable<User>
-    
+      
 //    func loadProfile(user: User) -> Observable<User>
     
 //    func updateProfile(request: UpdateProfileRequest, user: User) -> Observable<Bool>

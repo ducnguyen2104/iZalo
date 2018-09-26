@@ -46,8 +46,10 @@ final class LoginVM: ViewModelDelegate {
                     .flatMap { [unowned self] (request) -> Observable<Bool> in
                         return self.loginUseCase
                             .execute(request: request)
-                            .do(onNext: { [unowned self] (_) in
-                                self.displayLogic?.goToMain()
+                            .do(onNext: {[unowned self] (_) in
+                                self.displayLogic?.gotoMain()
+                            }, onError: {(_) in
+                                print("error!!")
                             })
                     }
                     .trackActivity(activityIndicator)

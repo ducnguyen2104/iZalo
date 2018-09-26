@@ -20,11 +20,24 @@ class UserRealmSource: UserLocalSource {
     }
     
     func persistUser(user: User) -> Observable<Bool> {
+        print("UserRealmSource persistUser")
         return Observable.deferred {
-            let realm = try Realm()
-            try realm.write {
-                realm.add(UserRealm.from(user: user), update: true)
+            do {
+                let realm = try Realm()
+                do {
+                    try realm.write {
+                        realm.add(UserRealm.from(user: user), update: true)
+                    }
+                }
+                catch {
+                    fatalError("failed to write")
+                }
             }
+            catch {
+                fatalError("failed to create Realm instance")
+            }
+            
+            
             return Observable.just(true)
         }
     }

@@ -16,4 +16,6 @@ target 'iZalo' do
     pod 'Firebase/Database'
     
     pod 'ObjectMapper'
+    
+    pod 'Kingfisher'
 end

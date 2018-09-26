@@ -16,8 +16,7 @@ class UserFirebaseSource: UserRemoteSource {
     private let ref: DatabaseReference! = Database.database().reference()
     
     func login(request: LoginRequest) -> Observable<User> {
-        //        return Observable<User>.just(User(username: "ahihi", password: "ahihi", name: "a hi hi", phone: "123456"))
-        print("Request login: \(request.username)")
+//        print("Request login: \(request.username)")
         return Observable.create { [unowned self] (observer) in
             self.ref.child("user").child(request.username)
                 .observeSingleEvent(of: .value, with: {(datasnapshot) in
@@ -26,6 +25,7 @@ class UserFirebaseSource: UserRemoteSource {
                         let user = value.convert()
                         if(user.password == request.password){
                             observer.onNext(user)
+                            print("Login success: \(user.username)")
                             observer.onCompleted()
                         }
                         else {
@@ -43,6 +43,7 @@ class UserFirebaseSource: UserRemoteSource {
     }
     
     func signup(request: SignUpRequest) -> Observable<User> {
-        return Observable<User>.just(User(username: "ahihi", password: "ahihi", name: "a hi hi", phone: "123456", conversations: []))
+        return Observable<User>.just(User(username: "ahihi", password: "ahihi", name: "a hi hi", phone: "123456", avatarURL: nil, conversations: [], contacts: []))
     }
+    
 }

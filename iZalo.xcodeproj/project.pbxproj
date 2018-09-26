@@ -32,6 +32,18 @@
 		97B55CFA2152370E0030F75D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 97B55CF92152370D0030F75D /* GoogleService-Info.plist */; };
 		97B55CFD215247DA0030F75D /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B55CFC215247DA0030F75D /* UserResponse.swift */; };
 		97B55CFF21524A7C0030F75D /* ParseDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B55CFE21524A7C0030F75D /* ParseDataError.swift */; };
+		97BA5894215B259C00327FA7 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BA5893215B259C00327FA7 /* Constant.swift */; };
+		97BA5896215B298000327FA7 /* ContactVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BA5895215B298000327FA7 /* ContactVM.swift */; };
+		97BA5898215B29FD00327FA7 /* ContactItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BA5897215B29FD00327FA7 /* ContactItem.swift */; };
+		97BA589A215B2B3800327FA7 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BA5899215B2B3800327FA7 /* Contact.swift */; };
+		97BA589E215B39FB00327FA7 /* LoadContactUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BA589D215B39FB00327FA7 /* LoadContactUseCase.swift */; };
+		97BA58A0215B3E6400327FA7 /* ContactRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BA589F215B3E6400327FA7 /* ContactRepository.swift */; };
+		97BA58A2215B3F1600327FA7 /* ContactRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BA58A1215B3F1600327FA7 /* ContactRepositoryImpl.swift */; };
+		97BA58A4215B408C00327FA7 /* ContactLocalSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BA58A3215B408C00327FA7 /* ContactLocalSource.swift */; };
+		97BA58A6215B409B00327FA7 /* ContactRemoteSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BA58A5215B409B00327FA7 /* ContactRemoteSource.swift */; };
+		97BA58A8215B41CB00327FA7 /* ContactFirebaseSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BA58A7215B41CB00327FA7 /* ContactFirebaseSource.swift */; };
+		97BA58AA215B425E00327FA7 /* ContactRealmSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BA58A9215B425E00327FA7 /* ContactRealmSource.swift */; };
+		97BA58AC215B42CB00327FA7 /* ContactRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BA58AB215B42CB00327FA7 /* ContactRealm.swift */; };
 		97CF54C9214FB7CE007609BE /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CF54C7214FB7CE007609BE /* LoginVC.swift */; };
 		97CF54CA214FB7CE007609BE /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97CF54C8214FB7CE007609BE /* LoginVC.xib */; };
 		97D6D55D215258EF0070E521 /* ValidateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D6D55C215258EF0070E521 /* ValidateError.swift */; };
@@ -54,6 +66,8 @@
 		97DB46E621520C0500F018DC /* ObservableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DB46E521520C0500F018DC /* ObservableType.swift */; };
 		97DB46E821520CD300F018DC /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DB46E721520CD300F018DC /* ActivityIndicator.swift */; };
 		97DB46EA21520D0700F018DC /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DB46E921520D0700F018DC /* ErrorTracker.swift */; };
+		97DFB55D215B90C30001ADFB /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DFB55B215B90C30001ADFB /* ChatVC.swift */; };
+		97DFB55E215B90C30001ADFB /* ChatVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97DFB55C215B90C30001ADFB /* ChatVC.xib */; };
 		97E2C0E121587F1800FA9348 /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E2C0E021587F1800FA9348 /* Conversation.swift */; };
 		97E2C0E32158800C00FA9348 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E2C0E22158800C00FA9348 /* Message.swift */; };
 		97E2C0E52158850800FA9348 /* ConversationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E2C0E42158850800FA9348 /* ConversationItem.swift */; };
@@ -99,6 +113,18 @@
 		97B55CF92152370D0030F75D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		97B55CFC215247DA0030F75D /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		97B55CFE21524A7C0030F75D /* ParseDataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseDataError.swift; sourceTree = "<group>"; };
+		97BA5893215B259C00327FA7 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		97BA5895215B298000327FA7 /* ContactVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactVM.swift; sourceTree = "<group>"; };
+		97BA5897215B29FD00327FA7 /* ContactItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactItem.swift; sourceTree = "<group>"; };
+		97BA5899215B2B3800327FA7 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		97BA589D215B39FB00327FA7 /* LoadContactUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadContactUseCase.swift; sourceTree = "<group>"; };
+		97BA589F215B3E6400327FA7 /* ContactRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRepository.swift; sourceTree = "<group>"; };
+		97BA58A1215B3F1600327FA7 /* ContactRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRepositoryImpl.swift; sourceTree = "<group>"; };
+		97BA58A3215B408C00327FA7 /* ContactLocalSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactLocalSource.swift; sourceTree = "<group>"; };
+		97BA58A5215B409B00327FA7 /* ContactRemoteSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRemoteSource.swift; sourceTree = "<group>"; };
+		97BA58A7215B41CB00327FA7 /* ContactFirebaseSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactFirebaseSource.swift; sourceTree = "<group>"; };
+		97BA58A9215B425E00327FA7 /* ContactRealmSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRealmSource.swift; sourceTree = "<group>"; };
+		97BA58AB215B42CB00327FA7 /* ContactRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRealm.swift; sourceTree = "<group>"; };
 		97CF54C7214FB7CE007609BE /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		97CF54C8214FB7CE007609BE /* LoginVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginVC.xib; sourceTree = "<group>"; };
 		97D6D55C215258EF0070E521 /* ValidateError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateError.swift; sourceTree = "<group>"; };
@@ -121,6 +147,8 @@
 		97DB46E521520C0500F018DC /* ObservableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableType.swift; sourceTree = "<group>"; };
 		97DB46E721520CD300F018DC /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		97DB46E921520D0700F018DC /* ErrorTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTracker.swift; sourceTree = "<group>"; };
+		97DFB55B215B90C30001ADFB /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
+		97DFB55C215B90C30001ADFB /* ChatVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatVC.xib; sourceTree = "<group>"; };
 		97E2C0E021587F1800FA9348 /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		97E2C0E22158800C00FA9348 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		97E2C0E42158850800FA9348 /* ConversationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationItem.swift; sourceTree = "<group>"; };
@@ -185,6 +213,8 @@
 				9736A3D621538D550085219D /* ContactVC.xib */,
 				973CBE932153B9F700403D2D /* ContactCell.swift */,
 				973CBE942153B9F700403D2D /* ContactCell.xib */,
+				97BA5895215B298000327FA7 /* ContactVM.swift */,
+				97BA5897215B29FD00327FA7 /* ContactItem.swift */,
 			);
 			path = Contact;
 			sourceTree = "<group>";
@@ -258,6 +288,7 @@
 		97CF54BE214FB727007609BE /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				97DFB550215B8FFF0001ADFB /* Chat */,
 				97B55CF421522F880030F75D /* Main */,
 				97DB46C82151FDE800F018DC /* UseCases */,
 				97CF54BF214FB734007609BE /* Login */,
@@ -286,6 +317,7 @@
 				97DB46E921520D0700F018DC /* ErrorTracker.swift */,
 				97D6D55C215258EF0070E521 /* ValidateError.swift */,
 				97D6D55E21525F7E0070E521 /* RxBinding.swift */,
+				97BA5893215B259C00327FA7 /* Constant.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -295,6 +327,7 @@
 			children = (
 				97DB46C92151FDFE00F018DC /* LoginUseCase.swift */,
 				97E2C0E82158985900FA9348 /* LoadConversationUseCase.swift */,
+				97BA589D215B39FB00327FA7 /* LoadContactUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -307,6 +340,7 @@
 				97DB46D02152000000F018DC /* Model */,
 				97DB46CE2151FF4F00F018DC /* UserRepository.swift */,
 				97E2C0EA2158991800FA9348 /* ConversationRepository.swift */,
+				97BA589F215B3E6400327FA7 /* ContactRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -323,6 +357,7 @@
 				97E2C0E22158800C00FA9348 /* Message.swift */,
 				970D6FE62158CC3F00688732 /* AuthenticateError.swift */,
 				970D6FE82158CCAF00688732 /* NetworkError.swift */,
+				97BA5899215B2B3800327FA7 /* Contact.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -341,6 +376,7 @@
 			children = (
 				97DB46D92152033100F018DC /* UserRepositoryImpl.swift */,
 				97E2C0EC215899EF00FA9348 /* ConversationRepositoryImpl.swift */,
+				97BA58A1215B3F1600327FA7 /* ContactRepositoryImpl.swift */,
 			);
 			path = Impl;
 			sourceTree = "<group>";
@@ -353,6 +389,8 @@
 				97DB46DC2152061F00F018DC /* Impl */,
 				97E2C0F52158A3A200FA9348 /* ConversationRemoteSource.swift */,
 				97E2C0F92158A5D300FA9348 /* ConversationLocalSource.swift */,
+				97BA58A3215B408C00327FA7 /* ContactLocalSource.swift */,
+				97BA58A5215B409B00327FA7 /* ContactRemoteSource.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -364,8 +402,19 @@
 				97DB46E321520A2A00F018DC /* UserRealmSource.swift */,
 				97E2C0F72158A46200FA9348 /* ConversationFirebaseSource.swift */,
 				970D6FE42158C80200688732 /* ConversationRealmSource.swift */,
+				97BA58A7215B41CB00327FA7 /* ContactFirebaseSource.swift */,
+				97BA58A9215B425E00327FA7 /* ContactRealmSource.swift */,
 			);
 			path = Impl;
+			sourceTree = "<group>";
+		};
+		97DFB550215B8FFF0001ADFB /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				97DFB55B215B90C30001ADFB /* ChatVC.swift */,
+				97DFB55C215B90C30001ADFB /* ChatVC.xib */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 		97E2C0EE21589C5F00FA9348 /* Realm */ = {
@@ -374,6 +423,7 @@
 				97E2C0EF21589C7600FA9348 /* UserRealm.swift */,
 				97E2C0F121589E1500FA9348 /* ConversationRealm.swift */,
 				97E2C0F321589F0300FA9348 /* MessageRealm.swift */,
+				97BA58AB215B42CB00327FA7 /* ContactRealm.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -443,6 +493,7 @@
 				9736A3DD21538D960085219D /* SettingVC.xib in Resources */,
 				978596BE214A594E00516138 /* LaunchScreen.storyboard in Resources */,
 				978596BB214A594E00516138 /* Assets.xcassets in Resources */,
+				97DFB55E215B90C30001ADFB /* ChatVC.xib in Resources */,
 				973CBE922153B63C00403D2D /* ConversationCell.xib in Resources */,
 				9736A3D821538D550085219D /* ContactVC.xib in Resources */,
 				97CF54CA214FB7CE007609BE /* LoginVC.xib in Resources */,
@@ -467,6 +518,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-iZalo/Pods-iZalo-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
@@ -485,6 +537,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
@@ -531,6 +584,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97BA589A215B2B3800327FA7 /* Contact.swift in Sources */,
 				973CBE952153B9F700403D2D /* ContactCell.swift in Sources */,
 				9736A3D721538D550085219D /* ContactVC.swift in Sources */,
 				97D6D561215265600070E521 /* ViewController.swift in Sources */,
@@ -549,7 +603,9 @@
 				97DB46C22151F2F100F018DC /* BaseVC.swift in Sources */,
 				970D6FE72158CC3F00688732 /* AuthenticateError.swift in Sources */,
 				97E2C0E32158800C00FA9348 /* Message.swift in Sources */,
+				97BA58A4215B408C00327FA7 /* ContactLocalSource.swift in Sources */,
 				970D6FEB2158E1F400688732 /* ConversationResponse.swift in Sources */,
+				97BA58A6215B409B00327FA7 /* ContactRemoteSource.swift in Sources */,
 				97DB46D52152009700F018DC /* LoginRequest.swift in Sources */,
 				97E2C0E121587F1800FA9348 /* Conversation.swift in Sources */,
 				97DB46C72151F57A00F018DC /* ViewModelDelegate.swift in Sources */,
@@ -558,21 +614,31 @@
 				97D6D55D215258EF0070E521 /* ValidateError.swift in Sources */,
 				97B55CFD215247DA0030F75D /* UserResponse.swift in Sources */,
 				9736A3DC21538D960085219D /* SettingVC.swift in Sources */,
+				97DFB55D215B90C30001ADFB /* ChatVC.swift in Sources */,
 				970D6FE92158CCAF00688732 /* NetworkError.swift in Sources */,
+				97BA5894215B259C00327FA7 /* Constant.swift in Sources */,
 				97DB46D22152001200F018DC /* User.swift in Sources */,
+				97BA58AA215B425E00327FA7 /* ContactRealmSource.swift in Sources */,
 				970D6FE52158C80200688732 /* ConversationRealmSource.swift in Sources */,
 				978596B4214A594C00516138 /* AppDelegate.swift in Sources */,
 				97D6D55F21525F7E0070E521 /* RxBinding.swift in Sources */,
 				97E2C0EB2158991800FA9348 /* ConversationRepository.swift in Sources */,
+				97BA58AC215B42CB00327FA7 /* ContactRealm.swift in Sources */,
 				97DB46D72152011300F018DC /* SignUpRequest.swift in Sources */,
+				97BA58A2215B3F1600327FA7 /* ContactRepositoryImpl.swift in Sources */,
+				97BA58A0215B3E6400327FA7 /* ContactRepository.swift in Sources */,
+				97BA58A8215B41CB00327FA7 /* ContactFirebaseSource.swift in Sources */,
 				97DB46DE2152063300F018DC /* UserRemoteSource.swift in Sources */,
 				97E2C0E52158850800FA9348 /* ConversationItem.swift in Sources */,
 				97DB46EA21520D0700F018DC /* ErrorTracker.swift in Sources */,
 				97E2C0F82158A46200FA9348 /* ConversationFirebaseSource.swift in Sources */,
+				97BA5896215B298000327FA7 /* ContactVM.swift in Sources */,
 				97E2C0F62158A3A200FA9348 /* ConversationRemoteSource.swift in Sources */,
 				97E2C0F021589C7600FA9348 /* UserRealm.swift in Sources */,
+				97BA5898215B29FD00327FA7 /* ContactItem.swift in Sources */,
 				97DB46CF2151FF4F00F018DC /* UserRepository.swift in Sources */,
 				97DB46CA2151FDFE00F018DC /* LoginUseCase.swift in Sources */,
+				97BA589E215B39FB00327FA7 /* LoadContactUseCase.swift in Sources */,
 				97E2C0F421589F0300FA9348 /* MessageRealm.swift in Sources */,
 				97E2C0FA2158A5D300FA9348 /* ConversationLocalSource.swift in Sources */,
 				97DB46E821520CD300F018DC /* ActivityIndicator.swift in Sources */,

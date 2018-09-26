@@ -15,7 +15,7 @@ class ConversationFirebaseSource: ConversationRemoteSource {
     private let ref: DatabaseReference! = Database.database().reference()
     
     func getConversation(user: User) -> Observable<[Conversation]> {
-        print("Conversation Firebase Source, get conversation of username: \(user.username)")
+        print("Conversation Firebase Source, get conversations of username: \(user.username)")
         return Observable.create { [unowned self] (observer) in
             if user.conversations.count == 0 {
                 observer.onCompleted()
@@ -27,20 +27,18 @@ class ConversationFirebaseSource: ConversationRemoteSource {
                         let value = ConversationResponse(value: datasnapshot.value as! NSDictionary)
                         let conversation = value.convert()
                         conversationObjects.append(conversation)
-                        print(conversationObjects.count)
                         if(user.conversations.firstIndex(of: id) == user.conversations.count - 1) { //check for last element
                             if(conversationObjects.count > 0) {
                                 observer.onNext(conversationObjects)
                                 observer.onCompleted()
                             } else {
-                                observer.onError(ParseDataError(parseClass: "ConversationResponse", errorMessage: "Các cuộc hội thoại không tồn tại"))
+                                observer.onError(ParseDataError(parseClass: "ConversationResponse", errorMessage: "Lịch sử tin nhắn không tồn tại"))
                             }
                         }
                     }
                 })
                 
             }
-            print(conversationObjects.count)
             
             return Disposables.create()
         }
