@@ -64,8 +64,8 @@ class ChatHistoryVC: BaseVC {
                 self.tableView.deselectRow(at: ip, animated: false)
                 let item = self.items.sectionModels[0].items[ip.row]
                 let vc = ChatVC.instance(conversationId: item.conversation.id)
-                self.navigationController?.setViewControllers([vc], animated: true)
-            
+                self.navigationController?.pushViewController(vc, animated: true)
+                self.navigationController?.tabBarController?.tabBar.isHidden = true
             })
             .disposed(by: self.disposeBag)
     }

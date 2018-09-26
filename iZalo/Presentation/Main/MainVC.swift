@@ -47,6 +47,7 @@ class MainVC: UITabBarController {
             let selectedItem = [NSAttributedStringKey.foregroundColor: UIColor.black]
             item.setTitleTextAttributes(selectedItem, for: .selected)
         }
+        self.navigationController?.hidesBottomBarWhenPushed = true
     }
 
 }
