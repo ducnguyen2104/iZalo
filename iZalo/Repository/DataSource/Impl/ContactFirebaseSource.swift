@@ -11,6 +11,7 @@ import RxSwift
 import Firebase
 
 class ContactFirebaseSource: ContactRemoteSource {
+    
     private let ref: DatabaseReference! = Database.database().reference()
     
     func getContact(user: User) -> Observable<[Contact]> {
@@ -39,6 +40,21 @@ class ContactFirebaseSource: ContactRemoteSource {
                     }
                 })
             }
+            return Disposables.create()
+        }
+    }
+    
+    func getAvatarURL(username: String) -> Observable<String> {
+        return Observable.create{ [unowned self] (observer) in
+            self.ref.child("user").child(username).child("avatarURL").observeSingleEvent(of: .value, with:{(datasnapshot) in
+                if datasnapshot.value is NSNull {
+                    observer.onNext(Constant.defaultAvatarURL)
+                    observer.onCompleted()
+                } else  {
+                    observer.onNext((datasnapshot.value as! NSString) as String)
+                    observer.onCompleted()
+                }
+            })
             return Disposables.create()
         }
     }

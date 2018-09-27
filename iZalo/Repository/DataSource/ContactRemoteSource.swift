@@ -11,6 +11,7 @@ import RxSwift
 
 protocol ContactRemoteSource {
     func getContact(user: User) -> Observable<[Contact]>
+    func getAvatarURL(username: String) -> Observable<String>
 }
 
 class ContactRemoteSourceFactory {

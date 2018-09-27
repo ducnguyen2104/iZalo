@@ -29,6 +29,13 @@
 		978596B9214A594C00516138 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 978596B7214A594C00516138 /* Main.storyboard */; };
 		978596BB214A594E00516138 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 978596BA214A594E00516138 /* Assets.xcassets */; };
 		978596BE214A594E00516138 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 978596BC214A594E00516138 /* LaunchScreen.storyboard */; };
+		9796AF6C215CBD88007BFF85 /* ChatVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9796AF6B215CBD88007BFF85 /* ChatVM.swift */; };
+		9796AF6F215CE51A007BFF85 /* MyMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9796AF6D215CE51A007BFF85 /* MyMessageCell.swift */; };
+		9796AF70215CE51A007BFF85 /* MyMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9796AF6E215CE51A007BFF85 /* MyMessageCell.xib */; };
+		9796AF73215CE8DB007BFF85 /* OthersMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9796AF71215CE8DB007BFF85 /* OthersMessageCell.swift */; };
+		9796AF74215CE8DB007BFF85 /* OthersMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9796AF72215CE8DB007BFF85 /* OthersMessageCell.xib */; };
+		9796AF78215CEEF5007BFF85 /* MessageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9796AF77215CEEF5007BFF85 /* MessageItem.swift */; };
+		9796AF7A215CF134007BFF85 /* MessageClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9796AF79215CF134007BFF85 /* MessageClassifier.swift */; };
 		97B55CFA2152370E0030F75D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 97B55CF92152370D0030F75D /* GoogleService-Info.plist */; };
 		97B55CFD215247DA0030F75D /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B55CFC215247DA0030F75D /* UserResponse.swift */; };
 		97B55CFF21524A7C0030F75D /* ParseDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B55CFE21524A7C0030F75D /* ParseDataError.swift */; };
@@ -110,6 +117,13 @@
 		978596BA214A594E00516138 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		978596BD214A594E00516138 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		978596BF214A594E00516138 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9796AF6B215CBD88007BFF85 /* ChatVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVM.swift; sourceTree = "<group>"; };
+		9796AF6D215CE51A007BFF85 /* MyMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMessageCell.swift; sourceTree = "<group>"; };
+		9796AF6E215CE51A007BFF85 /* MyMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyMessageCell.xib; sourceTree = "<group>"; };
+		9796AF71215CE8DB007BFF85 /* OthersMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthersMessageCell.swift; sourceTree = "<group>"; };
+		9796AF72215CE8DB007BFF85 /* OthersMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OthersMessageCell.xib; sourceTree = "<group>"; };
+		9796AF77215CEEF5007BFF85 /* MessageItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageItem.swift; sourceTree = "<group>"; };
+		9796AF79215CF134007BFF85 /* MessageClassifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageClassifier.swift; sourceTree = "<group>"; };
 		97B55CF92152370D0030F75D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		97B55CFC215247DA0030F75D /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		97B55CFE21524A7C0030F75D /* ParseDataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseDataError.swift; sourceTree = "<group>"; };
@@ -318,6 +332,7 @@
 				97D6D55C215258EF0070E521 /* ValidateError.swift */,
 				97D6D55E21525F7E0070E521 /* RxBinding.swift */,
 				97BA5893215B259C00327FA7 /* Constant.swift */,
+				9796AF79215CF134007BFF85 /* MessageClassifier.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -413,6 +428,12 @@
 			children = (
 				97DFB55B215B90C30001ADFB /* ChatVC.swift */,
 				97DFB55C215B90C30001ADFB /* ChatVC.xib */,
+				9796AF6B215CBD88007BFF85 /* ChatVM.swift */,
+				9796AF6D215CE51A007BFF85 /* MyMessageCell.swift */,
+				9796AF6E215CE51A007BFF85 /* MyMessageCell.xib */,
+				9796AF71215CE8DB007BFF85 /* OthersMessageCell.swift */,
+				9796AF72215CE8DB007BFF85 /* OthersMessageCell.xib */,
+				9796AF77215CEEF5007BFF85 /* MessageItem.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -491,6 +512,7 @@
 			files = (
 				9736A3D321538D040085219D /* ChatHistoryVC.xib in Resources */,
 				9736A3DD21538D960085219D /* SettingVC.xib in Resources */,
+				9796AF70215CE51A007BFF85 /* MyMessageCell.xib in Resources */,
 				978596BE214A594E00516138 /* LaunchScreen.storyboard in Resources */,
 				978596BB214A594E00516138 /* Assets.xcassets in Resources */,
 				97DFB55E215B90C30001ADFB /* ChatVC.xib in Resources */,
@@ -498,6 +520,7 @@
 				9736A3D821538D550085219D /* ContactVC.xib in Resources */,
 				97CF54CA214FB7CE007609BE /* LoginVC.xib in Resources */,
 				9736A3CE21538BF80085219D /* MainVC.xib in Resources */,
+				9796AF74215CE8DB007BFF85 /* OthersMessageCell.xib in Resources */,
 				973CBE962153B9F700403D2D /* ContactCell.xib in Resources */,
 				978596B9214A594C00516138 /* Main.storyboard in Resources */,
 				97B55CFA2152370E0030F75D /* GoogleService-Info.plist in Resources */,
@@ -614,6 +637,7 @@
 				97D6D55D215258EF0070E521 /* ValidateError.swift in Sources */,
 				97B55CFD215247DA0030F75D /* UserResponse.swift in Sources */,
 				9736A3DC21538D960085219D /* SettingVC.swift in Sources */,
+				9796AF7A215CF134007BFF85 /* MessageClassifier.swift in Sources */,
 				97DFB55D215B90C30001ADFB /* ChatVC.swift in Sources */,
 				970D6FE92158CCAF00688732 /* NetworkError.swift in Sources */,
 				97BA5894215B259C00327FA7 /* Constant.swift in Sources */,
@@ -625,9 +649,11 @@
 				97E2C0EB2158991800FA9348 /* ConversationRepository.swift in Sources */,
 				97BA58AC215B42CB00327FA7 /* ContactRealm.swift in Sources */,
 				97DB46D72152011300F018DC /* SignUpRequest.swift in Sources */,
+				9796AF78215CEEF5007BFF85 /* MessageItem.swift in Sources */,
 				97BA58A2215B3F1600327FA7 /* ContactRepositoryImpl.swift in Sources */,
 				97BA58A0215B3E6400327FA7 /* ContactRepository.swift in Sources */,
 				97BA58A8215B41CB00327FA7 /* ContactFirebaseSource.swift in Sources */,
+				9796AF73215CE8DB007BFF85 /* OthersMessageCell.swift in Sources */,
 				97DB46DE2152063300F018DC /* UserRemoteSource.swift in Sources */,
 				97E2C0E52158850800FA9348 /* ConversationItem.swift in Sources */,
 				97DB46EA21520D0700F018DC /* ErrorTracker.swift in Sources */,
@@ -638,12 +664,14 @@
 				97BA5898215B29FD00327FA7 /* ContactItem.swift in Sources */,
 				97DB46CF2151FF4F00F018DC /* UserRepository.swift in Sources */,
 				97DB46CA2151FDFE00F018DC /* LoginUseCase.swift in Sources */,
+				9796AF6F215CE51A007BFF85 /* MyMessageCell.swift in Sources */,
 				97BA589E215B39FB00327FA7 /* LoadContactUseCase.swift in Sources */,
 				97E2C0F421589F0300FA9348 /* MessageRealm.swift in Sources */,
 				97E2C0FA2158A5D300FA9348 /* ConversationLocalSource.swift in Sources */,
 				97DB46E821520CD300F018DC /* ActivityIndicator.swift in Sources */,
 				97B55CFF21524A7C0030F75D /* ParseDataError.swift in Sources */,
 				97DB46E22152088900F018DC /* UserFirebaseSource.swift in Sources */,
+				9796AF6C215CBD88007BFF85 /* ChatVM.swift in Sources */,
 				97E2C0F221589E1500FA9348 /* ConversationRealm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

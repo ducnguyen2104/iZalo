@@ -11,6 +11,7 @@ import RxSwift
 
 protocol ContactRepository {
     func loadContact() -> Observable<[Contact]>
+    func getAvatarURL(username: String) -> Observable<String>
 }
 
 class ContactRepositoryFactory {

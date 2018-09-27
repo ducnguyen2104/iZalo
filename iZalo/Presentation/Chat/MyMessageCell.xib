@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="79" id="KGk-i7-Jjw" customClass="MyMessageCell" customModule="iZalo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="78.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K72-0R-63e">
+                        <rect key="frame" x="250" y="10" width="60" height="58.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="moL-Ay-1d9">
+                                <rect key="frame" x="10" y="10" width="40" height="23.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQX-jq-nKc">
+                                <rect key="frame" x="10" y="38.5" width="31" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="3uE-HM-gja"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.83529411760000005" green="0.94509803920000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="moL-Ay-1d9" firstAttribute="top" secondItem="K72-0R-63e" secondAttribute="top" constant="10" id="600-ZY-FNM"/>
+                            <constraint firstItem="RQX-jq-nKc" firstAttribute="leading" secondItem="K72-0R-63e" secondAttribute="leading" constant="10" id="A3B-ZE-6pb"/>
+                            <constraint firstItem="moL-Ay-1d9" firstAttribute="leading" secondItem="K72-0R-63e" secondAttribute="leading" constant="10" id="AlS-gM-0xY"/>
+                            <constraint firstAttribute="bottom" secondItem="RQX-jq-nKc" secondAttribute="bottom" id="RZh-2w-TJL"/>
+                            <constraint firstItem="RQX-jq-nKc" firstAttribute="top" secondItem="moL-Ay-1d9" secondAttribute="bottom" constant="5" id="XDn-X9-Hjw"/>
+                            <constraint firstAttribute="trailing" secondItem="moL-Ay-1d9" secondAttribute="trailing" constant="10" id="uwh-mO-Ska"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" red="0.8862745098" green="0.91372549020000005" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="K72-0R-63e" secondAttribute="bottom" constant="10" id="8DY-O1-n1n"/>
+                    <constraint firstItem="K72-0R-63e" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="100" id="f5d-ID-AlY"/>
+                    <constraint firstItem="K72-0R-63e" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="tTC-k0-j4e"/>
+                    <constraint firstAttribute="trailing" secondItem="K72-0R-63e" secondAttribute="trailing" constant="10" id="vV0-ig-bKh"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.8862745098" green="0.91372549020000005" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="messageContainerView" destination="K72-0R-63e" id="rSF-he-JDv"/>
+                <outlet property="messageLabel" destination="moL-Ay-1d9" id="aVh-zx-68b"/>
+                <outlet property="timestampLabel" destination="RQX-jq-nKc" id="Jtc-Xd-ZcP"/>
+            </connections>
+            <point key="canvasLocation" x="132.80000000000001" y="170.46476761619192"/>
+        </tableViewCell>
+    </objects>
+</document>

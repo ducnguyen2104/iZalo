@@ -38,4 +38,8 @@ class ContactRepositoryImpl: ContactRepository {
             }
         }
     }
+    
+    func getAvatarURL(username: String) -> Observable<String> {
+        return self.remoteSource.getAvatarURL(username: username)
+    }
 }

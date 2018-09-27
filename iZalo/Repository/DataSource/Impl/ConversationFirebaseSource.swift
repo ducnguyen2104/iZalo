@@ -25,12 +25,13 @@ class ConversationFirebaseSource: ConversationRemoteSource {
                 self.ref.child("conversation").child(id).observeSingleEvent(of: .value, with: {(datasnapshot) in
                     if(!(datasnapshot.value is NSNull)) {
                         let value = ConversationResponse(value: datasnapshot.value as! NSDictionary)
-                        let conversation = value.convert()
+                        let conversation = value.convert(currentUsername: user.username)
                         conversationObjects.append(conversation)
                         if(user.conversations.firstIndex(of: id) == user.conversations.count - 1) { //check for last element
                             if(conversationObjects.count > 0) {
                                 observer.onNext(conversationObjects)
                                 observer.onCompleted()
+                            
                             } else {
                                 observer.onError(ParseDataError(parseClass: "ConversationResponse", errorMessage: "Lịch sử tin nhắn không tồn tại"))
                             }
