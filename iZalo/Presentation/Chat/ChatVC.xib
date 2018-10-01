@@ -26,6 +26,10 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tnq-wY-ijq">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
+                    <color key="backgroundColor" red="0.23137254900000001" green="0.59215686270000001" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J23-Yi-gvF">
                     <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                     <subviews>
@@ -129,12 +133,16 @@
             <constraints>
                 <constraint firstItem="J23-Yi-gvF" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="9gX-aE-6aE"/>
                 <constraint firstItem="BOw-PC-ax1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="BWh-Zg-f0O"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="tnq-wY-ijq" secondAttribute="bottom" id="Qab-Gx-EjS"/>
+                <constraint firstItem="tnq-wY-ijq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Rtg-l3-YWD"/>
                 <constraint firstItem="BOw-PC-ax1" firstAttribute="top" secondItem="J23-Yi-gvF" secondAttribute="bottom" id="aj1-uM-cry"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="BOw-PC-ax1" secondAttribute="trailing" id="cAt-Wv-edv"/>
                 <constraint firstItem="BOw-PC-ax1" firstAttribute="bottom" secondItem="bFL-9L-YHx" secondAttribute="top" id="cS0-eb-cig"/>
                 <constraint firstItem="bFL-9L-YHx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="frC-Jr-QPf"/>
+                <constraint firstItem="tnq-wY-ijq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fvO-Hp-k7S"/>
                 <constraint firstItem="J23-Yi-gvF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="gvi-v5-bEw"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="bFL-9L-YHx" secondAttribute="trailing" id="nSo-ux-vyp"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="tnq-wY-ijq" secondAttribute="trailing" id="nr2-GQ-wDK"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="bFL-9L-YHx" secondAttribute="bottom" id="pwi-QJ-XSO"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="J23-Yi-gvF" secondAttribute="trailing" id="z05-17-2G7"/>
             </constraints>

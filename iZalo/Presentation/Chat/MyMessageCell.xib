@@ -20,10 +20,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K72-0R-63e">
-                        <rect key="frame" x="250" y="10" width="60" height="58.5"/>
+                        <rect key="frame" x="250.5" y="10" width="59.5" height="58.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="moL-Ay-1d9">
-                                <rect key="frame" x="10" y="10" width="40" height="23.5"/>
+                                <rect key="frame" x="10" y="10" width="39.5" height="23.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -44,7 +44,10 @@
                             <constraint firstItem="RQX-jq-nKc" firstAttribute="leading" secondItem="K72-0R-63e" secondAttribute="leading" constant="10" id="A3B-ZE-6pb"/>
                             <constraint firstItem="moL-Ay-1d9" firstAttribute="leading" secondItem="K72-0R-63e" secondAttribute="leading" constant="10" id="AlS-gM-0xY"/>
                             <constraint firstAttribute="bottom" secondItem="RQX-jq-nKc" secondAttribute="bottom" id="RZh-2w-TJL"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="RQX-jq-nKc" secondAttribute="trailing" constant="-10" id="Rbg-gN-HuK"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" secondItem="RQX-jq-nKc" secondAttribute="width" constant="20" id="TTz-k4-1iB"/>
                             <constraint firstItem="RQX-jq-nKc" firstAttribute="top" secondItem="moL-Ay-1d9" secondAttribute="bottom" constant="5" id="XDn-X9-Hjw"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" secondItem="moL-Ay-1d9" secondAttribute="width" id="j13-pn-Gya"/>
                             <constraint firstAttribute="trailing" secondItem="moL-Ay-1d9" secondAttribute="trailing" constant="10" id="uwh-mO-Ska"/>
                         </constraints>
                     </view>
