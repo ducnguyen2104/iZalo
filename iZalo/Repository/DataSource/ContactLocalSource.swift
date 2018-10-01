@@ -15,5 +15,5 @@ protocol ContactLocalSource {
 }
 
 class ContactLocalSourceFactory {
-    static let sharedInstance: ContactLocalSource = ContactRealmSource()
+    public static let sharedInstance: ContactLocalSource = ContactRealmSource()
 }

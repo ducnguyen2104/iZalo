@@ -11,8 +11,10 @@ import Foundation
 class ConversationItem {
     
     let conversation: Conversation
+    let currentUsername: String
     
-    init(conversation: Conversation) {
+    init(conversation: Conversation, currentUsername: String) {
         self.conversation = conversation
+        self.currentUsername = currentUsername
     }
 }

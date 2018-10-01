@@ -16,8 +16,11 @@ protocol ChatHistoryDisplayLogic: class {
 
 class ChatHistoryVC: BaseVC {
     
+    private var currentUsername: String!
+    
     public typealias ViewModelType = ChatHistoryVM
     public var viewModel: ChatHistoryVM!
+    
     
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
@@ -29,14 +32,14 @@ class ChatHistoryVC: BaseVC {
         super.init(coder: aDecoder)
     }
     
-    init() {
+    init(currentUsername: String) {
         super.init(nibName: "ChatHistoryVC", bundle: nil)
-
-        self.viewModel = ChatHistoryVM(displayLogic: self)
+        self.currentUsername = currentUsername
+        self.viewModel = ChatHistoryVM(displayLogic: self, currentUsername: self.currentUsername)
     }
     
-    class func instance() -> ChatHistoryVC {
-        return ChatHistoryVC()
+    class func instance(currentUsername: String) -> ChatHistoryVC {
+        return ChatHistoryVC(currentUsername: currentUsername)
     }
     
     override func viewDidLoad() {
@@ -63,7 +66,7 @@ class ChatHistoryVC: BaseVC {
             .drive(onNext: {(ip) in
                 self.tableView.deselectRow(at: ip, animated: false)
                 let item = self.items.sectionModels[0].items[ip.row]
-                let vc = ChatVC.instance(conversation: item.conversation)
+                let vc = ChatVC.instance(conversation: item.conversation, currentUsername: item.currentUsername)
                 self.navigationController?.pushViewController(vc, animated: true)
                 self.navigationController?.tabBarController?.tabBar.isHidden = true
             })

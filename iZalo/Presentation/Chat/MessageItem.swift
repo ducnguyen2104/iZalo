@@ -11,8 +11,10 @@ import Foundation
 class MessageItem {
     
     let message: Message
+    let currentUsername: String
     
-    init(message: Message) {
+    init(message: Message, currentUsername: String) {
         self.message = message
+        self.currentUsername = currentUsername
     }
 }

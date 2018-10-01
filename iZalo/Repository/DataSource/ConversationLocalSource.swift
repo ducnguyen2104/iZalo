@@ -15,5 +15,5 @@ protocol ConversationLocalSource {
 }
 
 class ConversationLocalSourceFactory {
-    static let sharedInstance: ConversationLocalSource = ConversationRealmSource()
+    public static let sharedInstance: ConversationLocalSource = ConversationRealmSource()
 }

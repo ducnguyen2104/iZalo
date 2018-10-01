@@ -10,20 +10,33 @@ import UIKit
 
 class MainVC: UITabBarController {
     
-    class func instance() -> MainVC {
-        return MainVC()
+    public var currentUsername: String!
+    
+    class func instance(currentUsername: String) -> MainVC {
+        return MainVC(currentUsername: currentUsername)
     }
-
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    init(currentUsername: String) {
+        print("init")
+        self.currentUsername = currentUsername
+        super.init(nibName: "MainVC", bundle: nil)
+    }
+    
     override func viewDidLoad() {
+        print("viewDidload")
         super.viewDidLoad()
         setupTabs()
     }
 
     func setupTabs() {
-        
-        let historyVC = ChatHistoryVC.instance()
-        let contactVC = ContactVC.instance()
-        let settingVC = SettingVC.instance()
+        print(self.currentUsername)
+        let historyVC = ChatHistoryVC.instance(currentUsername: self.currentUsername)
+        let contactVC = ContactVC.instance(currentUsername: self.currentUsername)
+        let settingVC = SettingVC.instance(currentUsername: self.currentUsername)
     
         let historyTab = UINavigationController(rootViewController: historyVC)
         let contactTab = UINavigationController(rootViewController: contactVC)

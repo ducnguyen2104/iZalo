@@ -9,10 +9,26 @@
 import UIKit
 
 class SettingVC: BaseVC {
+    
+    private var currentUsername: String!
+    
+    func setCurrentUsername(currentUsername: String) {
+        self.currentUsername = currentUsername
+    }
+    
     @IBOutlet weak var searchTextField: UITextField!
     
-    class func instance() -> SettingVC {
-        return SettingVC()
+    class func instance(currentUsername: String) -> SettingVC {
+        return SettingVC(currentUsername: currentUsername)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    init(currentUsername: String) {
+        super.init(nibName: "SettingVC", bundle: nil)
+        self.currentUsername = currentUsername
     }
     
     override func viewDidLoad() {

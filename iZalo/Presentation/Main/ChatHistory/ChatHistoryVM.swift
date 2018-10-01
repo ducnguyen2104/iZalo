@@ -16,11 +16,13 @@ final class ChatHistoryVM: ViewModelDelegate {
     private weak var displayLogic: ChatHistoryDisplayLogic?
     private let loadConversationUseCase = LoadConversationUseCase()
     private let disposeBag = DisposeBag()
+    private var currentUsername: String!
     
-    init(displayLogic: ChatHistoryDisplayLogic) {
+    init(displayLogic: ChatHistoryDisplayLogic, currentUsername: String) {
         self.displayLogic = displayLogic
+        self.currentUsername = currentUsername
     }
-    
+
     func transform(input: ChatHistoryVM.Input) -> ChatHistoryVM.Output {
         let activityIndicator = ActivityIndicator()
         let errorTracker = ErrorTracker()
@@ -30,7 +32,7 @@ final class ChatHistoryVM: ViewModelDelegate {
                 return self.loadConversationUseCase.execute(request: ())
                     .do(onNext: { (conversations) in
                         self.items.accept(conversations.map { (conversation) in
-                            return ConversationItem(conversation: conversation)
+                            return ConversationItem(conversation: conversation, currentUsername: self.currentUsername!)
                         })
                     })
                     .trackActivity(activityIndicator)

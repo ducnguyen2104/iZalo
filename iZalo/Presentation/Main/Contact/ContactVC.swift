@@ -16,6 +16,12 @@ protocol ContactDisplayLogic: class {
 
 class ContactVC: BaseVC {
     
+    public var currentUsername: String!
+    
+    public func setCurrentUsername(currentUsername: String) {
+        self.currentUsername = currentUsername
+    }
+    
     public typealias ViewModelType = ContactVM
     public var viewModel: ContactVM!
     
@@ -30,14 +36,14 @@ class ContactVC: BaseVC {
         super.init(coder: aDecoder)
     }
     
-    init() {
+    init(currentUsername: String) {
         super.init(nibName: "ChatHistoryVC", bundle: nil)
-        
         self.viewModel = ContactVM(displayLogic: self)
+        self.currentUsername = currentUsername
     }
     
-    class func instance() -> ContactVC {
-        return ContactVC()
+    class func instance(currentUsername: String) -> ContactVC {
+        return ContactVC(currentUsername: currentUsername)
     }
     
     override func viewDidLoad() {

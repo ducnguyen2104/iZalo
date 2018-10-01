@@ -12,6 +12,7 @@ import RealmSwift
 class MessageRealm: Object {
     @objc dynamic var id: String = "id"
     @objc dynamic var senderId: String = "senderId"
+    @objc dynamic var conversationId: String = "conversationId"
     @objc dynamic var content: String = "content"
     @objc dynamic var type: String = "type"
     @objc dynamic var timestamp: Int = 0
@@ -25,6 +26,7 @@ class MessageRealm: Object {
         let messageRealm = MessageRealm()
         messageRealm.id = message.id
         messageRealm.senderId = message.senderId
+        messageRealm.conversationId = message.conversationId
         messageRealm.content = message.content
         messageRealm.type = message.type
         messageRealm.timestamp = message.timestamp
@@ -33,7 +35,7 @@ class MessageRealm: Object {
     }
     
     func convert() -> Message {
-        return Message(id: self.id, senderId: self.senderId, content: self.content, type: self.type, timestamp: self.timestamp, timestampInString: self.timestampInString)
+        return Message(id: self.id, senderId: self.senderId, conversationId: self.conversationId, content: self.content, type: self.type, timestamp: self.timestamp, timestampInString: self.timestampInString)
     }
 }
 

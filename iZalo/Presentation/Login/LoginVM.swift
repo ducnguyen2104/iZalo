@@ -47,7 +47,7 @@ final class LoginVM: ViewModelDelegate {
                         return self.loginUseCase
                             .execute(request: request)
                             .do(onNext: {[unowned self] (_) in
-                                self.displayLogic?.gotoMain()
+                                self.displayLogic?.gotoMain(currentUsername: self.username.value)
                             }, onError: {(_) in
                                 print("error!!")
                             })

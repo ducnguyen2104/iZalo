@@ -11,6 +11,7 @@ import Foundation
 struct Message {
     let id: String
     let senderId: String
+    let conversationId: String 
     let content: String
     let type: String
     let timestamp: Int
