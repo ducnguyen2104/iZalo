@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iZalo/Presentation/Chat/MyMessageCell.swift"
-            timestampString = "560087552.0473469"
+            timestampString = "560256552.326606"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
             landmarkName = "bind(item:)"
             landmarkType = "7">
          </BreakpointContent>

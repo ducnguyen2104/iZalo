@@ -15,7 +15,7 @@ class UserRealmSource: UserLocalSource {
     func getUser() -> Observable<User?> {
         return Observable.deferred {
             let realm = try Realm()
-            return Observable.just(realm.objects(UserRealm.self).first?.convert())
+            return Observable.just(realm.objects(UserRealm.self).last?.convert())
         }
     }
     
@@ -25,6 +25,7 @@ class UserRealmSource: UserLocalSource {
             do {
                 let realm = try Realm()
                 do {
+                    
                     try realm.write {
                         realm.add(UserRealm.from(user: user), update: true)
                     }
@@ -36,8 +37,6 @@ class UserRealmSource: UserLocalSource {
             catch {
                 fatalError("failed to create Realm instance")
             }
-            
-            
             return Observable.just(true)
         }
     }

@@ -29,7 +29,7 @@ final class ChatHistoryVM: ViewModelDelegate {
         print("ChatHistoryVM transform")
         input.trigger
             .flatMap{[unowned self] (_) -> Driver<[Conversation]> in
-                return self.loadConversationUseCase.execute(request: ())
+                return self.loadConversationUseCase.execute(request: LoadConversationRequest(username: self.currentUsername))
                     .do(onNext: { (conversations) in
                         self.items.accept(conversations.map { (conversation) in
                             return ConversationItem(conversation: conversation, currentUsername: self.currentUsername!)

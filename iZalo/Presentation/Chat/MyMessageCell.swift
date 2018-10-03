@@ -8,15 +8,19 @@
 
 import UIKit
 
-class MyMessageCell: UITableViewCell {
+class MyMessageCell: BaseMessageCell {
 
     @IBOutlet weak var messageContainerView: UIView!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
+    @IBOutlet weak var messageContainer: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none
+        self.messageContainer.layer.cornerRadius = 10
+        self.messageContainer.layer.borderWidth = 0.1
+        self.messageContainer.layer.borderColor = Color.mainBlueColor.cgColor
         // Initialization code
     }
 

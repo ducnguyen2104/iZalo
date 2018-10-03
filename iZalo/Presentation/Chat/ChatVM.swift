@@ -45,6 +45,7 @@ final class ChatVM: ViewModelDelegate {
                 self.items.accept(messages.map { (message) in
                     return MessageItem(message: message, currentUsername: self.currentUsername)
                 })
+                print("message item")
             })
             .trackActivity(activityIndicator)
             .trackError(errorTracker)

@@ -35,16 +35,18 @@ class MessageFirebaseSource: MessageRemoteSource {
     func getMessage(conversation: Conversation, user: User) -> Observable<[Message]> {
         return Observable.create { [unowned self] (observer) in
             var messageObjects: [Message] = []
-            self.ref.child("message").child(conversation.id).observeSingleEvent(of: .value, with: { (datasnapshot) in
+            self.ref.child("message").child(conversation.id).observe(.value, with: { (datasnapshot) in
                 if(!(datasnapshot.value is NSNull)) {
                     for data in ((datasnapshot.children.allObjects as? [DataSnapshot])!) {
                         let value = MessageResponse(value: data.value as! NSDictionary)
                         let message = value.convert()
                         messageObjects.append(message)
-                        if (message.id == conversation.lastMessage.id) { //check for last message
+                        if (messageObjects.count == datasnapshot.childrenCount) { //check for last message
                             if(messageObjects.count > 0) {
+                                print("load message: \(messageObjects.count)")
                                 observer.onNext(messageObjects)
-                                observer.onCompleted()
+                                messageObjects = []
+                                //observer.onCompleted()
                             } else {
                                 observer.onError(ParseDataError(parseClass: "MessageResponse", errorMessage: "Cuộc hội thoại không tồn tại"))
                             }

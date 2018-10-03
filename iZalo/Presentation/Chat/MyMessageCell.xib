@@ -63,6 +63,7 @@
             <color key="backgroundColor" red="0.8862745098" green="0.91372549020000005" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="messageContainer" destination="K72-0R-63e" id="J4Q-Sv-HKo"/>
                 <outlet property="messageContainerView" destination="K72-0R-63e" id="rSF-he-JDv"/>
                 <outlet property="messageLabel" destination="moL-Ay-1d9" id="aVh-zx-68b"/>
                 <outlet property="timestampLabel" destination="RQX-jq-nKc" id="Jtc-Xd-ZcP"/>

@@ -99,7 +99,7 @@ extension LoginVC: LoginDisplayLogic {
     }
     
     func gotoMain(currentUsername: String) {
-        showToast(message: "Go to main")
+        print( "Go to main: \(self.usernameTextField.text!)")
         let mainVC = MainVC.instance(currentUsername: self.usernameTextField.text!)
         self.navigationController?.setViewControllers([mainVC], animated: true)
     }

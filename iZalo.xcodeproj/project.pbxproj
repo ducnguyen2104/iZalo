@@ -21,6 +21,9 @@
 		9736A3D821538D550085219D /* ContactVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9736A3D621538D550085219D /* ContactVC.xib */; };
 		9736A3DC21538D960085219D /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9736A3DA21538D960085219D /* SettingVC.swift */; };
 		9736A3DD21538D960085219D /* SettingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9736A3DB21538D960085219D /* SettingVC.xib */; };
+		973A61542164B990003B6047 /* BaseMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973A61532164B990003B6047 /* BaseMessageCell.swift */; };
+		973A61562164BDD3003B6047 /* LoadConversationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973A61552164BDD3003B6047 /* LoadConversationRequest.swift */; };
+		973A61582164C7A5003B6047 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973A61572164C7A5003B6047 /* Color.swift */; };
 		973CBE912153B63C00403D2D /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973CBE8F2153B63C00403D2D /* ConversationCell.swift */; };
 		973CBE922153B63C00403D2D /* ConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 973CBE902153B63C00403D2D /* ConversationCell.xib */; };
 		973CBE952153B9F700403D2D /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973CBE932153B9F700403D2D /* ContactCell.swift */; };
@@ -117,6 +120,9 @@
 		9736A3D621538D550085219D /* ContactVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactVC.xib; sourceTree = "<group>"; };
 		9736A3DA21538D960085219D /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		9736A3DB21538D960085219D /* SettingVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingVC.xib; sourceTree = "<group>"; };
+		973A61532164B990003B6047 /* BaseMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMessageCell.swift; sourceTree = "<group>"; };
+		973A61552164BDD3003B6047 /* LoadConversationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadConversationRequest.swift; sourceTree = "<group>"; };
+		973A61572164C7A5003B6047 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		973CBE8F2153B63C00403D2D /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
 		973CBE902153B63C00403D2D /* ConversationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationCell.xib; sourceTree = "<group>"; };
 		973CBE932153B9F700403D2D /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
@@ -353,6 +359,7 @@
 				97D6D55E21525F7E0070E521 /* RxBinding.swift */,
 				97BA5893215B259C00327FA7 /* Constant.swift */,
 				9796AF79215CF134007BFF85 /* MessageClassifier.swift */,
+				973A61572164C7A5003B6047 /* Color.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -407,6 +414,7 @@
 				974E03AB216222C1001597FF /* LoadMessageRequest.swift */,
 				97DB46D62152011300F018DC /* SignUpRequest.swift */,
 				974E03992161B9BA001597FF /* SendMessageRequest.swift */,
+				973A61552164BDD3003B6047 /* LoadConversationRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -464,6 +472,7 @@
 				9796AF71215CE8DB007BFF85 /* OthersMessageCell.swift */,
 				9796AF72215CE8DB007BFF85 /* OthersMessageCell.xib */,
 				9796AF77215CEEF5007BFF85 /* MessageItem.swift */,
+				973A61532164B990003B6047 /* BaseMessageCell.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -569,6 +578,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-iZalo/Pods-iZalo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/DeepDiff/DeepDiff.framework",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
@@ -588,6 +598,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DeepDiff.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
@@ -662,6 +673,7 @@
 				974E03A62161C155001597FF /* MessageRealmSource.swift in Sources */,
 				970D6FE72158CC3F00688732 /* AuthenticateError.swift in Sources */,
 				97E2C0E32158800C00FA9348 /* Message.swift in Sources */,
+				973A61582164C7A5003B6047 /* Color.swift in Sources */,
 				97BA58A4215B408C00327FA7 /* ContactLocalSource.swift in Sources */,
 				970D6FEB2158E1F400688732 /* ConversationResponse.swift in Sources */,
 				97BA58A6215B409B00327FA7 /* ContactRemoteSource.swift in Sources */,
@@ -689,6 +701,7 @@
 				97BA58AC215B42CB00327FA7 /* ContactRealm.swift in Sources */,
 				97DB46D72152011300F018DC /* SignUpRequest.swift in Sources */,
 				9796AF78215CEEF5007BFF85 /* MessageItem.swift in Sources */,
+				973A61562164BDD3003B6047 /* LoadConversationRequest.swift in Sources */,
 				97BA58A2215B3F1600327FA7 /* ContactRepositoryImpl.swift in Sources */,
 				97BA58A0215B3E6400327FA7 /* ContactRepository.swift in Sources */,
 				97BA58A8215B41CB00327FA7 /* ContactFirebaseSource.swift in Sources */,
@@ -712,6 +725,7 @@
 				97B55CFF21524A7C0030F75D /* ParseDataError.swift in Sources */,
 				97DB46E22152088900F018DC /* UserFirebaseSource.swift in Sources */,
 				9796AF6C215CBD88007BFF85 /* ChatVM.swift in Sources */,
+				973A61542164B990003B6047 /* BaseMessageCell.swift in Sources */,
 				97E2C0F221589E1500FA9348 /* ConversationRealm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxDataSources
 
 class MessageItem {
     
@@ -16,5 +17,17 @@ class MessageItem {
     init(message: Message, currentUsername: String) {
         self.message = message
         self.currentUsername = currentUsername
+    }
+}
+
+extension MessageItem: IdentifiableType {
+    var identity: String {
+        return self.message.id
+    }
+}
+
+extension MessageItem: Equatable {
+    static func == (lhs: MessageItem, rhs: MessageItem) -> Bool {
+            return lhs.identity == rhs.identity
     }
 }

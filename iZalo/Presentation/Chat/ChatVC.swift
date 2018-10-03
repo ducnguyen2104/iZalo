@@ -15,6 +15,7 @@ protocol ChatDisplayLogic: class {
     func hideKeyboard()
     func clearInputTextField()
     func updateSendStatus()
+    func scollTableToBottom(noRows: Int)
 }
 
 class ChatVC: BaseVC {
@@ -30,7 +31,7 @@ class ChatVC: BaseVC {
     public var conversation: Conversation!
     public var currentUsername: String!
     private let disposeBag = DisposeBag()
-    private var items: RxTableViewSectionedReloadDataSource<SectionModel<String, MessageItem>>!
+    private var items: RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, MessageItem>>!
     
     class func instance(conversation: Conversation, currentUsername: String) -> ChatVC {
         return ChatVC(conversation: conversation, currentUsername: currentUsername)
@@ -67,11 +68,22 @@ class ChatVC: BaseVC {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 80
         self.tableView.register(UINib(nibName: "MyMessageCell", bundle: nil), forCellReuseIdentifier: "MyMessageCell")
+        self.tableView.register(UINib(nibName: "OthersMessageCell", bundle: nil), forCellReuseIdentifier: "OthersMessageCell")
         self.tableView.separatorStyle = .none
-        self.items = RxTableViewSectionedReloadDataSource<SectionModel<String, MessageItem>>(configureCell: { (_, tv, ip, item) -> UITableViewCell in
-            let cell = tv.dequeueReusableCell(withIdentifier: "MyMessageCell", for: ip) as! MyMessageCell
-            cell.bind(item: item)
-            return cell
+
+        self.items = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, MessageItem>>(configureCell: { (_, tv, ip, item) -> UITableViewCell in
+            print("binding")
+            if(item.message.senderId == self.currentUsername) {
+                let cell = tv.dequeueReusableCell(withIdentifier: "MyMessageCell", for: ip) as! MyMessageCell
+                cell.bind(item: item)
+            
+                return cell
+            } else {
+                let cell = tv.dequeueReusableCell(withIdentifier: "OthersMessageCell", for: ip) as! OthersMessageCell
+                cell.bind(item: item)
+                
+                return cell
+            }
         })
     }
     
@@ -88,13 +100,14 @@ class ChatVC: BaseVC {
         }).disposed(by: self.disposeBag)
         
         output.items
-            .map { [SectionModel(model: "Items", items: $0)] }
+            .map { [AnimatableSectionModel(model: "Items", items: $0)] }
             .drive(self.tableView.rx.items(dataSource: self.items))
             .disposed(by: self.disposeBag)
         
         output.error.drive(onNext: { [unowned self] (error) in
             self.handleError(error: error)
         }).disposed(by: self.disposeBag)
+        
     }
 
 }
@@ -115,5 +128,10 @@ extension ChatVC: ChatDisplayLogic {
     
     func updateSendStatus() {
         
+    }
+    
+    func scollTableToBottom(noRows: Int) {
+        let indexPath = NSIndexPath(item: noRows, section: 0)
+        self.tableView.scrollToRow(at: indexPath as IndexPath, at: UITableViewScrollPosition.bottom, animated: true)
     }
 }

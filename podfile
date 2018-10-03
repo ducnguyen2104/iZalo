@@ -18,4 +18,6 @@ target 'iZalo' do
     pod 'ObjectMapper'
     
     pod 'Kingfisher'
+    
+    pod 'DeepDiff'
 end

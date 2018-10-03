@@ -12,10 +12,10 @@ import RxSwift
 class LoadConversationUseCase: UseCase {
     private let repository : ConversationRepository = ConversationRepositoryFactory.sharedInstance
     
-    public typealias TRequest = Void
+    public typealias TRequest = LoadConversationRequest
     public typealias TResponse = [Conversation]
     
-    public func execute(request: Void) -> Observable<[Conversation]> {
+    public func execute(request: LoadConversationRequest) -> Observable<[Conversation]> {
         print("LoadConversationUseCase execute")
         return self.repository
             .loadConversation()

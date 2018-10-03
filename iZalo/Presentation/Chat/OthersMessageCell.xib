@@ -52,6 +52,7 @@
                             <constraint firstAttribute="bottom" secondItem="7DI-Nq-n8w" secondAttribute="bottom" id="Sv7-L1-lJS"/>
                             <constraint firstAttribute="trailing" secondItem="rKP-w2-htc" secondAttribute="trailing" constant="10" id="eZE-8J-9gc"/>
                             <constraint firstItem="rKP-w2-htc" firstAttribute="leading" secondItem="7KP-ky-zjv" secondAttribute="leading" constant="10" id="f1h-Ku-dyb"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7DI-Nq-n8w" secondAttribute="trailing" constant="10" id="fe8-W7-Oe4"/>
                             <constraint firstItem="7DI-Nq-n8w" firstAttribute="leading" secondItem="7KP-ky-zjv" secondAttribute="leading" constant="10" id="siZ-up-qqN"/>
                         </constraints>
                     </view>
@@ -69,6 +70,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="avatarImageView" destination="HbC-eo-gA4" id="AOs-jd-x0i"/>
+                <outlet property="messageContainer" destination="7KP-ky-zjv" id="FWw-PH-jMo"/>
                 <outlet property="messageLabel" destination="rKP-w2-htc" id="xF1-AT-BYN"/>
                 <outlet property="timestampLabel" destination="7DI-Nq-n8w" id="18d-fo-ya8"/>
             </connections>
