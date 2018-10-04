@@ -66,7 +66,7 @@ class ChatHistoryVC: BaseVC {
             .drive(onNext: {(ip) in
                 self.tableView.deselectRow(at: ip, animated: false)
                 let item = self.items.sectionModels[0].items[ip.row]
-                let vc = ChatVC.instance(conversation: item.conversation, currentUsername: item.currentUsername)
+                let vc = ChatVC.instance(conversation: item.conversation, currentUsername: item.currentUsername, contactObservable: item.contactObservable)
                 self.navigationController?.pushViewController(vc, animated: true)
                 self.navigationController?.tabBarController?.tabBar.isHidden = true
             })

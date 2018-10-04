@@ -12,5 +12,5 @@ struct Contact {
     let username: String
     let name: String
     let phone: String
-    let avatarURL: String?
+    let avatarURL: String
 }

@@ -10,7 +10,10 @@ import Foundation
 import RxSwift
 
 protocol ContactRepository {
-    func loadContact() -> Observable<[Contact]>
+    func loadContacts(username: String) -> Observable<[Contact]>
+    
+    func getContactInfo(username: String) -> Observable<Contact>
+    
     func getAvatarURL(username: String) -> Observable<String>
 }
 

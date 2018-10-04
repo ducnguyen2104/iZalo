@@ -16,6 +16,8 @@ protocol UserRemoteSource {
 //    func autoLogin(user: User) -> Observable<User>
     
     func signup(request: SignUpRequest) -> Observable<User>
+    
+    func getAvatarURL(username: String) -> Observable<String>
       
 //    func loadProfile(user: User) -> Observable<User>
     

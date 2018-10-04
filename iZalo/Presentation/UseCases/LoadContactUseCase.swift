@@ -13,13 +13,13 @@ class LoadContactUseCase: UseCase {
     
     private let repository: ContactRepository = ContactRepositoryFactory.sharedInstance
     
-    public typealias TRequest = Void
+    public typealias TRequest = LoadConversationAndContactRequest
     public typealias TResponse = [Contact]
     
-    public func execute(request: Void) -> Observable<[Contact]> {
+    public func execute(request: LoadConversationAndContactRequest) -> Observable<[Contact]> {
         print("LoadContactUseCase execute")
         return self.repository
-            .loadContact()
+            .loadContacts(username: request.username)
             .asObservable()
     }
 }

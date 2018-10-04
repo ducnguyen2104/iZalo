@@ -65,6 +65,7 @@ PODS:
   - Realm/Headers (3.10.0)
   - RealmSwift (3.10.0):
     - Realm (= 3.10.0)
+  - ReverseExtension (0.5.0)
   - RxCocoa (4.3.1):
     - RxSwift (~> 4.0)
   - RxDataSources (3.1.0):
@@ -86,6 +87,7 @@ DEPENDENCIES:
   - ObjectMapper
   - Realm
   - RealmSwift
+  - ReverseExtension
   - RxCocoa (~> 4.0)
   - RxDataSources
   - RxRealm
@@ -110,6 +112,7 @@ SPEC REPOS:
     - ObjectMapper
     - Realm
     - RealmSwift
+    - ReverseExtension
     - RxCocoa
     - RxDataSources
     - RxRealm
@@ -133,12 +136,13 @@ SPEC CHECKSUMS:
   ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
   Realm: 85ab9e4f779d66f6e9ffeb118dc25b7f130c96ac
   RealmSwift: 69121c8b86d0ae005fb779efdb10e606732e1c74
+  ReverseExtension: 21c8dd4e767f93b56fb97d873686d24160f83945
   RxCocoa: 78763c7b07d02455598d9fc3c1ad091a28b73635
   RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxRealm: a6c6c0a07cb61f34209969ca6657734edfdfff30
   RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
 
-PODFILE CHECKSUM: 36cb4b95b6c13728e77c1856559fe93348300f14
+PODFILE CHECKSUM: 8a3b15f497357c0e0bdf94ed7c0b0cbefef712e7
 
 COCOAPODS: 1.5.3

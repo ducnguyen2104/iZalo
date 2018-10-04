@@ -46,4 +46,21 @@ class UserFirebaseSource: UserRemoteSource {
         return Observable<User>.just(User(username: "ahihi", password: "ahihi", name: "a hi hi", phone: "123456", avatarURL: nil, conversations: [], contacts: []))
     }
     
+    func getAvatarURL(username: String) -> Observable<String> {
+        return Observable.create { [unowned self] (observer) in
+            self.ref.child("user").child(username).child("avatarURL")
+            .observeSingleEvent(of: .value, with: { (datasnapshot) in
+                print("data \(datasnapshot.value)")
+                if(!(datasnapshot.value is NSNull)){
+                    observer.onNext(datasnapshot.value as! String)
+                    observer.onCompleted()
+                }
+                else {
+                    observer.onNext(Constant.defaultAvatarURL)
+                    observer.onCompleted()
+                }
+            })
+            return Disposables.create()
+        }
+    }
 }

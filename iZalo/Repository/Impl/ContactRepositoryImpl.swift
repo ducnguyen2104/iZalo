@@ -22,11 +22,11 @@ class ContactRepositoryImpl: ContactRepository {
         self.userRepository = userRepository
     }
     
-    func loadContact() -> Observable<[Contact]> {
+    func loadContacts(username: String) -> Observable<[Contact]> {
         print("ContactRepositoryImpl loadContact")
         return Observable.deferred{
             return self.userRepository
-                .loadUser()
+                .loadUser(username: username)
                 .take(1)
                 .flatMap{(user) -> Observable<[Contact]> in
                     guard let user = user else {
@@ -41,5 +41,9 @@ class ContactRepositoryImpl: ContactRepository {
     
     func getAvatarURL(username: String) -> Observable<String> {
         return self.remoteSource.getAvatarURL(username: username)
+    }
+    
+    func getContactInfo(username: String) -> Observable<Contact> {
+        return self.remoteSource.getContactInfo(username: username)
     }
 }

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-struct LoadConversationRequest {
+struct LoadConversationAndContactRequest {
     
     let username: String
     

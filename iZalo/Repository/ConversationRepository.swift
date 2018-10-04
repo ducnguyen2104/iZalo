@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 
 protocol ConversationRepository {
-    func loadConversation() -> Observable<[Conversation]>
+    func loadConversation(username: String) -> Observable<[Conversation]>
 }
 
 class ConversationRepositoryFactory {

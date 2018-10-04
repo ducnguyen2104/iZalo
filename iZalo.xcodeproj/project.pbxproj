@@ -22,7 +22,7 @@
 		9736A3DC21538D960085219D /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9736A3DA21538D960085219D /* SettingVC.swift */; };
 		9736A3DD21538D960085219D /* SettingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9736A3DB21538D960085219D /* SettingVC.xib */; };
 		973A61542164B990003B6047 /* BaseMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973A61532164B990003B6047 /* BaseMessageCell.swift */; };
-		973A61562164BDD3003B6047 /* LoadConversationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973A61552164BDD3003B6047 /* LoadConversationRequest.swift */; };
+		973A61562164BDD3003B6047 /* LoadConversationAndContactRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973A61552164BDD3003B6047 /* LoadConversationAndContactRequest.swift */; };
 		973A61582164C7A5003B6047 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973A61572164C7A5003B6047 /* Color.swift */; };
 		973CBE912153B63C00403D2D /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973CBE8F2153B63C00403D2D /* ConversationCell.swift */; };
 		973CBE922153B63C00403D2D /* ConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 973CBE902153B63C00403D2D /* ConversationCell.xib */; };
@@ -121,7 +121,7 @@
 		9736A3DA21538D960085219D /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		9736A3DB21538D960085219D /* SettingVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingVC.xib; sourceTree = "<group>"; };
 		973A61532164B990003B6047 /* BaseMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMessageCell.swift; sourceTree = "<group>"; };
-		973A61552164BDD3003B6047 /* LoadConversationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadConversationRequest.swift; sourceTree = "<group>"; };
+		973A61552164BDD3003B6047 /* LoadConversationAndContactRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadConversationAndContactRequest.swift; sourceTree = "<group>"; };
 		973A61572164C7A5003B6047 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		973CBE8F2153B63C00403D2D /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
 		973CBE902153B63C00403D2D /* ConversationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationCell.xib; sourceTree = "<group>"; };
@@ -414,7 +414,7 @@
 				974E03AB216222C1001597FF /* LoadMessageRequest.swift */,
 				97DB46D62152011300F018DC /* SignUpRequest.swift */,
 				974E03992161B9BA001597FF /* SendMessageRequest.swift */,
-				973A61552164BDD3003B6047 /* LoadConversationRequest.swift */,
+				973A61552164BDD3003B6047 /* LoadConversationAndContactRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -586,6 +586,7 @@
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/ReverseExtension/ReverseExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxRealm/RxRealm.framework",
@@ -606,6 +607,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReverseExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRealm.framework",
@@ -701,7 +703,7 @@
 				97BA58AC215B42CB00327FA7 /* ContactRealm.swift in Sources */,
 				97DB46D72152011300F018DC /* SignUpRequest.swift in Sources */,
 				9796AF78215CEEF5007BFF85 /* MessageItem.swift in Sources */,
-				973A61562164BDD3003B6047 /* LoadConversationRequest.swift in Sources */,
+				973A61562164BDD3003B6047 /* LoadConversationAndContactRequest.swift in Sources */,
 				97BA58A2215B3F1600327FA7 /* ContactRepositoryImpl.swift in Sources */,
 				97BA58A0215B3E6400327FA7 /* ContactRepository.swift in Sources */,
 				97BA58A8215B41CB00327FA7 /* ContactFirebaseSource.swift in Sources */,

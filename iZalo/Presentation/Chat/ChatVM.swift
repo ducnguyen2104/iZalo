@@ -39,10 +39,11 @@ final class ChatVM: ViewModelDelegate {
         
         input.trigger
         .flatMap{[unowned self] (_) -> Driver<[Message]> in
-            return self.loadMessageUsecase.execute(request: LoadMessageRequest(conversation: self.conversation))
+            return self.loadMessageUsecase.execute(request: LoadMessageRequest(conversation: self.conversation, username: self.currentUsername))
             .do(onNext: { (messages) in
                 print("load message, next \(messages.count)")
                 self.items.accept(messages.map { (message) in
+                    print("\(message.senderId)")
                     return MessageItem(message: message, currentUsername: self.currentUsername)
                 })
                 print("message item")

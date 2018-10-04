@@ -33,16 +33,20 @@ class UserRepositoryImpl: UserRepository {
         }
     }
     
-    func loadUser() -> Observable<User?> {
+    func loadUser(username: String) -> Observable<User?> {
         return Observable.deferred { [unowned self] in
             return self.localSource
-                .getUser()
+                .getUser(username: username)
                 .concat(self.userSubject)
         }
     }
     
     func signup(request: SignUpRequest) -> Observable<Bool> {
         return Observable<Bool>.just(true)
+    }
+    
+    func getAvatarURL(username: String) -> Observable<String> {
+        return self.remoteSource.getAvatarURL(username: username)
     }
     
 }

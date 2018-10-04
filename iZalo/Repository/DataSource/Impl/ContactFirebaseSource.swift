@@ -44,6 +44,23 @@ class ContactFirebaseSource: ContactRemoteSource {
         }
     }
     
+    func getContactInfo(username: String) -> Observable<Contact> {
+        return Observable.create{ [unowned self] (observer) in
+            self.ref.child("user").child(username).observeSingleEvent(of: .value, with: {(datasnapshot) in
+                if(!(datasnapshot.value is NSNull)) {
+                    let value = UserResponse(value: datasnapshot.value as! NSDictionary)
+                    let contact = value.convertToContact()
+                    observer.onNext(contact)
+                    observer.onCompleted()
+                }
+                else {
+                    observer.onError(ParseDataError(parseClass: "UserResponse", errorMessage: "Lỗi khi tải thông tin liên hệ"))
+                }
+            })
+            return Disposables.create()
+            }
+    }
+    
     func getAvatarURL(username: String) -> Observable<String> {
         return Observable.create{ [unowned self] (observer) in
             self.ref.child("user").child(username).child("avatarURL").observeSingleEvent(of: .value, with:{(datasnapshot) in

@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "78EC85BE752067F51473F5347E035875"
-               BlueprintName = "Realm"
+               BlueprintIdentifier = "D432D70012B42772EB355EFC3DF0FF84"
+               BlueprintName = "ReverseExtension"
                ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "Realm.framework">
+               BuildableName = "ReverseExtension.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -11,7 +11,7 @@ import RxSwift
 
 protocol UserLocalSource {
     
-    func getUser() -> Observable<User?>
+    func getUser(username: String) -> Observable<User?>
     
     func persistUser(user: User) -> Observable<Bool>
     

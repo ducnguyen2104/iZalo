@@ -34,6 +34,6 @@ class UserResponse {
     }
     
     func convertToContact() -> Contact {
-        return Contact(username: self.username, name: self.name, phone: self.phone, avatarURL: self.avatarURL)
+        return Contact(username: self.username, name: self.name, phone: self.phone, avatarURL: self.avatarURL ?? Constant.defaultAvatarURL)
     }
 }

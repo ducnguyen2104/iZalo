@@ -10,8 +10,5 @@ import Foundation
 
 class MessageClassifier {
     static let userRepository = UserRepositoryFactory.sharedInstance
-    class func isMine(message: Message) -> Bool {
-        userRepository.loadUser().take(1)
-        return true
-    }
+    
 }

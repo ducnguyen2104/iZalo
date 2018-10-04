@@ -23,10 +23,10 @@ class MessageRepositoryImpl: MessageRepository {
         self.userRepository = userRepository
     }
     
-    func loadMessage(conversation: Conversation) -> Observable<[Message]> {
+    func loadMessage(conversation: Conversation, username: String) -> Observable<[Message]> {
         return Observable.deferred{
             return self.userRepository
-            .loadUser()
+            .loadUser(username: username)
             .take(1)
             .flatMap{ (user) -> Observable<[Message]> in
                 guard let user = user else {

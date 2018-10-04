@@ -16,9 +16,11 @@ final class ContactVM: ViewModelDelegate {
     private weak var displayLogic: ContactDisplayLogic?
     private let loadContactUseCase = LoadContactUseCase()
     private let disposeBag = DisposeBag()
+    private let currentUsername: String
     
-    init(displayLogic: ContactDisplayLogic) {
+    init(displayLogic: ContactDisplayLogic, currentUsername: String) {
         self.displayLogic = displayLogic
+        self.currentUsername = currentUsername
     }
     
     func transform(input: ContactVM.Input) -> ContactVM.Output {
@@ -27,7 +29,7 @@ final class ContactVM: ViewModelDelegate {
         print("ContactVM transform")
         input.trigger
             .flatMap{[unowned self] (_) -> Driver<[Contact]> in
-                return self.loadContactUseCase.execute(request: ())
+                return self.loadContactUseCase.execute(request: LoadConversationAndContactRequest(username: self.currentUsername))
                     .do(onNext: { (contacts) in
                         self.items.accept(contacts.map { (contact) in
                             return ContactItem(contact: contact)

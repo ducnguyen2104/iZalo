@@ -7,14 +7,17 @@
 //
 
 import Foundation
+import RxSwift
 
 class ConversationItem {
     
     let conversation: Conversation
     let currentUsername: String
-    
+    private let contactRepository = ContactRepositoryFactory.sharedInstance
+    let contactObservable: Observable<Contact>
     init(conversation: Conversation, currentUsername: String) {
         self.conversation = conversation
         self.currentUsername = currentUsername
+        self.contactObservable = self.contactRepository.getContactInfo(username: self.conversation.members[1] != self.currentUsername ? self.conversation.members[1] : self.conversation.members[0])
     }
 }

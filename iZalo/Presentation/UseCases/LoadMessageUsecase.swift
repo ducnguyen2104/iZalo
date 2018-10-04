@@ -19,7 +19,7 @@ class LoadMessageUseCase: UseCase {
     
     public func execute(request: LoadMessageRequest) -> Observable<[Message]> {
         return self.repository
-            .loadMessage(conversation: request.conversation)
+            .loadMessage(conversation: request.conversation, username: request.username)
             .asObservable()
     }
 }

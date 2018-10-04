@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import RxSwift
 
 class OthersMessageCell: BaseMessageCell {
 
@@ -31,10 +32,13 @@ class OthersMessageCell: BaseMessageCell {
         // Configure the view for the selected state
     }
     
-    func bind(item: MessageItem) {
+    func bind(item: MessageItem, contactObservable: Observable<Contact>) {
         messageLabel.text = item.message.content
         timestampLabel.text = item.message.timestampInString
         let processor = RoundCornerImageProcessor(cornerRadius: 20)
-        avatarImageView.kf.setImage(with: URL(string: Constant.defaultAvatarURL), placeholder: nil,  options: [.processor(processor)])
+        contactObservable.subscribe(onNext: {(contact) in
+            self.avatarImageView.kf.setImage(with: URL(string: contact.avatarURL), placeholder: nil,  options: [.processor(processor)])
+        })
+        
     }
 }

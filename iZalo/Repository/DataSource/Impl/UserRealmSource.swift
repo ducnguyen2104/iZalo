@@ -12,10 +12,10 @@ import RxSwift
 
 class UserRealmSource: UserLocalSource {
     
-    func getUser() -> Observable<User?> {
+    func getUser(username: String) -> Observable<User?> {
         return Observable.deferred {
             let realm = try Realm()
-            return Observable.just(realm.objects(UserRealm.self).last?.convert())
+            return Observable.just(realm.object(ofType: UserRealm.self, forPrimaryKey: username)?.convert())
         }
     }
     

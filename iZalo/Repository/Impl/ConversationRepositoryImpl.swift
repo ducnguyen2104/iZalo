@@ -22,11 +22,11 @@ class ConversationRepositoryImpl: ConversationRepository {
         self.userRepository = userRepository
     }
     
-    func loadConversation() -> Observable<[Conversation]> {
+    func loadConversation(username: String) -> Observable<[Conversation]> {
         print("ConversationRepositoryImpl loadConversation")
         return Observable.deferred {
             return self.userRepository
-                .loadUser()
+                .loadUser(username: username)
                 .take(1)
                 .flatMap { (user) -> Observable<[Conversation]> in
                     guard let user = user else {

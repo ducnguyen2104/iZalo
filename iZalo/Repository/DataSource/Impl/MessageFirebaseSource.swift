@@ -35,7 +35,7 @@ class MessageFirebaseSource: MessageRemoteSource {
     func getMessage(conversation: Conversation, user: User) -> Observable<[Message]> {
         return Observable.create { [unowned self] (observer) in
             var messageObjects: [Message] = []
-            self.ref.child("message").child(conversation.id).observe(.value, with: { (datasnapshot) in
+            self.ref.child("message").child(conversation.id).queryOrdered(byChild: "timestamp").observe(.value, with: { (datasnapshot) in
                 if(!(datasnapshot.value is NSNull)) {
                     for data in ((datasnapshot.children.allObjects as? [DataSnapshot])!) {
                         let value = MessageResponse(value: data.value as! NSDictionary)
@@ -44,7 +44,7 @@ class MessageFirebaseSource: MessageRemoteSource {
                         if (messageObjects.count == datasnapshot.childrenCount) { //check for last message
                             if(messageObjects.count > 0) {
                                 print("load message: \(messageObjects.count)")
-                                observer.onNext(messageObjects)
+                                observer.onNext(messageObjects.reversed())
                                 messageObjects = []
                                 //observer.onCompleted()
                             } else {

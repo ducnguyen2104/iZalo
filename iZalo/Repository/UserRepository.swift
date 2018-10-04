@@ -19,7 +19,9 @@ protocol UserRepository {
     
 //    func logout() -> Observable<Bool>
     
-    func loadUser() -> Observable<User?>
+    func loadUser(username: String) -> Observable<User?>
+    
+    func getAvatarURL(username: String) -> Observable<String>
     
 //    func loadProfile() -> Observable<User>
     

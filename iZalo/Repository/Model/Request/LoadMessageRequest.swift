@@ -11,5 +11,5 @@ import Foundation
 struct LoadMessageRequest {
     
     let conversation: Conversation
-
+    let username: String
 }

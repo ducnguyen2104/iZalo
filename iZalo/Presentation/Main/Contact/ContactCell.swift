@@ -28,7 +28,7 @@ class ContactCell: UITableViewCell {
     func bind(item: ContactItem) {
         let processor = RoundCornerImageProcessor(cornerRadius: 30)
         if (item.contact.avatarURL != nil) {
-            avtImageView.kf.setImage(with: URL(string: item.contact.avatarURL!), placeholder: nil,  options: [.processor(processor)])
+            avtImageView.kf.setImage(with: URL(string: item.contact.avatarURL), placeholder: nil,  options: [.processor(processor)])
         } else {
             avtImageView.kf.setImage(with: URL(string: Constant.defaultAvatarURL), placeholder: nil,  options: [.processor(processor)])
         }
