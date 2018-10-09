@@ -22,8 +22,8 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="contact_book" translatesAutoresizingMaskIntoConstraints="NO" id="No1-Kv-0Ix">
                         <rect key="frame" x="10" y="10" width="59.5" height="59.5"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="59.5" id="D7Q-S3-YDY"/>
                             <constraint firstAttribute="width" secondItem="No1-Kv-0Ix" secondAttribute="height" multiplier="1:1" id="nHG-00-9iS"/>
+                            <constraint firstAttribute="height" constant="59.5" id="wmL-wl-rVQ"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8b-F3-SLg">

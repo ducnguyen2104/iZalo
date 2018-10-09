@@ -47,7 +47,7 @@ class LoginVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.prepareUI()
+        self.setupLayout()
         self.bindViewModel()
     }
 
@@ -56,7 +56,7 @@ class LoginVC: BaseVC {
         // Dispose of any resources that can be recreated.
     }
     
-    private func prepareUI() {
+    private func setupLayout() {
         self.usernameLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(usernameFocus)))
         self.passwordLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(passwordFocus)))
         self.loginBtn.layer.cornerRadius = 10
@@ -105,7 +105,7 @@ extension LoginVC: LoginDisplayLogic {
     }
     
     func gotoSignup() {
-//        let signupVC = SignupVC.instance()
-//        self.navigationController?.pushViewController(signupVC, animated: true)
+        let signupVC = SignupVC.instance()
+        self.navigationController?.pushViewController(signupVC, animated: true)
     }
 }

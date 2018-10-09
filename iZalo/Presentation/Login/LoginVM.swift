@@ -29,16 +29,22 @@ final class LoginVM: ViewModelDelegate {
         (input.username <-> self.username).disposed(by: self.disposeBag)
         (input.password <-> self.password).disposed(by: self.disposeBag)
         
+        input.signupTrigger
+            .drive(onNext: { [unowned self] in
+                self.displayLogic?.gotoSignup()
+            })
+            .disposed(by: self.disposeBag)
+        
         input.loginTrigger
             .flatMap { [unowned self] () -> Driver<Bool> in
                 self.displayLogic?.hideKeyboard()
                 return Observable.deferred { [unowned self] in
                     guard !self.username.value.isEmpty else {
-                        return Observable.error(ValidateError(message: "Please input username"))
+                        return Observable.error(ValidateError(message: "Tên đăng nhập không được để trống"))
                     }
                     
                     guard !self.password.value.isEmpty else {
-                        return Observable.error(ValidateError(message: "Please input password"))
+                        return Observable.error(ValidateError(message: "Mật khẩu không được để trống"))
                     }
                     
                     return Observable.just(LoginRequest(username: self.username.value, password: self.password.value))
@@ -48,8 +54,8 @@ final class LoginVM: ViewModelDelegate {
                             .execute(request: request)
                             .do(onNext: {[unowned self] (_) in
                                 self.displayLogic?.gotoMain(currentUsername: self.username.value)
-                            }, onError: {(_) in
-                                print("error!!")
+                                }, onError: {(_) in
+                                    print("error!!")
                             })
                     }
                     .trackActivity(activityIndicator)

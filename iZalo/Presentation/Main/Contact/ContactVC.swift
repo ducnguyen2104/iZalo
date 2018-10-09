@@ -12,6 +12,7 @@ import RxDataSources
 
 protocol ContactDisplayLogic: class {
     func gotoChat()
+    func gotoAddFriend()
 }
 
 class ContactVC: BaseVC {
@@ -20,10 +21,10 @@ class ContactVC: BaseVC {
     
     public typealias ViewModelType = ContactVM
     public var viewModel: ContactVM!
+    @IBOutlet weak var addContactBtn: UIButton!
     
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var addContactImageView: UIImageView!
     
     private let disposeBag = DisposeBag()
     private var items: RxTableViewSectionedReloadDataSource<SectionModel<String, ContactItem>>!
@@ -33,7 +34,7 @@ class ContactVC: BaseVC {
     }
     
     init(currentUsername: String) {
-        super.init(nibName: "ChatHistoryVC", bundle: nil)
+        super.init(nibName: "ContactVC", bundle: nil)
         self.currentUsername = currentUsername
         self.viewModel = ContactVM(displayLogic: self, currentUsername: currentUsername)
     }
@@ -73,7 +74,8 @@ class ContactVC: BaseVC {
         
         let input = ContactVM.Input(
             trigger: viewWillAppear,
-            selectTrigger: self.tableView.rx.itemSelected.asDriver()
+            selectTrigger: self.tableView.rx.itemSelected.asDriver(),
+            addFriendTrigger: self.addContactBtn.rx.tap.asDriver()
         )
         let output = self.viewModel.transform(input: input)
         
@@ -97,5 +99,10 @@ extension ContactVC: ContactDisplayLogic {
     
     func gotoChat() {
     
+    }
+    
+    func gotoAddFriend() {
+        let addFriendVC = AddFriendVC.instance(currentUsername: self.currentUsername)
+        self.navigationController?.pushViewController(addFriendVC, animated: true)
     }
 }

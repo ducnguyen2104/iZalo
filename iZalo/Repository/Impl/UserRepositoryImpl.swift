@@ -41,8 +41,8 @@ class UserRepositoryImpl: UserRepository {
         }
     }
     
-    func signup(request: SignUpRequest) -> Observable<Bool> {
-        return Observable<Bool>.just(true)
+    func signup(request: SignupRequest) -> Observable<User> {
+        return self.remoteSource.signup(request: request)
     }
     
     func getAvatarURL(username: String) -> Observable<String> {

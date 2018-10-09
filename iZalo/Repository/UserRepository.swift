@@ -15,7 +15,7 @@ protocol UserRepository {
     
 //    func autoLogin() -> Observable<Bool>
     
-    func signup(request: SignUpRequest) -> Observable<Bool>
+    func signup(request: SignupRequest) -> Observable<User>
     
 //    func logout() -> Observable<Bool>
     

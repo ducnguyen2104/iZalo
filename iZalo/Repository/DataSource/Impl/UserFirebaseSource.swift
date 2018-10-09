@@ -16,7 +16,7 @@ class UserFirebaseSource: UserRemoteSource {
     private let ref: DatabaseReference! = Database.database().reference()
     
     func login(request: LoginRequest) -> Observable<User> {
-//        print("Request login: \(request.username)")
+        //        print("Request login: \(request.username)")
         return Observable.create { [unowned self] (observer) in
             self.ref.child("user").child(request.username)
                 .observeSingleEvent(of: .value, with: {(datasnapshot) in
@@ -42,24 +42,40 @@ class UserFirebaseSource: UserRemoteSource {
         }
     }
     
-    func signup(request: SignUpRequest) -> Observable<User> {
-        return Observable<User>.just(User(username: "ahihi", password: "ahihi", name: "a hi hi", phone: "123456", avatarURL: nil, conversations: [], contacts: []))
+    func signup(request: SignupRequest) -> Observable<User> {
+        return Observable.create { [unowned self] (observer) in
+            self.ref.child("user").child(request.username).observeSingleEvent(of: .value, with: { (datasnapshot) in
+                if datasnapshot.exists() {
+                    observer.onError(ParseDataError(parseClass: "UserResponse", errorMessage: "Username đã tồn tại, vui lòng chọn username khác"))
+                } else {
+                    self.ref.child("user").child(request.username).setValue(request.toDictionary()) {
+                        (error:Error?, ref:DatabaseReference) in
+                        if error != nil {
+                            observer.onError(ParseDataError(parseClass: "UserResponse", errorMessage: "Lỗi, vui lòng thử lại"))
+                        } else {
+                            observer.onNext(request.makeUser())
+                            observer.onCompleted()
+                        }
+                    }
+                }
+            })
+            return Disposables.create()
+        }
     }
     
     func getAvatarURL(username: String) -> Observable<String> {
         return Observable.create { [unowned self] (observer) in
             self.ref.child("user").child(username).child("avatarURL")
-            .observeSingleEvent(of: .value, with: { (datasnapshot) in
-                print("data \(datasnapshot.value)")
-                if(!(datasnapshot.value is NSNull)){
-                    observer.onNext(datasnapshot.value as! String)
-                    observer.onCompleted()
-                }
-                else {
-                    observer.onNext(Constant.defaultAvatarURL)
-                    observer.onCompleted()
-                }
-            })
+                .observeSingleEvent(of: .value, with: { (datasnapshot) in
+                    if(!(datasnapshot.value is NSNull)){
+                        observer.onNext(datasnapshot.value as! String)
+                        observer.onCompleted()
+                    }
+                    else {
+                        observer.onNext(Constant.defaultAvatarURL)
+                        observer.onCompleted()
+                    }
+                })
             return Disposables.create()
         }
     }

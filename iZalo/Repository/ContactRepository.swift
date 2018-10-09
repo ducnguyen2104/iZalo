@@ -15,6 +15,8 @@ protocol ContactRepository {
     func getContactInfo(username: String) -> Observable<Contact>
     
     func getAvatarURL(username: String) -> Observable<String>
+    
+    func searchContact(username: String, currentUsername: String) -> Observable<ContactSearchResult>
 }
 
 class ContactRepositoryFactory {

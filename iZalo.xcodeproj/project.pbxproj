@@ -13,6 +13,16 @@
 		970D6FE92158CCAF00688732 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970D6FE82158CCAF00688732 /* NetworkError.swift */; };
 		970D6FEB2158E1F400688732 /* ConversationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970D6FEA2158E1F400688732 /* ConversationResponse.swift */; };
 		970D6FED2158E4CF00688732 /* MessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970D6FEC2158E4CF00688732 /* MessageResponse.swift */; };
+		97133734216C450E000A609A /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97133732216C450E000A609A /* SignupVC.swift */; };
+		97133735216C450E000A609A /* SignupVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97133733216C450E000A609A /* SignupVC.xib */; };
+		97133737216C5A65000A609A /* SignupVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97133736216C5A65000A609A /* SignupVM.swift */; };
+		97133739216C6255000A609A /* SignupUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97133738216C6255000A609A /* SignupUseCase.swift */; };
+		9713373D216C8BD5000A609A /* AddFriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9713373B216C8BD5000A609A /* AddFriendVC.swift */; };
+		9713373E216C8BD5000A609A /* AddFriendVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9713373C216C8BD5000A609A /* AddFriendVC.xib */; };
+		97133744216C969B000A609A /* AddFriendVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97133743216C969B000A609A /* AddFriendVM.swift */; };
+		97133746216CB611000A609A /* SearchUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97133745216CB611000A609A /* SearchUsernameRequest.swift */; };
+		97133748216CB729000A609A /* SearchUsernameUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97133747216CB729000A609A /* SearchUsernameUseCase.swift */; };
+		9713374A216CC013000A609A /* ContactSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97133749216CC013000A609A /* ContactSearchResult.swift */; };
 		9736A3CD21538BF80085219D /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9736A3CB21538BF80085219D /* MainVC.swift */; };
 		9736A3CE21538BF80085219D /* MainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9736A3CC21538BF80085219D /* MainVC.xib */; };
 		9736A3D221538D040085219D /* ChatHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9736A3D021538D040085219D /* ChatHistoryVC.swift */; };
@@ -77,7 +87,7 @@
 		97DB46CF2151FF4F00F018DC /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DB46CE2151FF4F00F018DC /* UserRepository.swift */; };
 		97DB46D22152001200F018DC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DB46D12152001200F018DC /* User.swift */; };
 		97DB46D52152009700F018DC /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DB46D42152009700F018DC /* LoginRequest.swift */; };
-		97DB46D72152011300F018DC /* SignUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DB46D62152011300F018DC /* SignUpRequest.swift */; };
+		97DB46D72152011300F018DC /* SignupRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DB46D62152011300F018DC /* SignupRequest.swift */; };
 		97DB46DA2152033100F018DC /* UserRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DB46D92152033100F018DC /* UserRepositoryImpl.swift */; };
 		97DB46DE2152063300F018DC /* UserRemoteSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DB46DD2152063300F018DC /* UserRemoteSource.swift */; };
 		97DB46E0215206A800F018DC /* UserLocalSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DB46DF215206A800F018DC /* UserLocalSource.swift */; };
@@ -112,6 +122,16 @@
 		970D6FE82158CCAF00688732 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		970D6FEA2158E1F400688732 /* ConversationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationResponse.swift; sourceTree = "<group>"; };
 		970D6FEC2158E4CF00688732 /* MessageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResponse.swift; sourceTree = "<group>"; };
+		97133732216C450E000A609A /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
+		97133733216C450E000A609A /* SignupVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignupVC.xib; sourceTree = "<group>"; };
+		97133736216C5A65000A609A /* SignupVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVM.swift; sourceTree = "<group>"; };
+		97133738216C6255000A609A /* SignupUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Signup\U0010UseCase.swift"; sourceTree = "<group>"; };
+		9713373B216C8BD5000A609A /* AddFriendVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendVC.swift; sourceTree = "<group>"; };
+		9713373C216C8BD5000A609A /* AddFriendVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddFriendVC.xib; sourceTree = "<group>"; };
+		97133743216C969B000A609A /* AddFriendVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFriendVM.swift; sourceTree = "<group>"; };
+		97133745216CB611000A609A /* SearchUsernameRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsernameRequest.swift; sourceTree = "<group>"; };
+		97133747216CB729000A609A /* SearchUsernameUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsernameUseCase.swift; sourceTree = "<group>"; };
+		97133749216CC013000A609A /* ContactSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSearchResult.swift; sourceTree = "<group>"; };
 		9736A3CB21538BF80085219D /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		9736A3CC21538BF80085219D /* MainVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainVC.xib; sourceTree = "<group>"; };
 		9736A3D021538D040085219D /* ChatHistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatHistoryVC.swift; sourceTree = "<group>"; };
@@ -178,7 +198,7 @@
 		97DB46CE2151FF4F00F018DC /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		97DB46D12152001200F018DC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		97DB46D42152009700F018DC /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
-		97DB46D62152011300F018DC /* SignUpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequest.swift; sourceTree = "<group>"; };
+		97DB46D62152011300F018DC /* SignupRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupRequest.swift; sourceTree = "<group>"; };
 		97DB46D92152033100F018DC /* UserRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryImpl.swift; sourceTree = "<group>"; };
 		97DB46DD2152063300F018DC /* UserRemoteSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRemoteSource.swift; sourceTree = "<group>"; };
 		97DB46DF215206A800F018DC /* UserLocalSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocalSource.swift; sourceTree = "<group>"; };
@@ -231,6 +251,26 @@
 				383FD8FAA77043B55057026F /* Pods_iZalo.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		97133731216C44D7000A609A /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				97133732216C450E000A609A /* SignupVC.swift */,
+				97133733216C450E000A609A /* SignupVC.xib */,
+				97133736216C5A65000A609A /* SignupVM.swift */,
+			);
+			path = Signup;
+			sourceTree = "<group>";
+		};
+		9713373A216C8BAC000A609A /* AddFriend */ = {
+			isa = PBXGroup;
+			children = (
+				9713373B216C8BD5000A609A /* AddFriendVC.swift */,
+				9713373C216C8BD5000A609A /* AddFriendVC.xib */,
+				97133743216C969B000A609A /* AddFriendVM.swift */,
+			);
+			path = AddFriend;
 			sourceTree = "<group>";
 		};
 		9736A3CF21538CD30085219D /* ChatHistory */ = {
@@ -321,6 +361,7 @@
 				97B55CFC215247DA0030F75D /* UserResponse.swift */,
 				970D6FEA2158E1F400688732 /* ConversationResponse.swift */,
 				970D6FEC2158E4CF00688732 /* MessageResponse.swift */,
+				97133749216CC013000A609A /* ContactSearchResult.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -328,6 +369,8 @@
 		97CF54BE214FB727007609BE /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				9713373A216C8BAC000A609A /* AddFriend */,
+				97133731216C44D7000A609A /* Signup */,
 				97DFB550215B8FFF0001ADFB /* Chat */,
 				97B55CF421522F880030F75D /* Main */,
 				97DB46C82151FDE800F018DC /* UseCases */,
@@ -367,11 +410,13 @@
 		97DB46C82151FDE800F018DC /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				97133747216CB729000A609A /* SearchUsernameUseCase.swift */,
 				97DB46C92151FDFE00F018DC /* LoginUseCase.swift */,
 				97E2C0E82158985900FA9348 /* LoadConversationUseCase.swift */,
 				97BA589D215B39FB00327FA7 /* LoadContactUseCase.swift */,
 				974E039B2161BC32001597FF /* SendMessageUsecase.swift */,
 				974E03A9216210A6001597FF /* LoadMessageUsecase.swift */,
+				97133738216C6255000A609A /* SignupUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -412,9 +457,10 @@
 			children = (
 				97DB46D42152009700F018DC /* LoginRequest.swift */,
 				974E03AB216222C1001597FF /* LoadMessageRequest.swift */,
-				97DB46D62152011300F018DC /* SignUpRequest.swift */,
+				97DB46D62152011300F018DC /* SignupRequest.swift */,
 				974E03992161B9BA001597FF /* SendMessageRequest.swift */,
 				973A61552164BDD3003B6047 /* LoadConversationAndContactRequest.swift */,
+				97133745216CB611000A609A /* SearchUsernameRequest.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -553,11 +599,13 @@
 				9736A3DD21538D960085219D /* SettingVC.xib in Resources */,
 				9796AF70215CE51A007BFF85 /* MyMessageCell.xib in Resources */,
 				978596BE214A594E00516138 /* LaunchScreen.storyboard in Resources */,
+				97133735216C450E000A609A /* SignupVC.xib in Resources */,
 				978596BB214A594E00516138 /* Assets.xcassets in Resources */,
 				97DFB55E215B90C30001ADFB /* ChatVC.xib in Resources */,
 				973CBE922153B63C00403D2D /* ConversationCell.xib in Resources */,
 				9736A3D821538D550085219D /* ContactVC.xib in Resources */,
 				97CF54CA214FB7CE007609BE /* LoginVC.xib in Resources */,
+				9713373E216C8BD5000A609A /* AddFriendVC.xib in Resources */,
 				9736A3CE21538BF80085219D /* MainVC.xib in Resources */,
 				9796AF74215CE8DB007BFF85 /* OthersMessageCell.xib in Resources */,
 				973CBE962153B9F700403D2D /* ContactCell.xib in Resources */,
@@ -651,16 +699,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				97BA589A215B2B3800327FA7 /* Contact.swift in Sources */,
+				97133748216CB729000A609A /* SearchUsernameUseCase.swift in Sources */,
 				973CBE952153B9F700403D2D /* ContactCell.swift in Sources */,
 				9736A3D721538D550085219D /* ContactVC.swift in Sources */,
+				97133737216C5A65000A609A /* SignupVM.swift in Sources */,
 				97D6D561215265600070E521 /* ViewController.swift in Sources */,
 				97DB46E621520C0500F018DC /* ObservableType.swift in Sources */,
 				974E03AC216222C1001597FF /* LoadMessageRequest.swift in Sources */,
 				970D6FED2158E4CF00688732 /* MessageResponse.swift in Sources */,
+				97133744216C969B000A609A /* AddFriendVM.swift in Sources */,
 				97DB46DA2152033100F018DC /* UserRepositoryImpl.swift in Sources */,
 				973CBE912153B63C00403D2D /* ConversationCell.swift in Sources */,
 				97DB46E421520A2A00F018DC /* UserRealmSource.swift in Sources */,
 				97DB46C42151F51700F018DC /* LoginVM.swift in Sources */,
+				9713373D216C8BD5000A609A /* AddFriendVC.swift in Sources */,
 				974E039A2161B9BA001597FF /* SendMessageRequest.swift in Sources */,
 				974E03A02161BD99001597FF /* MessageRepositoryImpl.swift in Sources */,
 				97CF54C9214FB7CE007609BE /* LoginVC.swift in Sources */,
@@ -668,6 +720,7 @@
 				9736A3D221538D040085219D /* ChatHistoryVC.swift in Sources */,
 				97E2C0E721588EB900FA9348 /* ChatHistoryVM.swift in Sources */,
 				97DB46E0215206A800F018DC /* UserLocalSource.swift in Sources */,
+				9713374A216CC013000A609A /* ContactSearchResult.swift in Sources */,
 				974E03A82161C238001597FF /* MessageFirebaseSource.swift in Sources */,
 				97E2C0ED215899EF00FA9348 /* ConversationRepositoryImpl.swift in Sources */,
 				974E039E2161BCA5001597FF /* MessageRepository.swift in Sources */,
@@ -701,11 +754,13 @@
 				97E2C0EB2158991800FA9348 /* ConversationRepository.swift in Sources */,
 				974E03A42161C06B001597FF /* MessageLocalSource.swift in Sources */,
 				97BA58AC215B42CB00327FA7 /* ContactRealm.swift in Sources */,
-				97DB46D72152011300F018DC /* SignUpRequest.swift in Sources */,
+				97133739216C6255000A609A /* SignupUseCase.swift in Sources */,
+				97DB46D72152011300F018DC /* SignupRequest.swift in Sources */,
 				9796AF78215CEEF5007BFF85 /* MessageItem.swift in Sources */,
 				973A61562164BDD3003B6047 /* LoadConversationAndContactRequest.swift in Sources */,
 				97BA58A2215B3F1600327FA7 /* ContactRepositoryImpl.swift in Sources */,
 				97BA58A0215B3E6400327FA7 /* ContactRepository.swift in Sources */,
+				97133734216C450E000A609A /* SignupVC.swift in Sources */,
 				97BA58A8215B41CB00327FA7 /* ContactFirebaseSource.swift in Sources */,
 				974E039C2161BC32001597FF /* SendMessageUsecase.swift in Sources */,
 				9796AF73215CE8DB007BFF85 /* OthersMessageCell.swift in Sources */,
@@ -721,6 +776,7 @@
 				97DB46CA2151FDFE00F018DC /* LoginUseCase.swift in Sources */,
 				9796AF6F215CE51A007BFF85 /* MyMessageCell.swift in Sources */,
 				97BA589E215B39FB00327FA7 /* LoadContactUseCase.swift in Sources */,
+				97133746216CB611000A609A /* SearchUsernameRequest.swift in Sources */,
 				97E2C0F421589F0300FA9348 /* MessageRealm.swift in Sources */,
 				97E2C0FA2158A5D300FA9348 /* ConversationLocalSource.swift in Sources */,
 				97DB46E821520CD300F018DC /* ActivityIndicator.swift in Sources */,

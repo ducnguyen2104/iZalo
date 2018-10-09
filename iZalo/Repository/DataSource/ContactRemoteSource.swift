@@ -13,6 +13,7 @@ protocol ContactRemoteSource {
     func getContact(user: User) -> Observable<[Contact]>
     func getAvatarURL(username: String) -> Observable<String>
     func getContactInfo(username: String) -> Observable<Contact>
+    func searchContact(username: String, currentUsername: String) -> Observable<ContactSearchResult>
 }
 
 class ContactRemoteSourceFactory {

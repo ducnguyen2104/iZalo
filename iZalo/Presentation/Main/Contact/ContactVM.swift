@@ -41,6 +41,12 @@ final class ContactVM: ViewModelDelegate {
             }.drive()
             .disposed(by: self.disposeBag)
         
+        input.addFriendTrigger
+            .drive(onNext: { [unowned self] in
+                self.displayLogic?.gotoAddFriend()
+            })
+            .disposed(by: self.disposeBag)
+        
         return Output(fetching: activityIndicator.asDriver(),
                       error: errorTracker.asDriver(),
                       items: self.items.asDriver())
@@ -53,6 +59,7 @@ extension ContactVM {
     public struct Input {
         let trigger: Driver<Void>
         let selectTrigger: Driver<IndexPath>
+        let addFriendTrigger: Driver<Void>
     }
     
     public struct Output {

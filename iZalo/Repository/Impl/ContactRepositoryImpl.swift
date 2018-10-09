@@ -46,4 +46,8 @@ class ContactRepositoryImpl: ContactRepository {
     func getContactInfo(username: String) -> Observable<Contact> {
         return self.remoteSource.getContactInfo(username: username)
     }
+    
+    func searchContact(username: String, currentUsername: String) -> Observable<ContactSearchResult> {
+        return self.remoteSource.searchContact(username: username, currentUsername: currentUsername)
+    }
 }

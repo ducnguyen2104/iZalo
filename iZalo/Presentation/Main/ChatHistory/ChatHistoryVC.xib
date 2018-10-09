@@ -31,12 +31,6 @@
                                 <constraint firstAttribute="width" secondItem="F57-On-RiX" secondAttribute="height" multiplier="1:1" id="DXv-pY-31b"/>
                             </constraints>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_white_plus" translatesAutoresizingMaskIntoConstraints="NO" id="hEa-6K-a0G">
-                            <rect key="frame" x="341" y="10" width="24" height="24"/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="hEa-6K-a0G" secondAttribute="height" multiplier="1:1" id="Gzn-0y-6nB"/>
-                            </constraints>
-                        </imageView>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tìm bạn bè, tin nhắn, ..." textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="wU6-Sr-0Mv">
                             <rect key="frame" x="44" y="10" width="287" height="24"/>
                             <color key="backgroundColor" red="0.23137254900000001" green="0.59215686270000001" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -45,20 +39,27 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PsW-cE-4Wm">
+                            <rect key="frame" x="341" y="10" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="24" id="Oph-BM-zhv"/>
+                                <constraint firstAttribute="width" secondItem="PsW-cE-4Wm" secondAttribute="height" multiplier="1:1" id="vB0-ko-a56"/>
+                            </constraints>
+                            <state key="normal" image="ic_white_plus"/>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.23137254900000001" green="0.59215686270000001" blue="0.82745098039999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="PsW-cE-4Wm" secondAttribute="trailing" constant="10" id="0aQ-lw-uNd"/>
+                        <constraint firstItem="PsW-cE-4Wm" firstAttribute="leading" secondItem="wU6-Sr-0Mv" secondAttribute="trailing" constant="10" id="3EA-bf-8ck"/>
                         <constraint firstItem="wU6-Sr-0Mv" firstAttribute="top" secondItem="rXV-cn-Oub" secondAttribute="top" constant="10" id="95n-G7-haZ"/>
                         <constraint firstAttribute="leading" secondItem="F57-On-RiX" secondAttribute="leading" constant="-10" id="9Zv-pX-1Eq"/>
-                        <constraint firstItem="hEa-6K-a0G" firstAttribute="centerY" secondItem="rXV-cn-Oub" secondAttribute="centerY" id="B2k-V3-5w7"/>
-                        <constraint firstItem="hEa-6K-a0G" firstAttribute="leading" secondItem="wU6-Sr-0Mv" secondAttribute="trailing" constant="10" id="IMI-7M-CeB"/>
                         <constraint firstItem="F57-On-RiX" firstAttribute="centerY" secondItem="rXV-cn-Oub" secondAttribute="centerY" id="NC1-Xw-Lms"/>
                         <constraint firstItem="wU6-Sr-0Mv" firstAttribute="leading" secondItem="F57-On-RiX" secondAttribute="trailing" constant="10" id="Rgd-0o-Re9"/>
                         <constraint firstItem="wU6-Sr-0Mv" firstAttribute="centerY" secondItem="rXV-cn-Oub" secondAttribute="centerY" id="e8g-gd-Ec8"/>
+                        <constraint firstItem="PsW-cE-4Wm" firstAttribute="centerY" secondItem="rXV-cn-Oub" secondAttribute="centerY" id="fTh-sT-P8n"/>
                         <constraint firstItem="F57-On-RiX" firstAttribute="top" secondItem="rXV-cn-Oub" secondAttribute="top" constant="10" id="fkM-cH-uI7"/>
-                        <constraint firstAttribute="trailing" secondItem="hEa-6K-a0G" secondAttribute="trailing" constant="10" id="gXY-cm-6Nu"/>
                         <constraint firstAttribute="height" constant="44" id="lQW-a5-B4x"/>
-                        <constraint firstItem="hEa-6K-a0G" firstAttribute="top" secondItem="rXV-cn-Oub" secondAttribute="top" constant="10" id="z1R-R3-MkU"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="T6E-Qc-b0g">

@@ -24,7 +24,7 @@ class ContactRealm: Object {
         contactRealm.username = contact.username
         contactRealm.name = contact.name
         contactRealm.phone = contact.phone
-        contactRealm.avatarURL = contact.avatarURL ?? "avatarURL"
+        contactRealm.avatarURL = contact.avatarURL 
         
         return contactRealm
     }

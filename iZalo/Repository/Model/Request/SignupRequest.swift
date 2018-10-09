@@ -8,15 +8,15 @@
 
 import Foundation
 
-struct SignUpRequest {
+struct SignupRequest {
     
     let username: String
     let password: String
     let name: String
     let phone: String
     
-    func withPhone(phone: String, phoneCode: String) -> SignUpRequest {
-        return SignUpRequest(username: self.username, password: self.password, name: self.name, phone: self.phone)
+    func makeUser() -> User {
+        return User(username: self.username, password: self.password, name: self.name, phone: self.phone, avatarURL: Constant.defaultAvatarURL, conversations: [], contacts: [])
     }
     
     func toDictionary() -> [String: Any] {
