@@ -23,7 +23,6 @@ class ConversationRepositoryImpl: ConversationRepository {
     }
     
     func loadConversation(username: String) -> Observable<[Conversation]> {
-        print("ConversationRepositoryImpl loadConversation")
         return Observable.deferred {
             return self.userRepository
                 .loadUser(username: username)

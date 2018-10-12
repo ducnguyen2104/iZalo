@@ -33,13 +33,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Conversation name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hal-R7-FJr">
-                        <rect key="frame" x="79.5" y="10" width="196" height="30"/>
+                        <rect key="frame" x="79.5" y="10" width="184.5" height="30"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="timestamp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NK0-yy-wkM">
-                        <rect key="frame" x="275.5" y="10" width="34.5" height="30"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="timestamp" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NK0-yy-wkM">
+                        <rect key="frame" x="264" y="10" width="46" height="30"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -48,14 +48,14 @@
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="C6E-Bk-AfO" secondAttribute="bottom" constant="10" id="09p-tb-g40"/>
                     <constraint firstItem="hal-R7-FJr" firstAttribute="leading" secondItem="CUB-DO-fPR" secondAttribute="trailing" constant="10" id="65b-yC-DVC"/>
-                    <constraint firstItem="NK0-yy-wkM" firstAttribute="width" secondItem="C6E-Bk-AfO" secondAttribute="width" multiplier="0.15" id="Ihf-T9-yAY"/>
+                    <constraint firstItem="NK0-yy-wkM" firstAttribute="width" secondItem="C6E-Bk-AfO" secondAttribute="width" multiplier="0.2" id="Ihf-T9-yAY"/>
                     <constraint firstItem="NK0-yy-wkM" firstAttribute="leading" secondItem="hal-R7-FJr" secondAttribute="trailing" id="JUf-2t-bvh"/>
                     <constraint firstAttribute="trailing" secondItem="C6E-Bk-AfO" secondAttribute="trailing" constant="10" id="N9d-Ds-Y2z"/>
                     <constraint firstItem="hal-R7-FJr" firstAttribute="height" secondItem="C6E-Bk-AfO" secondAttribute="height" id="Nt6-dm-0nn"/>
                     <constraint firstItem="C6E-Bk-AfO" firstAttribute="top" secondItem="NK0-yy-wkM" secondAttribute="bottom" id="Xyy-ha-mrf"/>
                     <constraint firstItem="C6E-Bk-AfO" firstAttribute="leading" secondItem="CUB-DO-fPR" secondAttribute="trailing" constant="10" id="d3H-zA-cwG"/>
                     <constraint firstItem="C6E-Bk-AfO" firstAttribute="top" secondItem="hal-R7-FJr" secondAttribute="bottom" id="d9E-oL-D7h"/>
-                    <constraint firstItem="hal-R7-FJr" firstAttribute="width" secondItem="C6E-Bk-AfO" secondAttribute="width" multiplier="0.85" id="doA-9m-2eX"/>
+                    <constraint firstItem="hal-R7-FJr" firstAttribute="width" secondItem="C6E-Bk-AfO" secondAttribute="width" multiplier="0.8" id="doA-9m-2eX"/>
                     <constraint firstAttribute="bottom" secondItem="CUB-DO-fPR" secondAttribute="bottom" constant="10" id="iap-EP-jpz"/>
                     <constraint firstItem="NK0-yy-wkM" firstAttribute="height" secondItem="C6E-Bk-AfO" secondAttribute="height" id="lsG-2r-hhu"/>
                     <constraint firstAttribute="trailing" secondItem="NK0-yy-wkM" secondAttribute="trailing" constant="10" id="rHQ-YF-OVd"/>

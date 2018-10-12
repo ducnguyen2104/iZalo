@@ -13,6 +13,7 @@ class ContactCell: UITableViewCell {
 
     @IBOutlet weak var avtImageView: UIImageView!
     @IBOutlet weak var contactNameLabel: UILabel!
+    @IBOutlet weak var contactUsernameLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none
@@ -26,12 +27,12 @@ class ContactCell: UITableViewCell {
     }
     
     func bind(item: ContactItem) {
-        let processor = RoundCornerImageProcessor(cornerRadius: 30)
         if (item.contact.avatarURL != nil) {
-            avtImageView.kf.setImage(with: URL(string: item.contact.avatarURL), placeholder: nil,  options: [.processor(processor)])
+            avtImageView.kf.setImage(with: URL(string: item.contact.avatarURL), placeholder: nil,  options: [.processor(Constant.avatarImageProcessor)])
         } else {
-            avtImageView.kf.setImage(with: URL(string: Constant.defaultAvatarURL), placeholder: nil,  options: [.processor(processor)])
+            avtImageView.kf.setImage(with: URL(string: Constant.defaultAvatarURL), placeholder: nil,  options: [.processor(Constant.avatarImageProcessor)])
         }
         contactNameLabel.text = item.contact.name
+        contactUsernameLabel.text = item.contact.username
     }
 }

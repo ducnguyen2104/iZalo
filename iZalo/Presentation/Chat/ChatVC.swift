@@ -89,7 +89,7 @@ class ChatVC: BaseVC {
                 return cell
             }
         })
-        contactObservable!.subscribe(onNext: {(contact) in
+        let _ = contactObservable!.subscribe(onNext: {(contact) in
                 self.conversationNameLabel.text = contact.name
             } )
     }

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D432D70012B42772EB355EFC3DF0FF84"
+               BlueprintIdentifier = "FF1D0546E83CB30BCFC02A44EC18EFD2"
                BlueprintName = "ReverseExtension"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "ReverseExtension.framework">

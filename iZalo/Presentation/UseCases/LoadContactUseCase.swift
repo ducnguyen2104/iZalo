@@ -17,7 +17,6 @@ class LoadContactUseCase: UseCase {
     public typealias TResponse = [Contact]
     
     public func execute(request: LoadConversationAndContactRequest) -> Observable<[Contact]> {
-        print("LoadContactUseCase execute")
         return self.repository
             .loadContacts(username: request.username)
             .asObservable()

@@ -64,10 +64,28 @@ class ContactVC: BaseVC {
             cell.bind(item: item)
             return cell
         })
+        self.tableView.rx.itemSelected.asDriver()
+            .drive(onNext: {(ip) in
+                self.tableView.deselectRow(at: ip, animated: false)
+                let item = self.items.sectionModels[0].items[ip.row]
+                let members = [self.currentUsername, item.contact.username].sorted { $0 < $1 }
+                var conversationId = ""
+                for i in 0...(members.count - 1) {
+                    if i == 0 {
+                        conversationId += members[i]
+                    }
+                    else {
+                        conversationId += "*\(members[i])"
+                    }
+                }
+                let vc = ChatVC.instance(conversation: Conversation(id: conversationId, name: conversationId, members: members, lastMessage: Constant.dummyMessage), currentUsername: self.currentUsername, contactObservable: Observable.just(item.contact))
+                self.navigationController?.pushViewController(vc, animated: true)
+                self.navigationController?.tabBarController?.tabBar.isHidden = true
+            })
+            .disposed(by: self.disposeBag)
     }
     
     private func bindViewModel() {
-        print("ContactVC bindVM")
         let viewWillAppear = self.rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
             .mapToVoid()
             .asDriverOnErrorJustComplete()

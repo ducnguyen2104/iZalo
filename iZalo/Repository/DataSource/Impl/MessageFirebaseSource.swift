@@ -15,11 +15,17 @@ class MessageFirebaseSource: MessageRemoteSource {
     private let ref: DatabaseReference! = Database.database().reference()
     
     func sendMessage(request: SendMessageRequest) -> Observable<Bool> {
+        
         return Observable.create { [unowned self] (observer) in
-            self.ref.child("message").child(request.message.conversationId).child(request.message.id).setValue(request.toDictionary())
-            let childUpdates = ["/message/\(request.message.conversationId)/\(request.message.id)" : request.toDictionary(),
-                                "conversation/\(request.message.conversationId)/lastMessage" : request.toDictionary()]
-                self.ref.updateChildValues(childUpdates)
+            self.ref.child("message").child(request.message.conversationId).child(request.message.id).setValue(request.messageToDictionary())
+            var childUpdates:[String : Any] = [
+                "/message/\(request.message.conversationId)/\(request.message.id)" : request.messageToDictionary(),
+                "conversation/\(request.message.conversationId)" : request.conversationToDictionary(),
+                                ]
+            for user in request.conversation.members {
+                childUpdates["user/\(user)/conversations/\(request.conversation.id)"] = request.conversation.id
+            }
+            self.ref.updateChildValues(childUpdates)
             {
                 (error:Error?, ref:DatabaseReference) in
                 if error != nil {
@@ -30,12 +36,16 @@ class MessageFirebaseSource: MessageRemoteSource {
             }
             return Disposables.create()
         }
+        
     }
     
     func getMessage(conversation: Conversation, user: User) -> Observable<[Message]> {
         return Observable.create { [unowned self] (observer) in
             var messageObjects: [Message] = []
-            self.ref.child("message").child(conversation.id).queryOrdered(byChild: "timestamp").observe(.value, with: { (datasnapshot) in
+            self.ref.child("message").child(conversation.id)
+                .queryOrdered(byChild: "timestamp")
+                .queryLimited(toLast: 15)
+                .observe(.value, with: { (datasnapshot) in
                 if(!(datasnapshot.value is NSNull)) {
                     for data in ((datasnapshot.children.allObjects as? [DataSnapshot])!) {
                         let value = MessageResponse(value: data.value as! NSDictionary)
@@ -52,6 +62,9 @@ class MessageFirebaseSource: MessageRemoteSource {
                             }
                         }
                     }
+                }
+                else {
+                    observer.onNext([])
                 }
             })
             return Disposables.create()

@@ -15,31 +15,35 @@ class ConversationFirebaseSource: ConversationRemoteSource {
     private let ref: DatabaseReference! = Database.database().reference()
     
     func getConversation(user: User) -> Observable<[Conversation]> {
-        print("Conversation Firebase Source, get conversations of username: \(user.username)")
         return Observable.create { [unowned self] (observer) in
-            if user.conversations.count == 0 {
-                observer.onCompleted()
-            }
-            var conversationObjects: [Conversation] = []
-            for id in user.conversations {
-                self.ref.child("conversation").child(id).observeSingleEvent(of: .value, with: {(datasnapshot) in
-                    if(!(datasnapshot.value is NSNull)) {
-                        let value = ConversationResponse(value: datasnapshot.value as! NSDictionary)
-                        let conversation = value.convert(currentUsername: user.username)
-                        conversationObjects.append(conversation)
-                        if(user.conversations.firstIndex(of: id) == user.conversations.count - 1) { //check for last element
-                            if(conversationObjects.count > 0) {
-                                observer.onNext(conversationObjects)
-                                observer.onCompleted()
-                            
-                            } else {
-                                observer.onError(ParseDataError(parseClass: "ConversationResponse", errorMessage: "Lịch sử tin nhắn không tồn tại"))
+            self.ref.child("user").child(user.username).child("conversations").observe(.value, with: {(conversationsSnapshot) in
+                
+                var conversationObjects: [Conversation] = []
+                for singleSnapshot in conversationsSnapshot.children {
+                    let conversationId = (singleSnapshot as! DataSnapshot).value as! String
+                    self.ref.child("conversation").child(conversationId).observeSingleEvent(of: .value, with: {(datasnapshot) in
+                        if(!(datasnapshot.value is NSNull)) {
+                            let value = ConversationResponse(value: datasnapshot.value as! NSDictionary)
+                            let conversation = value.convert(currentUsername: user.username)
+                            conversationObjects.append(conversation)
+                            if(conversationObjects.count == conversationsSnapshot.childrenCount) { //check for last element
+                                if(conversationObjects.count > 0) {
+                                    observer.onNext(conversationObjects)
+                                    conversationObjects = []
+//                                    observer.onCompleted()
+                                    
+                                } else {
+                                    observer.onError(ParseDataError(parseClass: "ConversationResponse", errorMessage: "Lịch sử tin nhắn không tồn tại"))
+                                }
                             }
                         }
-                    }
-                })
-                
-            }
+                    })
+                }
+                if conversationsSnapshot.childrenCount == 0 {
+                    observer.onNext([])
+                }
+            })
+            
             
             return Disposables.create()
         }

@@ -22,4 +22,6 @@ target 'iZalo' do
     pod 'DeepDiff'
     
     pod 'ReverseExtension'
+    
+    pod 'ImagePicker'
 end

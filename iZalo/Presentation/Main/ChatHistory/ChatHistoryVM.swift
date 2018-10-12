@@ -26,7 +26,6 @@ final class ChatHistoryVM: ViewModelDelegate {
     func transform(input: ChatHistoryVM.Input) -> ChatHistoryVM.Output {
         let activityIndicator = ActivityIndicator()
         let errorTracker = ErrorTracker()
-        print("ChatHistoryVM transform")
         input.trigger
             .flatMap{[unowned self] (_) -> Driver<[Conversation]> in
                 return self.loadConversationUseCase.execute(request: LoadConversationAndContactRequest(username: self.currentUsername))

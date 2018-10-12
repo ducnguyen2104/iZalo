@@ -41,12 +41,9 @@ final class ChatVM: ViewModelDelegate {
         .flatMap{[unowned self] (_) -> Driver<[Message]> in
             return self.loadMessageUsecase.execute(request: LoadMessageRequest(conversation: self.conversation, username: self.currentUsername))
             .do(onNext: { (messages) in
-                print("load message, next \(messages.count)")
                 self.items.accept(messages.map { (message) in
-                    print("\(message.senderId)")
                     return MessageItem(message: message, currentUsername: self.currentUsername)
                 })
-                print("message item")
             })
             .trackActivity(activityIndicator)
             .trackError(errorTracker)
@@ -74,7 +71,7 @@ final class ChatVM: ViewModelDelegate {
                     let calendar = Calendar.current
                     let hour = calendar.component(.hour, from: date)
                     let minute = calendar.component(.minute, from: date)
-                    return Observable.just(SendMessageRequest(message: Message(id: "\(self.currentUsername)\(timestamp)", senderId: self.currentUsername, conversationId: self.conversation.id, content: self.textMessage.value, type: Constant.textMessage, timestamp: timestamp, timestampInString: "\(hour):\(minute)")))
+                    return Observable.just(SendMessageRequest(message: Message(id: "\(self.currentUsername)\(timestamp)", senderId: self.currentUsername, conversationId: self.conversation.id, content: self.textMessage.value, type: Constant.textMessage, timestamp: timestamp, timestampInString: "\(hour):\(minute)"), conversation: self.conversation))
                     }
                     .flatMap{ [unowned self] (request) -> Observable<Bool> in
                         return self.sendMessageUsecase

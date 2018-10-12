@@ -79,4 +79,19 @@ class UserFirebaseSource: UserRemoteSource {
             return Disposables.create()
         }
     }
+    
+    func addContact(request: AddContactRequest) -> Observable<Bool> {
+        return Observable.create { [unowned self] (observer) in
+            self.ref.child("user").child(request.currentUsername).child("contacts").child(request.targetUsername).setValue(request.targetUsername)
+            {
+                (error:Error?, ref:DatabaseReference) in
+                if error != nil {
+                    observer.onNext(false)
+                } else {
+                    observer.onNext(true)
+                }
+            }
+            return Disposables.create()
+        }
+    }
 }

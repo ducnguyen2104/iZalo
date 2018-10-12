@@ -23,7 +23,6 @@ class ContactRepositoryImpl: ContactRepository {
     }
     
     func loadContacts(username: String) -> Observable<[Contact]> {
-        print("ContactRepositoryImpl loadContact")
         return Observable.deferred{
             return self.userRepository
                 .loadUser(username: username)

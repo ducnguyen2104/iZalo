@@ -26,7 +26,6 @@ final class ContactVM: ViewModelDelegate {
     func transform(input: ContactVM.Input) -> ContactVM.Output {
         let activityIndicator = ActivityIndicator()
         let errorTracker = ErrorTracker()
-        print("ContactVM transform")
         input.trigger
             .flatMap{[unowned self] (_) -> Driver<[Contact]> in
                 return self.loadContactUseCase.execute(request: LoadConversationAndContactRequest(username: self.currentUsername))

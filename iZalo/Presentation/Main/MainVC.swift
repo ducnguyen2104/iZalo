@@ -21,19 +21,17 @@ class MainVC: UITabBarController {
     }
     
     init(currentUsername: String) {
-        print("init")
         self.currentUsername = currentUsername
         super.init(nibName: "MainVC", bundle: nil)
     }
     
     override func viewDidLoad() {
-        print("viewDidload")
         super.viewDidLoad()
         setupTabs()
+        
     }
 
     func setupTabs() {
-        print(self.currentUsername)
         let historyVC = ChatHistoryVC.instance(currentUsername: self.currentUsername)
         let contactVC = ContactVC.instance(currentUsername: self.currentUsername)
         let settingVC = SettingVC.instance(currentUsername: self.currentUsername)

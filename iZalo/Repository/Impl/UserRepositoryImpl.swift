@@ -49,4 +49,7 @@ class UserRepositoryImpl: UserRepository {
         return self.remoteSource.getAvatarURL(username: username)
     }
     
+    func addContact(request: AddContactRequest) -> Observable<Bool>  {
+        return self.remoteSource.addContact(request: request)
+    }
 }

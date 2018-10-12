@@ -16,7 +16,6 @@ class LoadConversationUseCase: UseCase {
     public typealias TResponse = [Conversation]
     
     public func execute(request: LoadConversationAndContactRequest) -> Observable<[Conversation]> {
-        print("LoadConversationUseCase execute")
         return self.repository
             .loadConversation(username: request.username)
             .asObservable()

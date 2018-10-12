@@ -51,6 +51,7 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (5.3.0):
     - GoogleUtilities/Logger
+  - ImagePicker (3.1.0)
   - Kingfisher (4.10.0)
   - leveldb-library (1.20)
   - MBProgressHUD (1.1.0)
@@ -82,6 +83,7 @@ DEPENDENCIES:
   - DeepDiff
   - Firebase/Core
   - Firebase/Database
+  - ImagePicker
   - Kingfisher
   - MBProgressHUD
   - ObjectMapper
@@ -105,6 +107,7 @@ SPEC REPOS:
     - FirebaseInstanceID
     - GoogleAppMeasurement
     - GoogleUtilities
+    - ImagePicker
     - Kingfisher
     - leveldb-library
     - MBProgressHUD
@@ -129,6 +132,7 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: 78ba376fcd5b94c001f9999b2cbd3d1f1e56e78d
   GoogleAppMeasurement: 2b3a023a61239c8d002e6e4fcf4abce8eddce0e0
   GoogleUtilities: 760ccb53b7c7f40f9c02d8c241f76f841a7a6162
+  ImagePicker: db1fd7626337b2577c523bef5f499bbbe5a37079
   Kingfisher: 43c4b802d8b5256cf1f4379e9cd10b329be6d3e2
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
@@ -143,6 +147,6 @@ SPEC CHECKSUMS:
   RxSwift: fe0fd770a43acdb7d0a53da411c9b892e69bb6e4
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
 
-PODFILE CHECKSUM: 8a3b15f497357c0e0bdf94ed7c0b0cbefef712e7
+PODFILE CHECKSUM: cca17aaa3d0253b93a84eb435e216877f0dd681b
 
 COCOAPODS: 1.5.3

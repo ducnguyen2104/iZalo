@@ -15,31 +15,36 @@ class ContactFirebaseSource: ContactRemoteSource {
     private let ref: DatabaseReference! = Database.database().reference()
     
     func getContact(user: User) -> Observable<[Contact]> {
-        print("Contact Firebase Source, get contacts of username: \(user.username)")
         return Observable.create{ [unowned self] (observer) in
-            if user.contacts.count == 0 {
-                observer.onCompleted()
-            }
-            var contactObjects: [Contact] = []
-            for id in user.contacts {
-                self.ref.child("user").child(id).observeSingleEvent(of: .value, with: {(datasnapshot) in
-                    if(!(datasnapshot.value is NSNull)) {
-                        let value = UserResponse(value: datasnapshot.value as! NSDictionary)
-                        let contact = value.convertToContact()
-                        contactObjects.append(contact)
-                        if(user.contacts.firstIndex(of: id) == user.contacts.count - 1) { //check for last element
-                            if(contactObjects.count > 0) {
-                                observer.onNext(contactObjects)
-                                observer.onCompleted()
+            self.ref.child("user").child(user.username).child("contacts").observe(.value, with: {(contactsSnapshot) in
+                
+                var contactObjects: [Contact] = []
+                for singleSnapshot in contactsSnapshot.children {
+                    let targetUsername = (singleSnapshot as! DataSnapshot).value as! String
+                    self.ref.child("user").child(targetUsername).observeSingleEvent(of: .value, with: {(datasnapshot) in
+                        if(!(datasnapshot.value is NSNull)) {
+                            let value = UserResponse(value: datasnapshot.value as! NSDictionary)
+                            let contact = value.convertToContact()
+                            contactObjects.append(contact)
+                            
+                            if(contactObjects.count == contactsSnapshot.childrenCount) { //check for last element
+                                if(contactObjects.count > 0) {
+                                    observer.onNext(contactObjects)
+                                    contactObjects = []
+                                    //observer.onCompleted()
+                                }
+                                else {
+                                    observer.onError(ParseDataError(parseClass: "UserResponse", errorMessage: "Danh bạ không tồn tại"))
+                                }
                             }
-                            else {
-                                observer.onError(ParseDataError(parseClass: "UserResponse", errorMessage: "Danh bạ không tồn tại"))
-                            }
+                            
                         }
-                        
-                    }
-                })
-            }
+                    })
+                }
+                if contactObjects.count == 0 {
+                    observer.onNext([])
+                }
+            })
             return Disposables.create()
         }
     }
@@ -58,7 +63,7 @@ class ContactFirebaseSource: ContactRemoteSource {
                 }
             })
             return Disposables.create()
-            }
+        }
     }
     
     func searchContact(username: String, currentUsername: String) -> Observable<ContactSearchResult> {

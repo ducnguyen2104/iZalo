@@ -15,7 +15,9 @@ final class AddFriendVM: ViewModelDelegate {
     private let disposeBag = DisposeBag()
     private weak var displayLogic: AddFriendDisplayLogic?
     private let searchUsernameUseCase = SearchUsernameUseCase()
+    private let addContactUseCase = AddContactUseCase()
     private let currentUsername: String
+    private var searchResult: ContactSearchResult?
     
     init(displayLogic: AddFriendDisplayLogic, currentUsername: String) {
         self.displayLogic = displayLogic
@@ -46,7 +48,30 @@ final class AddFriendVM: ViewModelDelegate {
                         return self.searchUsernameUseCase
                             .execute(request: request)
                             .do(onNext: {[unowned self] (result) in
+                                self.searchResult = result
                                 self.displayLogic?.showResult(result: result)
+                            })
+                    }
+                    .trackActivity(activityIndicator)
+                    .trackError(errorTracker)
+                    .asDriverOnErrorJustComplete()
+            }
+            .drive()
+            .disposed(by: self.disposeBag)
+        input.addContactTrigger
+            .flatMap{[unowned self] (_) -> Driver<Bool> in
+                return Observable.deferred{[unowned self] in
+                    guard self.searchResult != nil else {
+                        return Observable.error(ValidateError(message: "Không tìm thấy tên người dùng"))
+                    }
+                    return Observable.just(AddContactRequest(currentUsername: self.currentUsername, targetUsername: (self.searchResult?.contact.username)!))
+                    }
+                    .flatMap{[unowned self] (request) -> Observable<Bool> in
+                        return self.addContactUseCase
+                            .execute(request: request)
+                            .do(onNext: {[unowned self] (succeeded) in
+                                self.displayLogic?.hideAddButton()
+                                self.displayLogic?.showAddContactSucceededToast()
                             })
                     }
                     .trackActivity(activityIndicator)
@@ -66,6 +91,7 @@ extension AddFriendVM {
         let backTrigger: Driver<Void>
         let searchText: ControlProperty<String>
         let searchTrigger: Driver<Void>
+        let addContactTrigger: Driver<Void>
     }
     
     public struct Output {

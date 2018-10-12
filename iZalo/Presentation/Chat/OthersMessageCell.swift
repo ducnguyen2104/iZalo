@@ -33,12 +33,40 @@ class OthersMessageCell: BaseMessageCell {
     }
     
     func bind(item: MessageItem, contactObservable: Observable<Contact>) {
-        messageLabel.text = item.message.content
+        let tags = ["<b>", "<i>", "<mark>", "<del>", "<ins>", "<sub>", "<sup>"]
+        
+        if(tags.contains(where: item.message.content.contains)) { //check if message contains one of these tags
+            print("html")
+            let htmlString = stringProcessing(rawString: item.message.content)
+            messageLabel.attributedText = htmlString
+        } else {
+            print("not html")
+            messageLabel.text = item.message.content
+        }
         timestampLabel.text = item.message.timestampInString
-        let processor = RoundCornerImageProcessor(cornerRadius: 20)
-        contactObservable.subscribe(onNext: {(contact) in
-            self.avatarImageView.kf.setImage(with: URL(string: contact.avatarURL), placeholder: nil,  options: [.processor(processor)])
+        let _ = contactObservable.subscribe(onNext: {(contact) in
+            self.avatarImageView.kf.setImage(with: URL(string: contact.avatarURL), placeholder: nil,  options: [.processor(Constant.avatarImageProcessor)])
         })
         
+    }
+    func stringProcessing(rawString: String) -> NSMutableAttributedString {
+        
+        let fontAddedString = "<font face=\"Helvetica Neue\" size=4.5\" \"> \(rawString)</font>"
+        
+        guard let data = fontAddedString.data(using: String.Encoding.unicode, allowLossyConversion: true) else {
+            print("html failed to encode")
+            return NSMutableAttributedString(string: rawString, attributes: nil)
+        }
+        print("html encoded")
+        var mutableString: NSMutableAttributedString?
+        try? mutableString = NSMutableAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html], documentAttributes: nil)
+        
+        if mutableString != nil {
+            print("process successfully")
+            return mutableString!
+        } else {
+            print("process successfully")
+            return NSMutableAttributedString(string: rawString, attributes: nil)
+        }
     }
 }

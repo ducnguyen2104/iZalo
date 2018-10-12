@@ -11,8 +11,9 @@ import Foundation
 struct SendMessageRequest {
     
     public let message: Message
+    public let conversation: Conversation
     
-    func toDictionary() -> [String: Any] {
+    func messageToDictionary() -> [String: Any] {
         return [
             "id": self.message.id,
             "senderId": self.message.senderId,
@@ -22,5 +23,21 @@ struct SendMessageRequest {
             "timestamp": self.message.timestamp,
             "timestampInString": self.message.timestampInString
         ]
+    }
+    
+    func conversationToDictionary() -> [String: Any] {
+        return [
+            "id": self.conversation.id,
+            "name": self.conversation.name,
+            "lastMessage": self.messageToDictionary(),
+            "members": self.stringArrayToDictionary(array: self.conversation.members)
+        ]
+    }
+    func stringArrayToDictionary(array: [String]) -> [String: Any] {
+        var returnDictionary: [String: Any] = [:]
+        for element in array {
+            returnDictionary[element] = element
+        }
+        return returnDictionary
     }
 }

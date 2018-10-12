@@ -27,16 +27,26 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8b-F3-SLg">
-                        <rect key="frame" x="79.5" y="30" width="102" height="19.5"/>
+                        <rect key="frame" x="79.5" y="10" width="102" height="30"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3kK-GM-XtD">
+                        <rect key="frame" x="79.5" y="40" width="35.5" height="29.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="E8b-F3-SLg" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="4Nb-81-ifG"/>
+                    <constraint firstItem="3kK-GM-XtD" firstAttribute="top" secondItem="E8b-F3-SLg" secondAttribute="bottom" id="3dJ-Wc-1I6"/>
+                    <constraint firstItem="E8b-F3-SLg" firstAttribute="top" secondItem="No1-Kv-0Ix" secondAttribute="top" id="DBL-a8-KLg"/>
                     <constraint firstItem="E8b-F3-SLg" firstAttribute="leading" secondItem="No1-Kv-0Ix" secondAttribute="trailing" constant="10" id="Kbe-Sr-G3O"/>
                     <constraint firstAttribute="bottom" secondItem="No1-Kv-0Ix" secondAttribute="bottom" constant="10" id="VpQ-Go-P3N"/>
+                    <constraint firstItem="3kK-GM-XtD" firstAttribute="leading" secondItem="E8b-F3-SLg" secondAttribute="leading" id="dbX-wR-IGN"/>
+                    <constraint firstItem="E8b-F3-SLg" firstAttribute="height" secondItem="No1-Kv-0Ix" secondAttribute="height" multiplier="0.5" id="jBz-W8-woI"/>
+                    <constraint firstItem="3kK-GM-XtD" firstAttribute="bottom" secondItem="No1-Kv-0Ix" secondAttribute="bottom" id="qYp-xJ-6Wa"/>
                     <constraint firstItem="No1-Kv-0Ix" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="rnG-sS-Zby"/>
                     <constraint firstItem="No1-Kv-0Ix" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="xJi-2R-1v7"/>
                 </constraints>
@@ -48,6 +58,7 @@
             <connections>
                 <outlet property="avtImageView" destination="No1-Kv-0Ix" id="x0p-bo-21w"/>
                 <outlet property="contactNameLabel" destination="E8b-F3-SLg" id="HTz-Ps-A4e"/>
+                <outlet property="contactUsernameLabel" destination="3kK-GM-XtD" id="eY5-Pn-n8T"/>
             </connections>
             <point key="canvasLocation" x="132.80000000000001" y="154.72263868065968"/>
         </tableViewCell>

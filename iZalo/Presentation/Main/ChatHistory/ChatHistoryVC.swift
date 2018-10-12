@@ -74,7 +74,6 @@ class ChatHistoryVC: BaseVC {
     }
     
     private func bindViewModel() {
-        print("ChatHistoryVC bindVM")
         let viewWillAppear = self.rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
             .mapToVoid()
             .asDriverOnErrorJustComplete()

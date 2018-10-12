@@ -22,7 +22,6 @@ class ConversationResponse {
         self.name = value.value(forKey: "name") as! String
         self.members = value.value(forKey: "members") as! NSDictionary
         self.lastMessage = MessageResponse(value: value.value(forKey: "lastMessage") as! NSDictionary)
-        print("conversation: \(self.id)")
     }
     
     //    func convert(currentUsername: String) -> Observable<Conversation> {

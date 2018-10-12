@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ConversationCell: UITableViewCell {
     
@@ -24,7 +25,7 @@ class ConversationCell: UITableViewCell {
     
     func bind(item: ConversationItem) {
         conversationNameLabel.text = item.conversation.name
-        timestampLabel.text = item.conversation.lastMessage.timestampInString
+        timestampLabel.text = self.calculateTime(timestamp: item.conversation.lastMessage.timestamp)
         var sender = item.conversation.lastMessage.senderId == item.currentUsername ? "Bạn" : item.conversation.lastMessage.senderId
         switch item.conversation.lastMessage.type {
         case Constant.textMessage:
@@ -39,7 +40,7 @@ class ConversationCell: UITableViewCell {
             lastMessageLabel.text = item.conversation.lastMessage.content
         }
         item.contactObservable.subscribe(onNext: { (contact) in
-            self.avtImageView.kf.setImage(with: URL(string: contact.avatarURL))
+            self.avtImageView.kf.setImage(with: URL(string: contact.avatarURL), placeholder: nil,  options: [.processor(Constant.avatarImageProcessor)])
             self.conversationNameLabel.text = contact.name
             sender = item.conversation.lastMessage.senderId == item.currentUsername ? "Bạn" : contact.name
             switch item.conversation.lastMessage.type {
@@ -57,5 +58,26 @@ class ConversationCell: UITableViewCell {
         })
         
     }
-    
+    func calculateTime(timestamp: Int) -> String {
+        var returnString = ""
+        let date = Date()
+        let currentTimestamp = Int(date.timeIntervalSince1970)
+        let diffTimestamp = (currentTimestamp - timestamp)
+        if (diffTimestamp < 60) {
+            returnString = "\(diffTimestamp) giây"
+        } else if (diffTimestamp < 60*60) {
+            returnString = "\(Int(diffTimestamp/60)) phút"
+        } else if (diffTimestamp < 60*60*24) {
+            returnString = "\(Int(diffTimestamp/(60*60))) giờ"
+        } else if (diffTimestamp < 60*60*24*7) {
+            returnString = "\(Int(diffTimestamp/(60*60*24))) ngày"
+        } else if (diffTimestamp < 60*60*24*30) {
+            returnString = "\(Int(diffTimestamp/(60*60*24*7))) tuần"
+        } else if (diffTimestamp < 60*60*24*30*12) {
+            returnString = "\(Int(diffTimestamp/(60*60*24*30))) tháng"
+        } else {
+            returnString = "\(Int(diffTimestamp/(60*60*24*30*12))) năm"
+        }
+        return returnString
+    }
 }

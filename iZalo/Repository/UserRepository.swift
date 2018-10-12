@@ -23,6 +23,8 @@ protocol UserRepository {
     
     func getAvatarURL(username: String) -> Observable<String>
     
+    func addContact(request: AddContactRequest) -> Observable<Bool>
+    
 //    func loadProfile() -> Observable<User>
     
     //func updateProfile(request: UpdateProfileRequest) -> Observable<Bool>
