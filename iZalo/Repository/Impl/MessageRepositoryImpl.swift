@@ -43,4 +43,8 @@ class MessageRepositoryImpl: MessageRepository {
     func sendMessage(request: SendMessageRequest) -> Observable<Bool> {
         return remoteSource.sendMessage(request: request)
     }
+    
+    func uploadFile(request: UploadFileMessageRequest) -> Observable<String> {
+        return remoteSource.uploadFile(request: request)
+    }
 }

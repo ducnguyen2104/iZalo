@@ -8,12 +8,15 @@
 
 import Foundation
 import RxSwift
-import Firebase
+import FirebaseDatabase
+import FirebaseStorage
 import ObjectMapper
 
 class UserFirebaseSource: UserRemoteSource {
     
     private let ref: DatabaseReference! = Database.database().reference()
+    
+    private let storageRef = Storage.storage().reference()
     
     func login(request: LoginRequest) -> Observable<User> {
         //        print("Request login: \(request.username)")
@@ -89,6 +92,35 @@ class UserFirebaseSource: UserRemoteSource {
                     observer.onNext(false)
                 } else {
                     observer.onNext(true)
+                }
+            }
+            return Disposables.create()
+        }
+    }
+    
+    func changeAvatar(username: String, imagePath: URL) -> Observable<String> {
+        
+        return Observable.create{ [unowned self] (observer) in
+            let avatarRef = self.storageRef.child("avatar/\(username).jpg")
+            let image = imagePath
+            print("fb image: \(image)")
+            avatarRef.putFile(from: image, metadata: nil)
+            { metadata, error in
+                guard let metadata = metadata else {
+                    // Uh-oh, an error occurred!
+                    return
+                }
+                // Metadata contains file metadata such as size, content-type.
+                let size = metadata.size
+                // You can also access to download URL after upload.
+                avatarRef.downloadURL { (url, error) in
+                    guard let downloadURL = url else {
+                        // Uh-oh, an error occurred!
+                        return
+                    }
+                    self.ref.child("user").child(username).child("avatarURL").setValue(url?.absoluteString)
+                    observer.onNext(downloadURL.absoluteString)
+                    observer.onCompleted()
                 }
             }
             return Disposables.create()

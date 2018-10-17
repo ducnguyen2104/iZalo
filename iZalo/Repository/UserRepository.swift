@@ -25,6 +25,8 @@ protocol UserRepository {
     
     func addContact(request: AddContactRequest) -> Observable<Bool>
     
+    func changeAvatar(username: String, imagePath: URL) -> Observable<String>
+    
 //    func loadProfile() -> Observable<User>
     
     //func updateProfile(request: UpdateProfileRequest) -> Observable<Bool>

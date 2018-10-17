@@ -7,12 +7,14 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseDatabase
 import RxSwift
+import FirebaseStorage
 
 class MessageFirebaseSource: MessageRemoteSource {
     
     private let ref: DatabaseReference! = Database.database().reference()
+    private let storageRef: StorageReference! = Storage.storage().reference()
     
     func sendMessage(request: SendMessageRequest) -> Observable<Bool> {
         
@@ -67,6 +69,38 @@ class MessageFirebaseSource: MessageRemoteSource {
                     observer.onNext([])
                 }
             })
+            return Disposables.create()
+        }
+    }
+    
+    func uploadFile(request: UploadFileMessageRequest) -> Observable<String> {
+        return Observable.create{[unowned self] (observer) in
+            switch request.type{
+            case Constant.imageMessage:
+                let fileRef = self.storageRef.child("image/\(request.url.lastPathComponent)")
+                fileRef.putFile(from: request.url, metadata: nil)
+                { metadata, error in
+                    guard let metadata = metadata else {
+                        // Uh-oh, an error occurred!
+                        return
+                    }
+                    // Metadata contains file metadata such as size, content-type.
+                    let size = metadata.size
+                    // You can also access to download URL after upload.
+                    fileRef.downloadURL { (url, error) in
+                        guard let downloadURL = url else {
+                            // Uh-oh, an error occurred!
+                            return
+                        }
+                        observer.onNext(downloadURL.absoluteString)
+                        observer.onCompleted()
+                    }
+                }
+            default:
+                observer.onCompleted()
+            }
+            
+            
             return Disposables.create()
         }
     }

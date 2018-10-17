@@ -40,4 +40,25 @@ class UserRealmSource: UserLocalSource {
             return Observable.just(true)
         }
     }
+    
+    func updateAvatarURL(username: String, newURL: String) -> Observable<String> {
+        print("local change avt")
+        return Observable.deferred{
+            do {
+                let realm = try Realm()
+                do{
+                    try realm.write {
+                        let user = realm.object(ofType: UserRealm.self, forPrimaryKey: username)
+                        user?.avatarURL = newURL
+                    }
+                } catch {
+                    fatalError("failed to write")
+                }
+            }
+            catch {
+                fatalError("failed to create Realm instance")
+            }
+            return Observable.just(newURL)
+        }
+    }
 }

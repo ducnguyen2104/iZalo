@@ -12,6 +12,7 @@ import RxSwift
 protocol MessageRemoteSource {
     func sendMessage(request: SendMessageRequest) -> Observable<Bool>
     func getMessage(conversation: Conversation, user: User) -> Observable<[Message]>
+    func uploadFile(request: UploadFileMessageRequest) -> Observable<String>
 }
 
 class MessageRemoteSourceFactory {

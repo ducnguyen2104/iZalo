@@ -19,7 +19,9 @@ protocol UserRemoteSource {
     
     func getAvatarURL(username: String) -> Observable<String>
     
-    func addContact(request: AddContactRequest) -> Observable<Bool> 
+    func addContact(request: AddContactRequest) -> Observable<Bool>
+    
+    func changeAvatar(username: String, imagePath: URL) -> Observable<String> 
       
 //    func loadProfile(user: User) -> Observable<User>
     

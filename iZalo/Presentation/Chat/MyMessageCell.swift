@@ -14,6 +14,7 @@ class MyMessageCell: BaseMessageCell {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var messageContainer: UIView!
+    @IBOutlet weak var timestampLabelHeightConstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,18 +27,24 @@ class MyMessageCell: BaseMessageCell {
     
     func bind(item: MessageItem) {
         
-        
         let tags = ["<b>", "<i>", "<mark>", "<del>", "<ins>", "<sub>", "<sup>"]
         
         if(tags.contains(where: item.message.content.contains)) { //check if message contains one of these tags
             print("html")
             let htmlString = stringProcessing(rawString: item.message.content)
-            messageLabel.attributedText = htmlString
+            self.messageLabel.attributedText = htmlString
         } else {
             print("not html")
-            messageLabel.text = item.message.content
+            self.messageLabel.text = item.message.content
         }
-        timestampLabel.text = item.message.timestampInString
+        if !item.isTimeHidden {
+            self.timestampLabel.isHidden = false
+            self.timestampLabelHeightConstraint.constant = 20
+            self.timestampLabel.text = item.message.timestampInString
+        } else {
+            self.timestampLabelHeightConstraint.constant = 5
+            self.timestampLabel.isHidden = true
+        }
     }
     
     func stringProcessing(rawString: String) -> NSMutableAttributedString {
@@ -56,7 +63,7 @@ class MyMessageCell: BaseMessageCell {
             print("process successfully")
             return mutableString!
         } else {
-            print("process successfully")
+            print("process unsuccessfully")
             return NSMutableAttributedString(string: rawString, attributes: nil)
         }
     }

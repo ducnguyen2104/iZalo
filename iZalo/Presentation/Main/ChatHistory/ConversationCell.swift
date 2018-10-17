@@ -29,7 +29,23 @@ class ConversationCell: UITableViewCell {
         var sender = item.conversation.lastMessage.senderId == item.currentUsername ? "Bạn" : item.conversation.lastMessage.senderId
         switch item.conversation.lastMessage.type {
         case Constant.textMessage:
-            lastMessageLabel.text = "\(sender): \(item.conversation.lastMessage.content)"
+            lastMessageLabel.text = """
+            \(sender): \(item.conversation.lastMessage.content
+            .replacingOccurrences(of: "<b>", with: "")
+            .replacingOccurrences(of: "<i>", with: "")
+            .replacingOccurrences(of: "<mark>", with: "")
+            .replacingOccurrences(of: "<del>", with: "")
+            .replacingOccurrences(of: "<ins>", with: "")
+            .replacingOccurrences(of: "<sub>", with: "")
+            .replacingOccurrences(of: "<sup>", with: "")
+            .replacingOccurrences(of: "</b>", with: "")
+            .replacingOccurrences(of: "</i>", with: "")
+            .replacingOccurrences(of: "</mark>", with: "")
+            .replacingOccurrences(of: "</del>", with: "")
+            .replacingOccurrences(of: "</ins>", with: "")
+            .replacingOccurrences(of: "</sub>", with: "")
+            .replacingOccurrences(of: "</sup>", with: ""))
+            """
         case Constant.imageMessage:
             lastMessageLabel.text = " \(sender) đã gửi một ảnh"
         case Constant.voiceMessage:
@@ -45,7 +61,23 @@ class ConversationCell: UITableViewCell {
             sender = item.conversation.lastMessage.senderId == item.currentUsername ? "Bạn" : contact.name
             switch item.conversation.lastMessage.type {
             case Constant.textMessage:
-                self.lastMessageLabel.text = "\(sender): \(item.conversation.lastMessage.content)"
+                self.lastMessageLabel.text = """
+                \(sender): \(item.conversation.lastMessage.content
+                .replacingOccurrences(of: "<b>", with: "")
+                .replacingOccurrences(of: "<i>", with: "")
+                .replacingOccurrences(of: "<mark>", with: "")
+                .replacingOccurrences(of: "<del>", with: "")
+                .replacingOccurrences(of: "<ins>", with: "")
+                .replacingOccurrences(of: "<sub>", with: "")
+                .replacingOccurrences(of: "<sup>", with: "")
+                .replacingOccurrences(of: "</b>", with: "")
+                .replacingOccurrences(of: "</i>", with: "")
+                .replacingOccurrences(of: "</mark>", with: "")
+                .replacingOccurrences(of: "</del>", with: "")
+                .replacingOccurrences(of: "</ins>", with: "")
+                .replacingOccurrences(of: "</sub>", with: "")
+                .replacingOccurrences(of: "</sup>", with: ""))
+                """
             case Constant.imageMessage:
                 self.lastMessageLabel.text = " \(sender) đã gửi một ảnh"
             case Constant.voiceMessage:

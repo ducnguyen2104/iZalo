@@ -21,7 +21,8 @@ final class ChatVM: ViewModelDelegate {
     public let textMessage = BehaviorRelay<String>(value: "")
     private let sendMessageUsecase = SendMessageUsecase()
     private let loadMessageUsecase = LoadMessageUseCase()
-    private let ref: DatabaseReference! = Database.database().reference()
+    let activityIndicator = ActivityIndicator()
+    let errorTracker = ErrorTracker()
     
     public let items = BehaviorRelay<[MessageItem]>(value: [])
     
@@ -32,24 +33,54 @@ final class ChatVM: ViewModelDelegate {
     }
     
     func transform(input: ChatVM.Input) -> ChatVM.Output {
-        let activityIndicator = ActivityIndicator()
-        let errorTracker = ErrorTracker()
+        
         
         (input.textMessage <-> self.textMessage).disposed(by: self.disposeBag)
         
         input.trigger
-        .flatMap{[unowned self] (_) -> Driver<[Message]> in
-            return self.loadMessageUsecase.execute(request: LoadMessageRequest(conversation: self.conversation, username: self.currentUsername))
-            .do(onNext: { (messages) in
-                self.items.accept(messages.map { (message) in
-                    return MessageItem(message: message, currentUsername: self.currentUsername)
-                })
-            })
-            .trackActivity(activityIndicator)
-            .trackError(errorTracker)
-            .asDriverOnErrorJustComplete()
-        }.drive()
-        .disposed(by: self.disposeBag)
+            .flatMap{[unowned self] (_) -> Driver<[Message]> in
+                return self.loadMessageUsecase.execute(request: LoadMessageRequest(conversation: self.conversation, username: self.currentUsername))
+                    .do(onNext: { (messages) in
+                        var items: [MessageItem] = []
+                        guard messages.count > 0 else {
+                            return
+                        }
+                        switch messages.count {
+                        case 1:
+                            items.append(MessageItem(message: messages[0], currentUsername: self.currentUsername, isTimeHidden: false, isAvatarHidden: false))
+                        case 2:
+                            if(messages[0].senderId == messages[1].senderId) { //same user
+                                items.append(MessageItem(message: messages[0], currentUsername: self.currentUsername, isTimeHidden: false, isAvatarHidden: true))
+                                items.append(MessageItem(message: messages[1], currentUsername: self.currentUsername, isTimeHidden: true, isAvatarHidden: false))
+                            } else { //different user
+                                items.append(MessageItem(message: messages[0], currentUsername: self.currentUsername, isTimeHidden: false, isAvatarHidden: false))
+                                items.append(MessageItem(message: messages[1], currentUsername: self.currentUsername, isTimeHidden: false, isAvatarHidden: false))
+                            }
+                        default:
+                            for i in 0...messages.count - 1 {
+                                if i == 0 { //last message
+                                    let isAvatarHidden = messages[0].senderId == messages[1].senderId
+                                    items.append(MessageItem(message: messages[i], currentUsername: self.currentUsername, isTimeHidden: false, isAvatarHidden: isAvatarHidden))
+                                }
+                                else if i == messages.count - 1 { //first message
+                                    if messages[messages.count - 2].senderId == messages[messages.count - 1].senderId {
+                                        items.append(MessageItem(message: messages[i], currentUsername: self.currentUsername, isTimeHidden: true, isAvatarHidden: false))
+                                    }
+                                    
+                                } else {
+                                    let isTimeHidden = messages[i].senderId == messages[i+1].senderId
+                                    let isAvatarHidden = messages[i].senderId == messages[i-1].senderId
+                                    items.append(MessageItem(message: messages[i], currentUsername: self.currentUsername, isTimeHidden: isTimeHidden, isAvatarHidden: isAvatarHidden))
+                                }
+                            }
+                        }
+                        self.items.accept(items)
+                    })
+                    .trackActivity(self.activityIndicator)
+                    .trackError(self.errorTracker)
+                    .asDriverOnErrorJustComplete()
+            }.drive()
+            .disposed(by: self.disposeBag)
         
         input.backTrigger
             .drive(onNext: { [unowned self] in
@@ -82,17 +113,51 @@ final class ChatVM: ViewModelDelegate {
                                     print("error!!")
                             })
                     }
-                    .trackActivity(activityIndicator)
-                    .trackError(errorTracker)
+                    .trackActivity(self.activityIndicator)
+                    .trackError(self.errorTracker)
                     .asDriverOnErrorJustComplete()
             }
             .drive()
             .disposed(by: self.disposeBag)
         
+        input.showHideTrigger
+            .drive(onNext: { [unowned self] in
+                self.displayLogic?.showHideButtonContainer()
+            })
+            .disposed(by: self.disposeBag)
+        
+        input.sendImageTrigger
+            .drive(onNext: { [unowned self] in
+                self.displayLogic?.gotoLibrary()
+                self.displayLogic?.showHideButtonContainer()
+            })
+            .disposed(by: self.disposeBag)
         
         return Output(fetching: activityIndicator.asDriver(),
                       error: errorTracker.asDriver(),
                       items: self.items.asDriver())
+    }
+    
+    func sendImageMessage(url: URL) {
+        let date = Date()
+        let timestamp = Int(date.timeIntervalSince1970)
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: date)
+        let minute = calendar.component(.minute, from: date)
+        let uploadFileMessageUseCase = UploadFileMessageUseCase()
+        uploadFileMessageUseCase.execute(request: UploadFileMessageRequest(url: url, type: Constant.imageMessage))
+            .do(onNext: {(newUrl) in
+                print("newUrl: \(newUrl)")
+                self.sendMessageUsecase
+                    .execute(request: SendMessageRequest(message: Message(id: "\(self.currentUsername)\(timestamp)", senderId: self.currentUsername, conversationId: self.conversation.id, content: newUrl, type: Constant.imageMessage, timestamp: timestamp, timestampInString: "\(hour):\(minute)"), conversation:
+                        self.conversation))
+                    .asDriverOnErrorJustComplete()
+                    .drive()
+                    .disposed(by: self.disposeBag)
+            })
+            .asDriverOnErrorJustComplete()
+            .drive()
+            .disposed(by: self.disposeBag)
     }
 }
 
@@ -103,6 +168,8 @@ extension ChatVM {
         let backTrigger: Driver<Void>
         let textMessage: ControlProperty<String>
         let sendTrigger: Driver<Void>
+        let showHideTrigger: Driver<Void>
+        let sendImageTrigger: Driver<Void>
     }
     
     public struct Output {

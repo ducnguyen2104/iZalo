@@ -13,10 +13,14 @@ class MessageItem {
     
     let message: Message
     let currentUsername: String
+    let isTimeHidden: Bool
+    let isAvatarHidden: Bool
     
-    init(message: Message, currentUsername: String) {
+    init(message: Message, currentUsername: String, isTimeHidden: Bool, isAvatarHidden: Bool) {
         self.message = message
         self.currentUsername = currentUsername
+        self.isTimeHidden = isTimeHidden
+        self.isAvatarHidden = isAvatarHidden
     }
 }
 

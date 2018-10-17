@@ -52,4 +52,11 @@ class UserRepositoryImpl: UserRepository {
     func addContact(request: AddContactRequest) -> Observable<Bool>  {
         return self.remoteSource.addContact(request: request)
     }
+    
+    func changeAvatar(username: String, imagePath: URL) -> Observable<String> {
+        print("userRepo change avt")
+        return self.remoteSource.changeAvatar(username: username, imagePath: imagePath).flatMap{(newURL) -> Observable<String> in
+            self.localSource.updateAvatarURL(username: username, newURL: newURL)
+        }
+    }
 }

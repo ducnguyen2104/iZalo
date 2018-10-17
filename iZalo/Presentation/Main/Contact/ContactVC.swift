@@ -50,6 +50,7 @@ class ContactVC: BaseVC {
     }
     
     private func setupLayout() {
+        self.tableView.tableFooterView = UIView()
         self.navigationController?.isNavigationBarHidden = true;
         searchTextField.attributedPlaceholder = NSAttributedString(string: "Tìm bạn bè, tin nhắn, ...",
                                                                    attributes: [NSAttributedStringKey.foregroundColor: UIColor(red: 255, green: 255, blue: 255, alpha: 0.7)])

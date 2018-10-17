@@ -67,6 +67,7 @@
                 <outlet property="messageContainerView" destination="K72-0R-63e" id="rSF-he-JDv"/>
                 <outlet property="messageLabel" destination="moL-Ay-1d9" id="aVh-zx-68b"/>
                 <outlet property="timestampLabel" destination="RQX-jq-nKc" id="Jtc-Xd-ZcP"/>
+                <outlet property="timestampLabelHeightConstraint" destination="3uE-HM-gja" id="X11-Uh-12R"/>
             </connections>
             <point key="canvasLocation" x="132.80000000000001" y="170.46476761619192"/>
         </tableViewCell>

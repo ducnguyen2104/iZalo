@@ -17,9 +17,11 @@ protocol ChatDisplayLogic: class {
     func clearInputTextField()
     func updateSendStatus()
     func scollTableToBottom(noRows: Int)
+    func showHideButtonContainer()
+    func gotoLibrary()
 }
 
-class ChatVC: BaseVC {
+class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var conversationNameLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
@@ -27,10 +29,13 @@ class ChatVC: BaseVC {
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var buttonsContainer: UIView!
+    @IBOutlet weak var sendImageButton: UIButton!
+    @IBOutlet weak var showHideButton: UIButton!
+    @IBOutlet weak var textFieldView: UIView!
     
     private let contactRepository = ContactRepositoryFactory.sharedInstance
-    
+    public var isButtonContainerHidden = true
     public var viewModel: ChatVM!
     public var conversation: Conversation!
     public var currentUsername: String!
@@ -74,24 +79,53 @@ class ChatVC: BaseVC {
         
         self.tableView.re.delegate = self
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.estimatedRowHeight = 80
+//        self.tableView.estimatedRowHeight = 80
         self.tableView.register(UINib(nibName: "MyMessageCell", bundle: nil), forCellReuseIdentifier: "MyMessageCell")
         self.tableView.register(UINib(nibName: "OthersMessageCell", bundle: nil), forCellReuseIdentifier: "OthersMessageCell")
+        self.tableView.register(UINib(nibName: "MyImageMessageCell", bundle: nil), forCellReuseIdentifier: "MyImageMessageCell")
+        self.tableView.register(UINib(nibName: "OthersImageMessageCell", bundle: nil), forCellReuseIdentifier: "OthersImageMessageCell")
         self.tableView.separatorStyle = .none
         self.items = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, MessageItem>>(configureCell: { (_, tv, ip, item) -> UITableViewCell in
-            if(item.message.senderId == self.currentUsername) {
-                let cell = tv.dequeueReusableCell(withIdentifier: "MyMessageCell", for: ip) as! MyMessageCell
-                cell.bind(item: item)
-                return cell
-            } else {
-                let cell = tv.dequeueReusableCell(withIdentifier: "OthersMessageCell", for: ip) as! OthersMessageCell
-                cell.bind(item: item, contactObservable: self.contactObservable!)
-                return cell
+            switch item.message.type {
+            case Constant.imageMessage:
+                if(item.message.senderId == self.currentUsername) {
+                    let cell = tv.dequeueReusableCell(withIdentifier: "MyImageMessageCell", for: ip) as! MyImageMessageCell
+                    cell.bind(item: item)
+                    return cell
+                } else {
+                    let cell = tv.dequeueReusableCell(withIdentifier: "OthersImageMessageCell", for: ip) as! OthersImageMessageCell
+                    cell.bind(item: item, contactObservable: self.contactObservable!)
+                    return cell
+                }
+            default:
+                if(item.message.senderId == self.currentUsername) {
+                    let cell = tv.dequeueReusableCell(withIdentifier: "MyMessageCell", for: ip) as! MyMessageCell
+                    cell.bind(item: item)
+                    return cell
+                } else {
+                    let cell = tv.dequeueReusableCell(withIdentifier: "OthersMessageCell", for: ip) as! OthersMessageCell
+                    cell.bind(item: item, contactObservable: self.contactObservable!)
+                    return cell
+                }
             }
         })
         let _ = contactObservable!.subscribe(onNext: {(contact) in
                 self.conversationNameLabel.text = contact.name
             } )
+        self.buttonsContainer.isHidden = true
+        self.tableView.rx.itemSelected.asDriver()
+            .drive(onNext: {(ip) in
+                self.tableView.deselectRow(at: ip, animated: false)
+                let item = self.items.sectionModels[0].items[ip.row]
+                switch item.message.type {
+                case Constant.imageMessage:
+                    let vc = ViewImageVC.init(url: item.message.content)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                default:
+                    return
+                }
+            })
+        .disposed(by: disposeBag)
     }
     
     private func bindViewModel() {
@@ -99,7 +133,13 @@ class ChatVC: BaseVC {
             .mapToVoid()
             .asDriverOnErrorJustComplete()
         
-        let input = ChatVM.Input(trigger: viewWillAppear, backTrigger: self.backButton.rx.tap.asDriver(), textMessage: self.inputTextField.rx.text.orEmpty, sendTrigger: self.sendButton.rx.tap.asDriver())
+        let input = ChatVM.Input(
+            trigger: viewWillAppear,
+            backTrigger: self.backButton.rx.tap.asDriver(),
+            textMessage: self.inputTextField.rx.text.orEmpty,
+            sendTrigger: self.sendButton.rx.tap.asDriver(),
+            showHideTrigger: self.showHideButton.rx.tap.asDriver(),
+            sendImageTrigger: self.sendImageButton.rx.tap.asDriver())
         let output = self.viewModel.transform(input: input)
         
         output.fetching.drive(onNext: { [unowned self] (show) in
@@ -115,6 +155,32 @@ class ChatVC: BaseVC {
             self.handleError(error: error)
         }).disposed(by: self.disposeBag)
         
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [String : Any])
+    {
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+        guard chosenImage != nil else {
+            return
+        }
+        let resizedImage = ImageUtils.resizeImage(image: chosenImage!, targetSize: CGSize(width: max(chosenImage?.size.width ?? 0, 500), height: max(chosenImage?.size.height  ?? 0, 500)))
+        let imageURL = info[UIImagePickerControllerImageURL] as? URL
+        guard imageURL != nil else {
+            return
+        }
+        let imageName = imageURL!.lastPathComponent
+        let documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
+        let localPath = documentDirectory?.appending(imageName)
+        let data = UIImageJPEGRepresentation(resizedImage, 80)! as NSData
+        data.write(toFile: localPath!, atomically: true)
+        let photoURL = URL.init(fileURLWithPath: localPath!)
+        print(photoURL)
+        self.viewModel.sendImageMessage(url: photoURL)
+        dismiss(animated:true, completion: nil)
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
 
 }
@@ -140,6 +206,27 @@ extension ChatVC: ChatDisplayLogic {
     func scollTableToBottom(noRows: Int) {
         let indexPath = NSIndexPath(item: noRows, section: 0)
         self.tableView.scrollToRow(at: indexPath as IndexPath, at: UITableViewScrollPosition.bottom, animated: true)
+    }
+    
+    func showHideButtonContainer() {
+        switch self.isButtonContainerHidden {
+        case true: //show it!
+            self.buttonsContainer.isHidden = false
+        
+        default:   //hide it!
+            self.buttonsContainer.isHidden = true
+        }
+        self.isButtonContainerHidden = !self.isButtonContainerHidden
+    }
+    
+    func gotoLibrary() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+        imagePicker.modalPresentationStyle = .fullScreen
+        self.present(imagePicker, animated: true, completion: nil)
     }
 }
 

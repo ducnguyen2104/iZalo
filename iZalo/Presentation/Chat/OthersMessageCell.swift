@@ -16,6 +16,7 @@ class OthersMessageCell: BaseMessageCell {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var messageContainer: UIView!
+    @IBOutlet weak var timestampLabelHeightConstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,7 +24,8 @@ class OthersMessageCell: BaseMessageCell {
         
         self.messageContainer.layer.borderWidth = 0.1
         self.messageContainer.layer.borderColor = UIColor.gray.cgColor
-        // Initialization code
+        self.avatarImageView.layer.cornerRadius = self.avatarImageView.frame.height/2
+        self.avatarImageView.clipsToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -43,10 +45,22 @@ class OthersMessageCell: BaseMessageCell {
             print("not html")
             messageLabel.text = item.message.content
         }
-        timestampLabel.text = item.message.timestampInString
-        let _ = contactObservable.subscribe(onNext: {(contact) in
-            self.avatarImageView.kf.setImage(with: URL(string: contact.avatarURL), placeholder: nil,  options: [.processor(Constant.avatarImageProcessor)])
-        })
+        if !item.isTimeHidden {
+            self.timestampLabel.isHidden = false
+            self.timestampLabelHeightConstraint.constant = 20
+            self.timestampLabel.text = item.message.timestampInString
+        } else {
+            self.timestampLabelHeightConstraint.constant = 5
+            self.timestampLabel.isHidden = true
+        }
+        if !item.isAvatarHidden {
+            self.avatarImageView.isHidden = false
+            let _ = contactObservable.subscribe(onNext: {(contact) in
+                self.avatarImageView.kf.setImage(with: URL(string: contact.avatarURL), placeholder: nil,  options: [.processor(Constant.avatarImageProcessor)])
+            })
+        } else {
+            self.avatarImageView.isHidden = true
+        }
         
     }
     func stringProcessing(rawString: String) -> NSMutableAttributedString {

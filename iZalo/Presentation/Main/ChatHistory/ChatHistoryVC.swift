@@ -49,6 +49,7 @@ class ChatHistoryVC: BaseVC {
     }
     
     private func setupLayout() {
+        self.tableView.tableFooterView = UIView()
         self.navigationController?.isNavigationBarHidden = true;
         searchTextField.attributedPlaceholder = NSAttributedString(string: "Tìm bạn bè, tin nhắn, ...",
                                                                    attributes: [NSAttributedStringKey.foregroundColor: UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.7)])

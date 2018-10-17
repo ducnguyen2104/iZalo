@@ -15,6 +15,7 @@ protocol UserLocalSource {
     
     func persistUser(user: User) -> Observable<Bool>
     
+    func updateAvatarURL(username: String, newURL: String) -> Observable<String>
 //    func removeUser() -> Observable<Bool>
     
 //    func persistNotification(notification: Int) -> Observable<Bool>
