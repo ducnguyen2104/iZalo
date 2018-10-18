@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="EmojiCell" customModule="iZalo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="34" height="34"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="34" height="34"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😀" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Htg-Vj-845">
+                        <rect key="frame" x="5" y="5" width="24" height="24"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Htg-Vj-845" secondAttribute="height" multiplier="1:1" id="eeL-9K-38w"/>
+                            <constraint firstAttribute="height" constant="24" id="f89-L3-KaC"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="Htg-Vj-845" firstAttribute="top" secondItem="ZTg-uK-7eu" secondAttribute="top" constant="5" id="3T5-YX-fYo"/>
+                <constraint firstItem="Htg-Vj-845" firstAttribute="centerY" secondItem="ZTg-uK-7eu" secondAttribute="centerY" id="5HL-5a-pIO"/>
+                <constraint firstItem="Htg-Vj-845" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" constant="5" id="Am6-Cl-NEA"/>
+                <constraint firstItem="Htg-Vj-845" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="SLo-P4-3gI"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="34" height="34"/>
+            <connections>
+                <outlet property="emojiLabel" destination="Htg-Vj-845" id="T7s-ja-mIm"/>
+            </connections>
+            <point key="canvasLocation" x="120" y="147.52623688155924"/>
+        </collectionViewCell>
+    </objects>
+</document>

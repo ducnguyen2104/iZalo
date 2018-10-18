@@ -26,16 +26,40 @@ final class ChatVM: ViewModelDelegate {
     
     public let items = BehaviorRelay<[MessageItem]>(value: [])
     
+    public let emojiItems = BehaviorRelay<[EmojiItem]>(value: [])
+    
+    public let emojis: [String] =
+        ["😀", "😃", "😄", "😁", "😆", "😅", "😂",
+                         "🤣", "☺️", "😊", "😇", "🙂", "🙃", "😉",
+                         "😌", "😍", "😘", "😗", "😙", "😚", "😋"]
+    
     init(conversation: Conversation, currentUsername: String, displayLogic: ChatDisplayLogic) {
         self.conversation = conversation
         self.currentUsername = currentUsername
         self.displayLogic = displayLogic
     }
     
+    private func addEmoji(emoji: String) {
+        
+    }
+    
     func transform(input: ChatVM.Input) -> ChatVM.Output {
         
         
         (input.textMessage <-> self.textMessage).disposed(by: self.disposeBag)
+        
+        input.trigger.flatMap{[unowned self] (_) -> Driver<[String]> in
+            return Observable.just(self.emojis)
+                .do(onNext: {(emojiList) in
+                    self.emojiItems.accept(emojiList.map{(emoji) in
+                        return EmojiItem(emoji: emoji)
+                    })
+                })
+                .trackActivity(self.activityIndicator)
+                .trackError(self.errorTracker)
+                .asDriverOnErrorJustComplete()
+        }.drive()
+        .disposed(by: self.disposeBag)
         
         input.trigger
             .flatMap{[unowned self] (_) -> Driver<[Message]> in
@@ -92,8 +116,10 @@ final class ChatVM: ViewModelDelegate {
             .flatMap { [unowned self] () -> Driver<Bool> in
                 self.displayLogic?.hideKeyboard()
                 self.displayLogic?.clearInputTextField()
+                self.displayLogic?.hideAllExtraViews()
                 return Observable.deferred { [unowned self] in
                     guard !self.textMessage.value.isEmpty else {
+                        print("null message")
                         return Observable.error(ValidateError(message: "null message"))
                     }
                     
@@ -126,6 +152,12 @@ final class ChatVM: ViewModelDelegate {
             })
             .disposed(by: self.disposeBag)
         
+        input.emojiButtonTrigger
+            .drive(onNext: { [unowned self] in
+                self.displayLogic?.showHideEmojiView()
+            })
+            .disposed(by: self.disposeBag)
+        
         input.sendImageTrigger
             .drive(onNext: { [unowned self] in
                 self.displayLogic?.gotoLibrary()
@@ -135,7 +167,8 @@ final class ChatVM: ViewModelDelegate {
         
         return Output(fetching: activityIndicator.asDriver(),
                       error: errorTracker.asDriver(),
-                      items: self.items.asDriver())
+                      items: self.items.asDriver(),
+                      emojiItems: self.emojiItems.asDriver())
     }
     
     func sendImageMessage(url: URL) {
@@ -169,6 +202,7 @@ extension ChatVM {
         let textMessage: ControlProperty<String>
         let sendTrigger: Driver<Void>
         let showHideTrigger: Driver<Void>
+        let emojiButtonTrigger: Driver<Void>
         let sendImageTrigger: Driver<Void>
     }
     
@@ -176,6 +210,7 @@ extension ChatVM {
         let fetching: Driver<Bool>
         let error: Driver<Error>
         let items: Driver<[MessageItem]>
+        let emojiItems: Driver<[EmojiItem]>
     }
     
 }

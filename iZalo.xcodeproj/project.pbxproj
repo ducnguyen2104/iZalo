@@ -51,6 +51,9 @@
 		9736A3D821538D550085219D /* ContactVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9736A3D621538D550085219D /* ContactVC.xib */; };
 		9736A3DC21538D960085219D /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9736A3DA21538D960085219D /* SettingVC.swift */; };
 		9736A3DD21538D960085219D /* SettingVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9736A3DB21538D960085219D /* SettingVC.xib */; };
+		97391AB62178833200D5E81E /* EmojiItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97391AB52178833200D5E81E /* EmojiItem.swift */; };
+		97391AB92178847F00D5E81E /* EmojiCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97391AB72178847F00D5E81E /* EmojiCell.swift */; };
+		97391ABA2178847F00D5E81E /* EmojiCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97391AB82178847F00D5E81E /* EmojiCell.xib */; };
 		973A61542164B990003B6047 /* BaseMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973A61532164B990003B6047 /* BaseMessageCell.swift */; };
 		973A61562164BDD3003B6047 /* LoadConversationAndContactRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973A61552164BDD3003B6047 /* LoadConversationAndContactRequest.swift */; };
 		973A61582164C7A5003B6047 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973A61572164C7A5003B6047 /* Color.swift */; };
@@ -180,6 +183,9 @@
 		9736A3D621538D550085219D /* ContactVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactVC.xib; sourceTree = "<group>"; };
 		9736A3DA21538D960085219D /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		9736A3DB21538D960085219D /* SettingVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingVC.xib; sourceTree = "<group>"; };
+		97391AB52178833200D5E81E /* EmojiItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiItem.swift; sourceTree = "<group>"; };
+		97391AB72178847F00D5E81E /* EmojiCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCell.swift; sourceTree = "<group>"; };
+		97391AB82178847F00D5E81E /* EmojiCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmojiCell.xib; sourceTree = "<group>"; };
 		973A61532164B990003B6047 /* BaseMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMessageCell.swift; sourceTree = "<group>"; };
 		973A61552164BDD3003B6047 /* LoadConversationAndContactRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadConversationAndContactRequest.swift; sourceTree = "<group>"; };
 		973A61572164C7A5003B6047 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -595,6 +601,9 @@
 				970656BB2176F5C8002A5FF6 /* MyImageMessageCell.xib */,
 				970656BE217718FC002A5FF6 /* OthersImageMessageCell.swift */,
 				970656BF217718FC002A5FF6 /* OthersImageMessageCell.xib */,
+				97391AB52178833200D5E81E /* EmojiItem.swift */,
+				97391AB72178847F00D5E81E /* EmojiCell.swift */,
+				97391AB82178847F00D5E81E /* EmojiCell.xib */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -682,6 +691,7 @@
 				9736A3D821538D550085219D /* ContactVC.xib in Resources */,
 				971ED8DA21743150001F8217 /* SettingCell.xib in Resources */,
 				97CF54CA214FB7CE007609BE /* LoginVC.xib in Resources */,
+				97391ABA2178847F00D5E81E /* EmojiCell.xib in Resources */,
 				9713373E216C8BD5000A609A /* AddFriendVC.xib in Resources */,
 				9736A3CE21538BF80085219D /* MainVC.xib in Resources */,
 				970656BD2176F5C8002A5FF6 /* MyImageMessageCell.xib in Resources */,
@@ -837,10 +847,12 @@
 				974E03AA216210A6001597FF /* LoadMessageUsecase.swift in Sources */,
 				97BA5894215B259C00327FA7 /* Constant.swift in Sources */,
 				97DB46D22152001200F018DC /* User.swift in Sources */,
+				97391AB92178847F00D5E81E /* EmojiCell.swift in Sources */,
 				971ED8DE217445F4001F8217 /* LoadCurrenUserInfoUseCase.swift in Sources */,
 				97BA58AA215B425E00327FA7 /* ContactRealmSource.swift in Sources */,
 				970D6FE52158C80200688732 /* ConversationRealmSource.swift in Sources */,
 				978596B4214A594C00516138 /* AppDelegate.swift in Sources */,
+				97391AB62178833200D5E81E /* EmojiItem.swift in Sources */,
 				97D6D55F21525F7E0070E521 /* RxBinding.swift in Sources */,
 				97E2C0EB2158991800FA9348 /* ConversationRepository.swift in Sources */,
 				974E03A42161C06B001597FF /* MessageLocalSource.swift in Sources */,

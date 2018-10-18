@@ -18,7 +18,9 @@ protocol ChatDisplayLogic: class {
     func updateSendStatus()
     func scollTableToBottom(noRows: Int)
     func showHideButtonContainer()
+    func showHideEmojiView()
     func gotoLibrary()
+    func hideAllExtraViews()
 }
 
 class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -27,20 +29,25 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var emojiButton: UIButton!
     @IBOutlet weak var inputTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var buttonsContainer: UIView!
     @IBOutlet weak var sendImageButton: UIButton!
     @IBOutlet weak var showHideButton: UIButton!
     @IBOutlet weak var textFieldView: UIView!
+    @IBOutlet weak var emojiCollectionView: UICollectionView!
+    @IBOutlet weak var emojiView: UIView!
     
     private let contactRepository = ContactRepositoryFactory.sharedInstance
     public var isButtonContainerHidden = true
+    public var isEmojiViewHidden = true
     public var viewModel: ChatVM!
     public var conversation: Conversation!
     public var currentUsername: String!
     private let disposeBag = DisposeBag()
     private var items: RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, MessageItem>>!
+    private var emojis: RxCollectionViewSectionedReloadDataSource<SectionModel<String, EmojiItem>>!
     private var contactObservable: Observable<Contact>?
     
     class func instance(conversation: Conversation, currentUsername: String, contactObservable: Observable<Contact>) -> ChatVC {
@@ -85,6 +92,15 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         self.tableView.register(UINib(nibName: "MyImageMessageCell", bundle: nil), forCellReuseIdentifier: "MyImageMessageCell")
         self.tableView.register(UINib(nibName: "OthersImageMessageCell", bundle: nil), forCellReuseIdentifier: "OthersImageMessageCell")
         self.tableView.separatorStyle = .none
+        
+        self.emojiCollectionView.register(UINib(nibName: "EmojiCell", bundle: nil), forCellWithReuseIdentifier: "EmojiCell")
+        
+        self.emojis = RxCollectionViewSectionedReloadDataSource<SectionModel<String, EmojiItem>>(configureCell: {(_, cv, ip, item) -> UICollectionViewCell in
+            let cell = cv.dequeueReusableCell(withReuseIdentifier: "EmojiCell", for: ip) as! EmojiCell
+            cell.bind(item: item)
+            return cell
+        })
+        
         self.items = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, MessageItem>>(configureCell: { (_, tv, ip, item) -> UITableViewCell in
             switch item.message.type {
             case Constant.imageMessage:
@@ -113,6 +129,7 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
                 self.conversationNameLabel.text = contact.name
             } )
         self.buttonsContainer.isHidden = true
+        self.emojiView.isHidden = true
         self.tableView.rx.itemSelected.asDriver()
             .drive(onNext: {(ip) in
                 self.tableView.deselectRow(at: ip, animated: false)
@@ -124,6 +141,15 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
                 default:
                     return
                 }
+            })
+        .disposed(by: disposeBag)
+        
+        self.emojiCollectionView.rx.itemSelected.asDriver()
+            .drive(onNext: {(ip) in
+                self.emojiCollectionView.deselectItem(at: ip, animated: false)
+                let item = self.emojis.sectionModels[0].items[ip.row]
+                self.inputTextField.text = "\( self.inputTextField.text ?? "")\(item.emoji)"
+                
             })
         .disposed(by: disposeBag)
     }
@@ -139,6 +165,7 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
             textMessage: self.inputTextField.rx.text.orEmpty,
             sendTrigger: self.sendButton.rx.tap.asDriver(),
             showHideTrigger: self.showHideButton.rx.tap.asDriver(),
+            emojiButtonTrigger: self.emojiButton.rx.tap.asDriver(),
             sendImageTrigger: self.sendImageButton.rx.tap.asDriver())
         let output = self.viewModel.transform(input: input)
         
@@ -150,6 +177,11 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
             .map { [AnimatableSectionModel(model: "Items", items: $0)] }
             .drive(self.tableView.rx.items(dataSource: self.items))
             .disposed(by: self.disposeBag)
+        
+        output.emojiItems
+            .map { [SectionModel(model: "EmojiItems", items: $0)]}
+            .drive(self.emojiCollectionView.rx.items(dataSource: self.emojis))
+            .disposed(by: disposeBag)
         
         output.error.drive(onNext: { [unowned self] (error) in
             self.handleError(error: error)
@@ -212,11 +244,25 @@ extension ChatVC: ChatDisplayLogic {
         switch self.isButtonContainerHidden {
         case true: //show it!
             self.buttonsContainer.isHidden = false
+            self.emojiView.isHidden = true
+            self.isEmojiViewHidden = true
         
         default:   //hide it!
             self.buttonsContainer.isHidden = true
         }
         self.isButtonContainerHidden = !self.isButtonContainerHidden
+    }
+    
+    func showHideEmojiView() {
+        switch self.isEmojiViewHidden {
+        case true: //show it!
+            self.emojiView.isHidden = false
+            self.buttonsContainer.isHidden = true //hide buttons container
+            self.isButtonContainerHidden = true
+        default: //hide it!
+            self.emojiView.isHidden = true
+        }
+        self.isEmojiViewHidden = !self.isEmojiViewHidden
     }
     
     func gotoLibrary() {
@@ -227,6 +273,13 @@ extension ChatVC: ChatDisplayLogic {
         imagePicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
         imagePicker.modalPresentationStyle = .fullScreen
         self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func hideAllExtraViews() {
+        self.buttonsContainer.isHidden = true //hide buttons container
+        self.isButtonContainerHidden = true
+        self.emojiView.isHidden = true
+        self.isEmojiViewHidden = true
     }
 }
 
