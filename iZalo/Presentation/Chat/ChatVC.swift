@@ -21,6 +21,7 @@ protocol ChatDisplayLogic: class {
     func showHideEmojiView()
     func gotoLibrary()
     func hideAllExtraViews()
+    func openPickContactVC()
 }
 
 class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -35,6 +36,7 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
     @IBOutlet weak var buttonsContainer: UIView!
     @IBOutlet weak var sendImageButton: UIButton!
     @IBOutlet weak var showHideButton: UIButton!
+    @IBOutlet weak var sendNameCardButton: UIButton!
     @IBOutlet weak var textFieldView: UIView!
     @IBOutlet weak var emojiCollectionView: UICollectionView!
     @IBOutlet weak var emojiView: UIView!
@@ -87,12 +89,15 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         self.tableView.re.delegate = self
         self.tableView.rowHeight = UITableViewAutomaticDimension
 //        self.tableView.estimatedRowHeight = 80
+        
         self.tableView.register(UINib(nibName: "MyMessageCell", bundle: nil), forCellReuseIdentifier: "MyMessageCell")
         self.tableView.register(UINib(nibName: "OthersMessageCell", bundle: nil), forCellReuseIdentifier: "OthersMessageCell")
         self.tableView.register(UINib(nibName: "MyImageMessageCell", bundle: nil), forCellReuseIdentifier: "MyImageMessageCell")
         self.tableView.register(UINib(nibName: "OthersImageMessageCell", bundle: nil), forCellReuseIdentifier: "OthersImageMessageCell")
-        self.tableView.separatorStyle = .none
+        self.tableView.register(UINib(nibName: "MyNameCardMessageCell", bundle: nil), forCellReuseIdentifier: "MyNameCardMessageCell")
+        self.tableView.register(UINib(nibName: "OthersNameCardMessageCell", bundle: nil), forCellReuseIdentifier: "OthersNameCardMessageCell")
         
+        self.tableView.separatorStyle = .none
         self.emojiCollectionView.register(UINib(nibName: "EmojiCell", bundle: nil), forCellWithReuseIdentifier: "EmojiCell")
         
         self.emojis = RxCollectionViewSectionedReloadDataSource<SectionModel<String, EmojiItem>>(configureCell: {(_, cv, ip, item) -> UICollectionViewCell in
@@ -110,6 +115,16 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
                     return cell
                 } else {
                     let cell = tv.dequeueReusableCell(withIdentifier: "OthersImageMessageCell", for: ip) as! OthersImageMessageCell
+                    cell.bind(item: item, contactObservable: self.contactObservable!)
+                    return cell
+                }
+            case Constant.nameCardMessage:
+                if(item.message.senderId == self.currentUsername) {
+                    let cell = tv.dequeueReusableCell(withIdentifier: "MyNameCardMessageCell", for: ip) as! MyNameCardMessageCell
+                    cell.bind(item: item)
+                    return cell
+                } else {
+                    let cell = tv.dequeueReusableCell(withIdentifier: "OthersNameCardMessageCell", for: ip) as! OthersNameCardMessageCell
                     cell.bind(item: item, contactObservable: self.contactObservable!)
                     return cell
                 }
@@ -138,6 +153,22 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
                 case Constant.imageMessage:
                     let vc = ViewImageVC.init(url: item.message.content)
                     self.navigationController?.pushViewController(vc, animated: true)
+                case Constant.nameCardMessage:
+                    let members = [self.currentUsername, item.message.content].sorted { $0 < $1 }
+                    var conversationId = ""
+                    for i in 0...(members.count - 1) {
+                        if i == 0 {
+                            conversationId += members[i]
+                        }
+                        else {
+                            conversationId += "*\(members[i])"
+                        }
+                    }
+                    let vc = ChatVC.instance(conversation: Conversation(id: conversationId, name: conversationId, members: members, lastMessage: Constant.dummyMessage), currentUsername: self.currentUsername, contactObservable: ContactRepositoryFactory.sharedInstance.getContactInfo(username: item.message.content))
+                    var vcArray = self.navigationController?.viewControllers
+                    vcArray?.removeLast()
+                    vcArray?.append(vc)
+                    self.navigationController?.setViewControllers(vcArray!, animated: true)                    
                 default:
                     return
                 }
@@ -167,7 +198,8 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
             sendTrigger: self.sendButton.rx.tap.asDriver(),
             showHideTrigger: self.showHideButton.rx.tap.asDriver(),
             emojiButtonTrigger: self.emojiButton.rx.tap.asDriver(),
-            sendImageTrigger: self.sendImageButton.rx.tap.asDriver())
+            sendImageTrigger: self.sendImageButton.rx.tap.asDriver(),
+            sendNameCardTrigger: self.sendNameCardButton.rx.tap.asDriver())
         let output = self.viewModel.transform(input: input)
         
         output.fetching.drive(onNext: { [unowned self] (show) in
@@ -281,6 +313,11 @@ extension ChatVC: ChatDisplayLogic {
         self.isButtonContainerHidden = true
         self.emojiView.isHidden = true
         self.isEmojiViewHidden = true
+    }
+    
+    func openPickContactVC() {
+        let pickContactVC = PickContactVC.instance(currentUsername: self.currentUsername, conversation: self.conversation)
+        self.navigationController?.pushViewController(pickContactVC, animated: true)
     }
 }
 

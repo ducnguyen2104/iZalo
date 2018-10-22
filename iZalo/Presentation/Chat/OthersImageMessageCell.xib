@@ -20,17 +20,17 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qo6-PP-1M7">
-                        <rect key="frame" x="30" y="10" width="210" height="187.5"/>
+                        <rect key="frame" x="30" y="10" width="51" height="68"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jz9-GY-NAw">
-                                <rect key="frame" x="10" y="10" width="190" height="142.5"/>
+                                <rect key="frame" x="10" y="10" width="31" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="jz9-GY-NAw" secondAttribute="height" multiplier="4:3" id="JyJ-Zj-D1V"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="190" id="dtv-Ea-WZ7"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="60n-xE-Hta">
-                                <rect key="frame" x="10" y="157.5" width="31" height="20"/>
+                                <rect key="frame" x="10" y="38" width="31" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="P1o-L1-Z3P"/>
                                 </constraints>
@@ -43,7 +43,7 @@
                         <constraints>
                             <constraint firstItem="jz9-GY-NAw" firstAttribute="leading" secondItem="Qo6-PP-1M7" secondAttribute="leading" constant="10" id="0qd-qu-yJu"/>
                             <constraint firstAttribute="trailing" secondItem="jz9-GY-NAw" secondAttribute="trailing" constant="10" id="1OV-P0-dGD"/>
-                            <constraint firstAttribute="trailing" secondItem="60n-xE-Hta" secondAttribute="trailing" constant="169" id="1ch-MI-BX8"/>
+                            <constraint firstAttribute="trailing" secondItem="60n-xE-Hta" secondAttribute="trailing" constant="10" id="1ch-MI-BX8"/>
                             <constraint firstItem="60n-xE-Hta" firstAttribute="leading" secondItem="jz9-GY-NAw" secondAttribute="leading" id="HRn-2C-zU3"/>
                             <constraint firstItem="jz9-GY-NAw" firstAttribute="top" secondItem="Qo6-PP-1M7" secondAttribute="top" constant="10" id="KeV-FG-eg3"/>
                             <constraint firstAttribute="bottom" secondItem="60n-xE-Hta" secondAttribute="bottom" constant="10" id="OJ1-6z-6YR"/>
@@ -63,10 +63,10 @@
                 <constraints>
                     <constraint firstItem="Qo6-PP-1M7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="4cw-AK-uZn"/>
                     <constraint firstItem="erE-jM-aOQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="4iv-Tk-27x"/>
-                    <constraint firstAttribute="trailing" secondItem="Qo6-PP-1M7" secondAttribute="trailing" constant="70" id="9Kn-HH-KzL"/>
                     <constraint firstAttribute="bottom" secondItem="Qo6-PP-1M7" secondAttribute="bottom" constant="10.5" id="Jff-AT-Iy4"/>
                     <constraint firstItem="erE-jM-aOQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="g1V-KU-mrd"/>
                     <constraint firstItem="Qo6-PP-1M7" firstAttribute="leading" secondItem="erE-jM-aOQ" secondAttribute="trailing" constant="5" id="gcV-bq-2fd"/>
+                    <constraint firstItem="Qo6-PP-1M7" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="2/3" id="wjc-Pk-chn"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

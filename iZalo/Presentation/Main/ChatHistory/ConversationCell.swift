@@ -79,11 +79,13 @@ class ConversationCell: UITableViewCell {
                 .replacingOccurrences(of: "</sup>", with: ""))
                 """
             case Constant.imageMessage:
-                self.lastMessageLabel.text = " \(sender) đã gửi một ảnh"
+                self.lastMessageLabel.text = "\(sender) đã gửi một ảnh"
             case Constant.voiceMessage:
-                self.lastMessageLabel.text = " \(sender) đã gửi một đoạn ghi âm"
+                self.lastMessageLabel.text = "\(sender) đã gửi một đoạn ghi âm"
             case Constant.videoMessage:
-                self.lastMessageLabel.text = " \(sender) đã gửi một video"
+                self.lastMessageLabel.text = "\(sender) đã gửi một video"
+            case Constant.nameCardMessage:
+                self.lastMessageLabel.text = "\(sender) đã gửi một danh  "
             default:
                 self.lastMessageLabel.text = item.conversation.lastMessage.content
             }

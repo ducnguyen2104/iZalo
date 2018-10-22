@@ -75,6 +75,9 @@
 		978596B9214A594C00516138 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 978596B7214A594C00516138 /* Main.storyboard */; };
 		978596BB214A594E00516138 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 978596BA214A594E00516138 /* Assets.xcassets */; };
 		978596BE214A594E00516138 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 978596BC214A594E00516138 /* LaunchScreen.storyboard */; };
+		97896385217D8990001463E6 /* PickContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97896383217D8990001463E6 /* PickContactVC.swift */; };
+		97896386217D8990001463E6 /* PickContactVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97896384217D8990001463E6 /* PickContactVC.xib */; };
+		97896388217D9075001463E6 /* PickContactVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97896387217D9075001463E6 /* PickContactVM.swift */; };
 		9796AF6C215CBD88007BFF85 /* ChatVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9796AF6B215CBD88007BFF85 /* ChatVM.swift */; };
 		9796AF6F215CE51A007BFF85 /* MyMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9796AF6D215CE51A007BFF85 /* MyMessageCell.swift */; };
 		9796AF70215CE51A007BFF85 /* MyMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9796AF6E215CE51A007BFF85 /* MyMessageCell.xib */; };
@@ -99,6 +102,10 @@
 		97BA58AC215B42CB00327FA7 /* ContactRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97BA58AB215B42CB00327FA7 /* ContactRealm.swift */; };
 		97CF54C9214FB7CE007609BE /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CF54C7214FB7CE007609BE /* LoginVC.swift */; };
 		97CF54CA214FB7CE007609BE /* LoginVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97CF54C8214FB7CE007609BE /* LoginVC.xib */; };
+		97D55285217DB87900878A63 /* MyNameCardMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D55283217DB87900878A63 /* MyNameCardMessageCell.swift */; };
+		97D55286217DB87900878A63 /* MyNameCardMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97D55284217DB87900878A63 /* MyNameCardMessageCell.xib */; };
+		97D55289217DC89000878A63 /* OthersNameCardMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D55287217DC89000878A63 /* OthersNameCardMessageCell.swift */; };
+		97D5528A217DC89000878A63 /* OthersNameCardMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97D55288217DC89000878A63 /* OthersNameCardMessageCell.xib */; };
 		97D6D55D215258EF0070E521 /* ValidateError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D6D55C215258EF0070E521 /* ValidateError.swift */; };
 		97D6D55F21525F7E0070E521 /* RxBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D6D55E21525F7E0070E521 /* RxBinding.swift */; };
 		97D6D561215265600070E521 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D6D560215265600070E521 /* ViewController.swift */; };
@@ -209,6 +216,9 @@
 		978596BA214A594E00516138 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		978596BD214A594E00516138 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		978596BF214A594E00516138 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		97896383217D8990001463E6 /* PickContactVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickContactVC.swift; sourceTree = "<group>"; };
+		97896384217D8990001463E6 /* PickContactVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickContactVC.xib; sourceTree = "<group>"; };
+		97896387217D9075001463E6 /* PickContactVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickContactVM.swift; sourceTree = "<group>"; };
 		9796AF6B215CBD88007BFF85 /* ChatVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVM.swift; sourceTree = "<group>"; };
 		9796AF6D215CE51A007BFF85 /* MyMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMessageCell.swift; sourceTree = "<group>"; };
 		9796AF6E215CE51A007BFF85 /* MyMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyMessageCell.xib; sourceTree = "<group>"; };
@@ -233,6 +243,10 @@
 		97BA58AB215B42CB00327FA7 /* ContactRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRealm.swift; sourceTree = "<group>"; };
 		97CF54C7214FB7CE007609BE /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		97CF54C8214FB7CE007609BE /* LoginVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginVC.xib; sourceTree = "<group>"; };
+		97D55283217DB87900878A63 /* MyNameCardMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNameCardMessageCell.swift; sourceTree = "<group>"; };
+		97D55284217DB87900878A63 /* MyNameCardMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyNameCardMessageCell.xib; sourceTree = "<group>"; };
+		97D55287217DC89000878A63 /* OthersNameCardMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthersNameCardMessageCell.swift; sourceTree = "<group>"; };
+		97D55288217DC89000878A63 /* OthersNameCardMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OthersNameCardMessageCell.xib; sourceTree = "<group>"; };
 		97D6D55C215258EF0070E521 /* ValidateError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateError.swift; sourceTree = "<group>"; };
 		97D6D55E21525F7E0070E521 /* RxBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxBinding.swift; sourceTree = "<group>"; };
 		97D6D560215265600070E521 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -410,6 +424,16 @@
 			path = iZalo;
 			sourceTree = "<group>";
 		};
+		97896382217D8937001463E6 /* PickContact */ = {
+			isa = PBXGroup;
+			children = (
+				97896383217D8990001463E6 /* PickContactVC.swift */,
+				97896384217D8990001463E6 /* PickContactVC.xib */,
+				97896387217D9075001463E6 /* PickContactVM.swift */,
+			);
+			path = PickContact;
+			sourceTree = "<group>";
+		};
 		97B55CF421522F880030F75D /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -436,6 +460,7 @@
 		97CF54BE214FB727007609BE /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				97896382217D8937001463E6 /* PickContact */,
 				970656C221772787002A5FF6 /* ViewImage */,
 				971ED8DF217451CF001F8217 /* ChangeAvatar */,
 				9713373A216C8BAC000A609A /* AddFriend */,
@@ -604,6 +629,10 @@
 				97391AB52178833200D5E81E /* EmojiItem.swift */,
 				97391AB72178847F00D5E81E /* EmojiCell.swift */,
 				97391AB82178847F00D5E81E /* EmojiCell.xib */,
+				97D55283217DB87900878A63 /* MyNameCardMessageCell.swift */,
+				97D55284217DB87900878A63 /* MyNameCardMessageCell.xib */,
+				97D55287217DC89000878A63 /* OthersNameCardMessageCell.swift */,
+				97D55288217DC89000878A63 /* OthersNameCardMessageCell.xib */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -683,7 +712,9 @@
 				9736A3D321538D040085219D /* ChatHistoryVC.xib in Resources */,
 				9736A3DD21538D960085219D /* SettingVC.xib in Resources */,
 				9796AF70215CE51A007BFF85 /* MyMessageCell.xib in Resources */,
+				97D5528A217DC89000878A63 /* OthersNameCardMessageCell.xib in Resources */,
 				978596BE214A594E00516138 /* LaunchScreen.storyboard in Resources */,
+				97896386217D8990001463E6 /* PickContactVC.xib in Resources */,
 				97133735216C450E000A609A /* SignupVC.xib in Resources */,
 				978596BB214A594E00516138 /* Assets.xcassets in Resources */,
 				97DFB55E215B90C30001ADFB /* ChatVC.xib in Resources */,
@@ -696,6 +727,7 @@
 				9736A3CE21538BF80085219D /* MainVC.xib in Resources */,
 				970656BD2176F5C8002A5FF6 /* MyImageMessageCell.xib in Resources */,
 				9796AF74215CE8DB007BFF85 /* OthersMessageCell.xib in Resources */,
+				97D55286217DB87900878A63 /* MyNameCardMessageCell.xib in Resources */,
 				970656C6217727BF002A5FF6 /* ViewImageVC.xib in Resources */,
 				973CBE962153B9F700403D2D /* ContactCell.xib in Resources */,
 				978596B9214A594C00516138 /* Main.storyboard in Resources */,
@@ -796,6 +828,7 @@
 				973CBE952153B9F700403D2D /* ContactCell.swift in Sources */,
 				9736A3D721538D550085219D /* ContactVC.swift in Sources */,
 				97133737216C5A65000A609A /* SignupVM.swift in Sources */,
+				97896385217D8990001463E6 /* PickContactVC.swift in Sources */,
 				97D6D561215265600070E521 /* ViewController.swift in Sources */,
 				97DB46E621520C0500F018DC /* ObservableType.swift in Sources */,
 				970656C0217718FC002A5FF6 /* OthersImageMessageCell.swift in Sources */,
@@ -812,6 +845,7 @@
 				974E03A02161BD99001597FF /* MessageRepositoryImpl.swift in Sources */,
 				97CF54C9214FB7CE007609BE /* LoginVC.swift in Sources */,
 				9736A3CD21538BF80085219D /* MainVC.swift in Sources */,
+				97896388217D9075001463E6 /* PickContactVM.swift in Sources */,
 				9736A3D221538D040085219D /* ChatHistoryVC.swift in Sources */,
 				97E2C0E721588EB900FA9348 /* ChatHistoryVM.swift in Sources */,
 				97DB46E0215206A800F018DC /* UserLocalSource.swift in Sources */,
@@ -842,6 +876,7 @@
 				9736A3DC21538D960085219D /* SettingVC.swift in Sources */,
 				9796AF7A215CF134007BFF85 /* MessageClassifier.swift in Sources */,
 				97DFB55D215B90C30001ADFB /* ChatVC.swift in Sources */,
+				97D55289217DC89000878A63 /* OthersNameCardMessageCell.swift in Sources */,
 				970D6FE92158CCAF00688732 /* NetworkError.swift in Sources */,
 				972CAD4A216F36FE007972B6 /* SettingVM.swift in Sources */,
 				974E03AA216210A6001597FF /* LoadMessageUsecase.swift in Sources */,
@@ -856,6 +891,7 @@
 				97D6D55F21525F7E0070E521 /* RxBinding.swift in Sources */,
 				97E2C0EB2158991800FA9348 /* ConversationRepository.swift in Sources */,
 				974E03A42161C06B001597FF /* MessageLocalSource.swift in Sources */,
+				97D55285217DB87900878A63 /* MyNameCardMessageCell.swift in Sources */,
 				97BA58AC215B42CB00327FA7 /* ContactRealm.swift in Sources */,
 				97133739216C6255000A609A /* SignupUseCase.swift in Sources */,
 				97DB46D72152011300F018DC /* SignupRequest.swift in Sources */,
