@@ -199,8 +199,8 @@ final class ChatVM: ViewModelDelegate {
                     }
                     
                 } else {
-                    let isTimeHidden = messages[i].senderId == messages[i+1].senderId
-                    let isAvatarHidden = messages[i].senderId == messages[i-1].senderId
+                    let isTimeHidden = messages[i].senderId == messages[i-1].senderId
+                    let isAvatarHidden = messages[i].senderId == messages[i+1].senderId
                     items.append(MessageItem(message: messages[i], currentUsername: self.currentUsername, isTimeHidden: isTimeHidden, isAvatarHidden: isAvatarHidden))
                 }
             }
