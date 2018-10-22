@@ -33,5 +33,7 @@ extension MessageItem: IdentifiableType {
 extension MessageItem: Equatable {
     static func == (lhs: MessageItem, rhs: MessageItem) -> Bool {
             return lhs.identity == rhs.identity
+                && lhs.isTimeHidden == rhs.isTimeHidden
+                && lhs.isAvatarHidden == rhs.isAvatarHidden
     }
 }

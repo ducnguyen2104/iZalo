@@ -149,6 +149,7 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
                 self.emojiCollectionView.deselectItem(at: ip, animated: false)
                 let item = self.emojis.sectionModels[0].items[ip.row]
                 self.inputTextField.text = "\( self.inputTextField.text ?? "")\(item.emoji)"
+                self.inputTextField.sendActions(for: .valueChanged) //trigger change
                 
             })
         .disposed(by: disposeBag)
@@ -196,7 +197,7 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         guard chosenImage != nil else {
             return
         }
-        let resizedImage = ImageUtils.resizeImage(image: chosenImage!, targetSize: CGSize(width: max(chosenImage?.size.width ?? 0, 500), height: max(chosenImage?.size.height  ?? 0, 500)))
+        let resizedImage = ImageUtils.resizeImage(image: chosenImage!, targetSize: CGSize(width: min(chosenImage?.size.width ?? 0, 360), height: min(chosenImage?.size.height  ?? 0, 360)))
         let imageURL = info[UIImagePickerControllerImageURL] as? URL
         guard imageURL != nil else {
             return

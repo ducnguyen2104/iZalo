@@ -23,6 +23,7 @@ final class ChatVM: ViewModelDelegate {
     private let loadMessageUsecase = LoadMessageUseCase()
     let activityIndicator = ActivityIndicator()
     let errorTracker = ErrorTracker()
+    var messages: [Message] = []
     
     public let items = BehaviorRelay<[MessageItem]>(value: [])
     
@@ -65,39 +66,8 @@ final class ChatVM: ViewModelDelegate {
             .flatMap{[unowned self] (_) -> Driver<[Message]> in
                 return self.loadMessageUsecase.execute(request: LoadMessageRequest(conversation: self.conversation, username: self.currentUsername))
                     .do(onNext: { (messages) in
-                        var items: [MessageItem] = []
-                        guard messages.count > 0 else {
-                            return
-                        }
-                        switch messages.count {
-                        case 1:
-                            items.append(MessageItem(message: messages[0], currentUsername: self.currentUsername, isTimeHidden: false, isAvatarHidden: false))
-                        case 2:
-                            if(messages[0].senderId == messages[1].senderId) { //same user
-                                items.append(MessageItem(message: messages[0], currentUsername: self.currentUsername, isTimeHidden: false, isAvatarHidden: true))
-                                items.append(MessageItem(message: messages[1], currentUsername: self.currentUsername, isTimeHidden: true, isAvatarHidden: false))
-                            } else { //different user
-                                items.append(MessageItem(message: messages[0], currentUsername: self.currentUsername, isTimeHidden: false, isAvatarHidden: false))
-                                items.append(MessageItem(message: messages[1], currentUsername: self.currentUsername, isTimeHidden: false, isAvatarHidden: false))
-                            }
-                        default:
-                            for i in 0...messages.count - 1 {
-                                if i == 0 { //last message
-                                    let isAvatarHidden = messages[0].senderId == messages[1].senderId
-                                    items.append(MessageItem(message: messages[i], currentUsername: self.currentUsername, isTimeHidden: false, isAvatarHidden: isAvatarHidden))
-                                }
-                                else if i == messages.count - 1 { //first message
-                                    if messages[messages.count - 2].senderId == messages[messages.count - 1].senderId {
-                                        items.append(MessageItem(message: messages[i], currentUsername: self.currentUsername, isTimeHidden: true, isAvatarHidden: false))
-                                    }
-                                    
-                                } else {
-                                    let isTimeHidden = messages[i].senderId == messages[i+1].senderId
-                                    let isAvatarHidden = messages[i].senderId == messages[i-1].senderId
-                                    items.append(MessageItem(message: messages[i], currentUsername: self.currentUsername, isTimeHidden: isTimeHidden, isAvatarHidden: isAvatarHidden))
-                                }
-                            }
-                        }
+                        self.messages = messages
+                        let items = self.messagesToMessageItems(messages: messages)
                         self.items.accept(items)
                     })
                     .trackActivity(self.activityIndicator)
@@ -178,6 +148,14 @@ final class ChatVM: ViewModelDelegate {
         let hour = calendar.component(.hour, from: date)
         let minute = calendar.component(.minute, from: date)
         let uploadFileMessageUseCase = UploadFileMessageUseCase()
+//        self.messages.append(Message(id:"dummy\(self.currentUsername)\(timestamp)", senderId: self.currentUsername, conversationId: self.conversation.id, content: url.absoluteString, type: Constant.imageMessage, timestamp: timestamp, timestampInString: "\(hour):\(minute)"))
+//        Observable.just(self.messages)
+//            .do(onNext: {(messages) in
+//                self.items.accept(self.messagesToMessageItems(messages: messages))
+//            })
+//            .asDriverOnErrorJustComplete()
+//            .drive()
+//            .disposed(by: self.disposeBag)
         uploadFileMessageUseCase.execute(request: UploadFileMessageRequest(url: url, type: Constant.imageMessage))
             .do(onNext: {(newUrl) in
                 print("newUrl: \(newUrl)")
@@ -191,6 +169,43 @@ final class ChatVM: ViewModelDelegate {
             .asDriverOnErrorJustComplete()
             .drive()
             .disposed(by: self.disposeBag)
+    }
+    
+    private func messagesToMessageItems(messages: [Message]) -> [MessageItem] {
+        var items: [MessageItem] = []
+        guard messages.count > 0 else {
+            return []
+        }
+        switch messages.count {
+        case 1:
+            items.append(MessageItem(message: messages[0], currentUsername: self.currentUsername, isTimeHidden: false, isAvatarHidden: false))
+        case 2:
+            if(messages[0].senderId == messages[1].senderId) { //same user
+                items.append(MessageItem(message: messages[0], currentUsername: self.currentUsername, isTimeHidden: false, isAvatarHidden: true))
+                items.append(MessageItem(message: messages[1], currentUsername: self.currentUsername, isTimeHidden: true, isAvatarHidden: false))
+            } else { //different user
+                items.append(MessageItem(message: messages[0], currentUsername: self.currentUsername, isTimeHidden: false, isAvatarHidden: false))
+                items.append(MessageItem(message: messages[1], currentUsername: self.currentUsername, isTimeHidden: false, isAvatarHidden: false))
+            }
+        default:
+            for i in 0...messages.count - 1 {
+                if i == 0 { //last message
+                    let isAvatarHidden = messages[0].senderId == messages[1].senderId
+                    items.append(MessageItem(message: messages[i], currentUsername: self.currentUsername, isTimeHidden: false, isAvatarHidden: isAvatarHidden))
+                }
+                else if i == messages.count - 1 { //first message
+                    if messages[messages.count - 2].senderId == messages[messages.count - 1].senderId {
+                        items.append(MessageItem(message: messages[i], currentUsername: self.currentUsername, isTimeHidden: true, isAvatarHidden: false))
+                    }
+                    
+                } else {
+                    let isTimeHidden = messages[i].senderId == messages[i+1].senderId
+                    let isAvatarHidden = messages[i].senderId == messages[i-1].senderId
+                    items.append(MessageItem(message: messages[i], currentUsername: self.currentUsername, isTimeHidden: isTimeHidden, isAvatarHidden: isAvatarHidden))
+                }
+            }
+        }
+        return items
     }
 }
 

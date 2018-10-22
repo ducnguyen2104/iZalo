@@ -53,7 +53,7 @@
                 </subviews>
                 <color key="backgroundColor" red="0.90980392156862744" green="0.93333333333333335" blue="0.95686274509803915" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
-                    <constraint firstItem="bb9-RU-7N5" firstAttribute="leading" relation="lessThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="100" id="9TU-5g-bwb"/>
+                    <constraint firstItem="bb9-RU-7N5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="100" id="9TU-5g-bwb"/>
                     <constraint firstAttribute="trailing" secondItem="bb9-RU-7N5" secondAttribute="trailing" constant="10" id="FZt-wu-sTu"/>
                     <constraint firstItem="bb9-RU-7N5" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="XZD-0y-MlA"/>
                     <constraint firstItem="bb9-RU-7N5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="ho1-OX-oqP"/>
