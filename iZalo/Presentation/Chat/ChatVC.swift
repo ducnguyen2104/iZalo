@@ -22,6 +22,7 @@ protocol ChatDisplayLogic: class {
     func gotoLibrary()
     func hideAllExtraViews()
     func openPickContactVC()
+    func openPickLocationVC()
 }
 
 class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -37,6 +38,7 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
     @IBOutlet weak var sendImageButton: UIButton!
     @IBOutlet weak var showHideButton: UIButton!
     @IBOutlet weak var sendNameCardButton: UIButton!
+    @IBOutlet weak var sendLocationMKButton: UIButton!
     @IBOutlet weak var textFieldView: UIView!
     @IBOutlet weak var emojiCollectionView: UICollectionView!
     @IBOutlet weak var emojiView: UIView!
@@ -96,6 +98,8 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         self.tableView.register(UINib(nibName: "OthersImageMessageCell", bundle: nil), forCellReuseIdentifier: "OthersImageMessageCell")
         self.tableView.register(UINib(nibName: "MyNameCardMessageCell", bundle: nil), forCellReuseIdentifier: "MyNameCardMessageCell")
         self.tableView.register(UINib(nibName: "OthersNameCardMessageCell", bundle: nil), forCellReuseIdentifier: "OthersNameCardMessageCell")
+        self.tableView.register(UINib(nibName: "MyLocationMessageCell", bundle: nil), forCellReuseIdentifier: "MyLocationMessageCell")
+        self.tableView.register(UINib(nibName: "OthersLocationMessageCell", bundle: nil), forCellReuseIdentifier: "OthersLocationMessageCell")
         
         self.tableView.separatorStyle = .none
         self.emojiCollectionView.register(UINib(nibName: "EmojiCell", bundle: nil), forCellWithReuseIdentifier: "EmojiCell")
@@ -128,6 +132,16 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
                     cell.bind(item: item, contactObservable: self.contactObservable!)
                     return cell
                 }
+            case Constant.locationMessage:
+                if(item.message.senderId == self.currentUsername) {
+                    let cell = tv.dequeueReusableCell(withIdentifier: "MyLocationMessageCell", for: ip) as! MyLocationMessageCell
+                    cell.bind(item: item)
+                    return cell
+                } else {
+                    let cell = tv.dequeueReusableCell(withIdentifier: "OthersLocationMessageCell", for: ip) as! OthersLocationMessageCell
+                    cell.bind(item: item, contactObservable: self.contactObservable!)
+                    return cell
+                }
             default:
                 if(item.message.senderId == self.currentUsername) {
                     let cell = tv.dequeueReusableCell(withIdentifier: "MyMessageCell", for: ip) as! MyMessageCell
@@ -151,8 +165,9 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
                 let item = self.items.sectionModels[0].items[ip.row]
                 switch item.message.type {
                 case Constant.imageMessage:
-                    let vc = ViewImageVC.init(url: item.message.content)
+                    let vc = ViewImageVC.instance(url: item.message.content)
                     self.navigationController?.pushViewController(vc, animated: true)
+                    
                 case Constant.nameCardMessage:
                     let members = [self.currentUsername, item.message.content].sorted { $0 < $1 }
                     var conversationId = ""
@@ -168,7 +183,22 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
                     var vcArray = self.navigationController?.viewControllers
                     vcArray?.removeLast()
                     vcArray?.append(vc)
-                    self.navigationController?.setViewControllers(vcArray!, animated: true)                    
+                    self.navigationController?.setViewControllers(vcArray!, animated: true)
+                
+                case Constant.locationMessage:
+                    let latlongArray = item.message.content.split(separator: ",")
+                    guard latlongArray.count == 2 else {
+                        print("error: latlongArray doesn't have 2 element")
+                        return
+                    }
+                    let lat = Double(latlongArray[0])
+                    let long = Double(latlongArray[1])
+                    guard lat != nil && long != nil else {
+                        print("error: nil lat or long")
+                        return
+                    }
+                    let vc = ViewLocationVC.instance(lat: lat!, long: long!)
+                    self.navigationController?.pushViewController(vc, animated: true)
                 default:
                     return
                 }
@@ -199,7 +229,8 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
             showHideTrigger: self.showHideButton.rx.tap.asDriver(),
             emojiButtonTrigger: self.emojiButton.rx.tap.asDriver(),
             sendImageTrigger: self.sendImageButton.rx.tap.asDriver(),
-            sendNameCardTrigger: self.sendNameCardButton.rx.tap.asDriver())
+            sendNameCardTrigger: self.sendNameCardButton.rx.tap.asDriver(),
+            sendLocationMKTrigger: self.sendLocationMKButton.rx.tap.asDriver())
         let output = self.viewModel.transform(input: input)
         
         output.fetching.drive(onNext: { [unowned self] (show) in
@@ -318,6 +349,11 @@ extension ChatVC: ChatDisplayLogic {
     func openPickContactVC() {
         let pickContactVC = PickContactVC.instance(currentUsername: self.currentUsername, conversation: self.conversation)
         self.navigationController?.pushViewController(pickContactVC, animated: true)
+    }
+    
+    func openPickLocationVC() {
+        let pickLocationVC = PickLocationVC.instance(currentUsername: self.currentUsername, conversation: self.conversation)
+        self.navigationController?.pushViewController(pickLocationVC, animated: true)
     }
 }
 

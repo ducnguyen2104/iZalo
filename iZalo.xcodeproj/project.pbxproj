@@ -141,6 +141,18 @@
 		97E2C0F62158A3A200FA9348 /* ConversationRemoteSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E2C0F52158A3A200FA9348 /* ConversationRemoteSource.swift */; };
 		97E2C0F82158A46200FA9348 /* ConversationFirebaseSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E2C0F72158A46200FA9348 /* ConversationFirebaseSource.swift */; };
 		97E2C0FA2158A5D300FA9348 /* ConversationLocalSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E2C0F92158A5D300FA9348 /* ConversationLocalSource.swift */; };
+		97F3DB5B21800ACC00EAEF97 /* PickLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F3DB5921800ACC00EAEF97 /* PickLocationVC.swift */; };
+		97F3DB5C21800ACC00EAEF97 /* PickLocationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97F3DB5A21800ACC00EAEF97 /* PickLocationVC.xib */; };
+		97F3DB5E2180190500EAEF97 /* PickLocationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F3DB5D2180190500EAEF97 /* PickLocationVM.swift */; };
+		97F934AD218051D8001533BE /* NumberUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F934AC218051D8001533BE /* NumberUtils.swift */; };
+		97F934B2218054D8001533BE /* MyLocationMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F934B0218054D8001533BE /* MyLocationMessageCell.swift */; };
+		97F934B3218054D8001533BE /* MyLocationMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97F934B1218054D8001533BE /* MyLocationMessageCell.xib */; };
+		97F934B521805ADD001533BE /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F934B421805ADD001533BE /* CustomPointAnnotation.swift */; };
+		97F934B82180722F001533BE /* OthersLocationMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F934B62180722F001533BE /* OthersLocationMessageCell.swift */; };
+		97F934B92180722F001533BE /* OthersLocationMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97F934B72180722F001533BE /* OthersLocationMessageCell.xib */; };
+		97F934BD2180787B001533BE /* ViewLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F934BB2180787B001533BE /* ViewLocationVC.swift */; };
+		97F934BE2180787B001533BE /* ViewLocationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97F934BC2180787B001533BE /* ViewLocationVC.xib */; };
+		97F934C021807D85001533BE /* ViewLocationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F934BF21807D85001533BE /* ViewLocationVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -282,6 +294,18 @@
 		97E2C0F52158A3A200FA9348 /* ConversationRemoteSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationRemoteSource.swift; sourceTree = "<group>"; };
 		97E2C0F72158A46200FA9348 /* ConversationFirebaseSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationFirebaseSource.swift; sourceTree = "<group>"; };
 		97E2C0F92158A5D300FA9348 /* ConversationLocalSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationLocalSource.swift; sourceTree = "<group>"; };
+		97F3DB5921800ACC00EAEF97 /* PickLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickLocationVC.swift; sourceTree = "<group>"; };
+		97F3DB5A21800ACC00EAEF97 /* PickLocationVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickLocationVC.xib; sourceTree = "<group>"; };
+		97F3DB5D2180190500EAEF97 /* PickLocationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickLocationVM.swift; sourceTree = "<group>"; };
+		97F934AC218051D8001533BE /* NumberUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberUtils.swift; sourceTree = "<group>"; };
+		97F934B0218054D8001533BE /* MyLocationMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLocationMessageCell.swift; sourceTree = "<group>"; };
+		97F934B1218054D8001533BE /* MyLocationMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyLocationMessageCell.xib; sourceTree = "<group>"; };
+		97F934B421805ADD001533BE /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
+		97F934B62180722F001533BE /* OthersLocationMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthersLocationMessageCell.swift; sourceTree = "<group>"; };
+		97F934B72180722F001533BE /* OthersLocationMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OthersLocationMessageCell.xib; sourceTree = "<group>"; };
+		97F934BB2180787B001533BE /* ViewLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewLocationVC.swift; sourceTree = "<group>"; };
+		97F934BC2180787B001533BE /* ViewLocationVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewLocationVC.xib; sourceTree = "<group>"; };
+		97F934BF21807D85001533BE /* ViewLocationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewLocationVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -460,6 +484,8 @@
 		97CF54BE214FB727007609BE /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				97F934BA21807845001533BE /* ViewLocation */,
+				97F3DB5821800A9200EAEF97 /* PickLocation */,
 				97896382217D8937001463E6 /* PickContact */,
 				970656C221772787002A5FF6 /* ViewImage */,
 				971ED8DF217451CF001F8217 /* ChangeAvatar */,
@@ -499,6 +525,7 @@
 				973A61572164C7A5003B6047 /* Color.swift */,
 				972CAD4B216F4F3A007972B6 /* SubStringIndex.swift */,
 				970656B42176DD34002A5FF6 /* ImageUtils.swift */,
+				97F934AC218051D8001533BE /* NumberUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -633,6 +660,10 @@
 				97D55284217DB87900878A63 /* MyNameCardMessageCell.xib */,
 				97D55287217DC89000878A63 /* OthersNameCardMessageCell.swift */,
 				97D55288217DC89000878A63 /* OthersNameCardMessageCell.xib */,
+				97F934B0218054D8001533BE /* MyLocationMessageCell.swift */,
+				97F934B1218054D8001533BE /* MyLocationMessageCell.xib */,
+				97F934B62180722F001533BE /* OthersLocationMessageCell.swift */,
+				97F934B72180722F001533BE /* OthersLocationMessageCell.xib */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -646,6 +677,27 @@
 				97BA58AB215B42CB00327FA7 /* ContactRealm.swift */,
 			);
 			path = Realm;
+			sourceTree = "<group>";
+		};
+		97F3DB5821800A9200EAEF97 /* PickLocation */ = {
+			isa = PBXGroup;
+			children = (
+				97F3DB5921800ACC00EAEF97 /* PickLocationVC.swift */,
+				97F3DB5A21800ACC00EAEF97 /* PickLocationVC.xib */,
+				97F3DB5D2180190500EAEF97 /* PickLocationVM.swift */,
+				97F934B421805ADD001533BE /* CustomPointAnnotation.swift */,
+			);
+			path = PickLocation;
+			sourceTree = "<group>";
+		};
+		97F934BA21807845001533BE /* ViewLocation */ = {
+			isa = PBXGroup;
+			children = (
+				97F934BB2180787B001533BE /* ViewLocationVC.swift */,
+				97F934BC2180787B001533BE /* ViewLocationVC.xib */,
+				97F934BF21807D85001533BE /* ViewLocationVM.swift */,
+			);
+			path = ViewLocation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -711,8 +763,11 @@
 			files = (
 				9736A3D321538D040085219D /* ChatHistoryVC.xib in Resources */,
 				9736A3DD21538D960085219D /* SettingVC.xib in Resources */,
+				97F934B3218054D8001533BE /* MyLocationMessageCell.xib in Resources */,
 				9796AF70215CE51A007BFF85 /* MyMessageCell.xib in Resources */,
+				97F934B92180722F001533BE /* OthersLocationMessageCell.xib in Resources */,
 				97D5528A217DC89000878A63 /* OthersNameCardMessageCell.xib in Resources */,
+				97F3DB5C21800ACC00EAEF97 /* PickLocationVC.xib in Resources */,
 				978596BE214A594E00516138 /* LaunchScreen.storyboard in Resources */,
 				97896386217D8990001463E6 /* PickContactVC.xib in Resources */,
 				97133735216C450E000A609A /* SignupVC.xib in Resources */,
@@ -730,6 +785,7 @@
 				97D55286217DB87900878A63 /* MyNameCardMessageCell.xib in Resources */,
 				970656C6217727BF002A5FF6 /* ViewImageVC.xib in Resources */,
 				973CBE962153B9F700403D2D /* ContactCell.xib in Resources */,
+				97F934BE2180787B001533BE /* ViewLocationVC.xib in Resources */,
 				978596B9214A594C00516138 /* Main.storyboard in Resources */,
 				970656C1217718FC002A5FF6 /* OthersImageMessageCell.xib in Resources */,
 				97B55CFA2152370E0030F75D /* GoogleService-Info.plist in Resources */,
@@ -839,17 +895,21 @@
 				973CBE912153B63C00403D2D /* ConversationCell.swift in Sources */,
 				97DB46E421520A2A00F018DC /* UserRealmSource.swift in Sources */,
 				97DB46C42151F51700F018DC /* LoginVM.swift in Sources */,
+				97F934B82180722F001533BE /* OthersLocationMessageCell.swift in Sources */,
 				970656B52176DD34002A5FF6 /* ImageUtils.swift in Sources */,
 				9713373D216C8BD5000A609A /* AddFriendVC.swift in Sources */,
 				974E039A2161B9BA001597FF /* SendMessageRequest.swift in Sources */,
 				974E03A02161BD99001597FF /* MessageRepositoryImpl.swift in Sources */,
 				97CF54C9214FB7CE007609BE /* LoginVC.swift in Sources */,
+				97F934B521805ADD001533BE /* CustomPointAnnotation.swift in Sources */,
 				9736A3CD21538BF80085219D /* MainVC.swift in Sources */,
+				97F3DB5E2180190500EAEF97 /* PickLocationVM.swift in Sources */,
 				97896388217D9075001463E6 /* PickContactVM.swift in Sources */,
 				9736A3D221538D040085219D /* ChatHistoryVC.swift in Sources */,
 				97E2C0E721588EB900FA9348 /* ChatHistoryVM.swift in Sources */,
 				97DB46E0215206A800F018DC /* UserLocalSource.swift in Sources */,
 				9713374A216CC013000A609A /* ContactSearchResult.swift in Sources */,
+				97F934B2218054D8001533BE /* MyLocationMessageCell.swift in Sources */,
 				974E03A82161C238001597FF /* MessageFirebaseSource.swift in Sources */,
 				97E2C0ED215899EF00FA9348 /* ConversationRepositoryImpl.swift in Sources */,
 				974E039E2161BCA5001597FF /* MessageRepository.swift in Sources */,
@@ -872,6 +932,7 @@
 				97E2C0E92158985900FA9348 /* LoadConversationUseCase.swift in Sources */,
 				97D6D55D215258EF0070E521 /* ValidateError.swift in Sources */,
 				97B55CFD215247DA0030F75D /* UserResponse.swift in Sources */,
+				97F934C021807D85001533BE /* ViewLocationVM.swift in Sources */,
 				970656B92176ED4B002A5FF6 /* UploadFileMessageRequest.swift in Sources */,
 				9736A3DC21538D960085219D /* SettingVC.swift in Sources */,
 				9796AF7A215CF134007BFF85 /* MessageClassifier.swift in Sources */,
@@ -890,6 +951,7 @@
 				97391AB62178833200D5E81E /* EmojiItem.swift in Sources */,
 				97D6D55F21525F7E0070E521 /* RxBinding.swift in Sources */,
 				97E2C0EB2158991800FA9348 /* ConversationRepository.swift in Sources */,
+				97F934BD2180787B001533BE /* ViewLocationVC.swift in Sources */,
 				974E03A42161C06B001597FF /* MessageLocalSource.swift in Sources */,
 				97D55285217DB87900878A63 /* MyNameCardMessageCell.swift in Sources */,
 				97BA58AC215B42CB00327FA7 /* ContactRealm.swift in Sources */,
@@ -907,9 +969,11 @@
 				97DB46DE2152063300F018DC /* UserRemoteSource.swift in Sources */,
 				97E2C0E52158850800FA9348 /* ConversationItem.swift in Sources */,
 				97DB46EA21520D0700F018DC /* ErrorTracker.swift in Sources */,
+				97F934AD218051D8001533BE /* NumberUtils.swift in Sources */,
 				972CAD4C216F4F3A007972B6 /* SubStringIndex.swift in Sources */,
 				970656BC2176F5C8002A5FF6 /* MyImageMessageCell.swift in Sources */,
 				97E2C0F82158A46200FA9348 /* ConversationFirebaseSource.swift in Sources */,
+				97F3DB5B21800ACC00EAEF97 /* PickLocationVC.swift in Sources */,
 				97BA5896215B298000327FA7 /* ContactVM.swift in Sources */,
 				97E2C0F62158A3A200FA9348 /* ConversationRemoteSource.swift in Sources */,
 				97E2C0F021589C7600FA9348 /* UserRealm.swift in Sources */,

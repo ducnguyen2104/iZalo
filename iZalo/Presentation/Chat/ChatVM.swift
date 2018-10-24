@@ -142,6 +142,13 @@ final class ChatVM: ViewModelDelegate {
             })
             .disposed(by: self.disposeBag)
         
+        input.sendLocationMKTrigger
+            .drive(onNext: { [unowned self] in
+                self.displayLogic?.openPickLocationVC()
+                self.displayLogic?.showHideButtonContainer()
+            })
+            .disposed(by: self.disposeBag)
+        
         return Output(fetching: activityIndicator.asDriver(),
                       error: errorTracker.asDriver(),
                       items: self.items.asDriver(),
@@ -227,6 +234,7 @@ extension ChatVM {
         let emojiButtonTrigger: Driver<Void>
         let sendImageTrigger: Driver<Void>
         let sendNameCardTrigger: Driver<Void>
+        let sendLocationMKTrigger: Driver<Void>
     }
     
     public struct Output {

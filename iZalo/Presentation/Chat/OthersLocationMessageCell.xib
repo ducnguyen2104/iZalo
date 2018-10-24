@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="187" id="KGk-i7-Jjw" customClass="OthersLocationMessageCell" customModule="iZalo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="187"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="186.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="Jao-c5-eos">
+                        <rect key="frame" x="5" y="10" width="20" height="20"/>
+                        <color key="backgroundColor" red="0.8862745098" green="0.91372549020000005" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="fPT-fs-147"/>
+                            <constraint firstAttribute="width" secondItem="Jao-c5-eos" secondAttribute="height" multiplier="1:1" id="jyl-B6-wtN"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pol-IG-0BK">
+                        <rect key="frame" x="30" y="5" width="160" height="171"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vị trí:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cS7-n7-LWz">
+                                <rect key="frame" x="10" y="10" width="34" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="34" id="0hg-si-cey"/>
+                                    <constraint firstAttribute="height" constant="17" id="NRs-BN-v4o"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VlW-U9-16Q">
+                                <rect key="frame" x="10" y="32" width="140" height="105"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="VlW-U9-16Q" secondAttribute="height" multiplier="4:3" id="P7F-Nw-BCc"/>
+                                </constraints>
+                            </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wfT-A1-ik9">
+                                <rect key="frame" x="10" y="145" width="140" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="lBW-Rx-EyL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="wfT-A1-ik9" secondAttribute="trailing" constant="10" id="3jo-JN-rRu"/>
+                            <constraint firstItem="wfT-A1-ik9" firstAttribute="leading" secondItem="pol-IG-0BK" secondAttribute="leading" constant="10" id="6Ft-iw-4d5"/>
+                            <constraint firstItem="wfT-A1-ik9" firstAttribute="top" secondItem="VlW-U9-16Q" secondAttribute="bottom" constant="5" id="HOq-Ti-Kwx"/>
+                            <constraint firstItem="VlW-U9-16Q" firstAttribute="top" secondItem="cS7-n7-LWz" secondAttribute="bottom" constant="5" id="S5l-ks-675"/>
+                            <constraint firstItem="cS7-n7-LWz" firstAttribute="top" secondItem="pol-IG-0BK" secondAttribute="top" constant="10" id="X9m-Mi-MRm"/>
+                            <constraint firstAttribute="trailing" secondItem="VlW-U9-16Q" secondAttribute="trailing" constant="10" id="Xog-wc-1V7"/>
+                            <constraint firstAttribute="bottom" secondItem="wfT-A1-ik9" secondAttribute="bottom" constant="5" id="acX-92-hzi"/>
+                            <constraint firstItem="cS7-n7-LWz" firstAttribute="leading" secondItem="pol-IG-0BK" secondAttribute="leading" constant="10" id="dQR-kh-cBT"/>
+                            <constraint firstItem="VlW-U9-16Q" firstAttribute="leading" secondItem="pol-IG-0BK" secondAttribute="leading" constant="10" id="f9e-qC-KW0"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" red="0.8862745098" green="0.91372549020000005" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstItem="pol-IG-0BK" firstAttribute="leading" secondItem="Jao-c5-eos" secondAttribute="trailing" constant="5" id="3Rn-FP-z1w"/>
+                    <constraint firstItem="Jao-c5-eos" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="8a9-T6-gvC"/>
+                    <constraint firstItem="Jao-c5-eos" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="9cj-9M-G9s"/>
+                    <constraint firstAttribute="bottom" secondItem="pol-IG-0BK" secondAttribute="bottom" constant="5" id="N3d-Mg-gx9"/>
+                    <constraint firstItem="pol-IG-0BK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="YaG-Bg-r1h"/>
+                    <constraint firstItem="pol-IG-0BK" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.5" id="chm-yA-lZL"/>
+                    <constraint firstItem="Jao-c5-eos" firstAttribute="width" secondItem="Jao-c5-eos" secondAttribute="height" multiplier="1:1" id="uUR-es-Mzj"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="avatarImageView" destination="Jao-c5-eos" id="4hv-Qw-n2C"/>
+                <outlet property="mapView" destination="VlW-U9-16Q" id="GZe-YW-cBY"/>
+                <outlet property="messageContainerView" destination="pol-IG-0BK" id="flh-sO-UBf"/>
+                <outlet property="timestampLabel" destination="wfT-A1-ik9" id="GV1-4Y-lZ5"/>
+                <outlet property="timestampLabelHeightConstraint" destination="lBW-Rx-EyL" id="ubV-q6-3yn"/>
+            </connections>
+            <point key="canvasLocation" x="132.80000000000001" y="219.04047976011995"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="user" width="32" height="32"/>
+    </resources>
+</document>

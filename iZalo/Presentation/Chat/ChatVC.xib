@@ -21,6 +21,7 @@
                 <outlet property="inputTextField" destination="YmQ-tw-Hw0" id="8a4-yl-7qB"/>
                 <outlet property="sendButton" destination="aAF-Wg-OEm" id="eEr-DN-bll"/>
                 <outlet property="sendImageButton" destination="xDU-WG-PR2" id="W7H-SV-Ncb"/>
+                <outlet property="sendLocationMKButton" destination="jfO-iv-8lO" id="kop-n0-6wf"/>
                 <outlet property="sendNameCardButton" destination="Fh6-Id-ial" id="D0Q-AQ-KcN"/>
                 <outlet property="showHideButton" destination="eCG-AZ-fnC" id="k43-S8-w7i"/>
                 <outlet property="statusLabel" destination="mXY-fx-GEm" id="40v-Tc-0Pu"/>
@@ -157,12 +158,22 @@
                             </constraints>
                             <state key="normal" title="Button" image="ic_blue_name_card"/>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jfO-iv-8lO">
+                            <rect key="frame" x="98" y="10" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="24" id="0Qc-BA-FIr"/>
+                                <constraint firstAttribute="width" secondItem="jfO-iv-8lO" secondAttribute="height" multiplier="1:1" id="lnR-xO-Gm3"/>
+                            </constraints>
+                            <state key="normal" image="ic_blue_location"/>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="xDU-WG-PR2" firstAttribute="centerY" secondItem="Cjz-aK-5R8" secondAttribute="centerY" id="4Bq-YG-vb0"/>
                         <constraint firstItem="xDU-WG-PR2" firstAttribute="leading" secondItem="Cjz-aK-5R8" secondAttribute="leading" constant="10" id="Aep-fj-cYx"/>
                         <constraint firstItem="Fh6-Id-ial" firstAttribute="leading" secondItem="xDU-WG-PR2" secondAttribute="trailing" constant="20" id="Qod-6l-cN6"/>
+                        <constraint firstItem="jfO-iv-8lO" firstAttribute="centerY" secondItem="Cjz-aK-5R8" secondAttribute="centerY" id="WCE-5u-Rlo"/>
+                        <constraint firstItem="jfO-iv-8lO" firstAttribute="leading" secondItem="Fh6-Id-ial" secondAttribute="trailing" constant="20" id="fnc-t5-fsa"/>
                         <constraint firstItem="Fh6-Id-ial" firstAttribute="centerY" secondItem="Cjz-aK-5R8" secondAttribute="centerY" id="mLR-9U-0bW"/>
                     </constraints>
                 </view>
@@ -220,6 +231,7 @@
     </objects>
     <resources>
         <image name="ic_blue_image" width="48" height="48"/>
+        <image name="ic_blue_location" width="64" height="64"/>
         <image name="ic_blue_more" width="48" height="48"/>
         <image name="ic_blue_name_card" width="64" height="64"/>
         <image name="ic_blue_send" width="48" height="48"/>
