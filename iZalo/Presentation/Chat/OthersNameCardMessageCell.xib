@@ -71,7 +71,7 @@
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Oqq-rr-QQm">
-                        <rect key="frame" x="5" y="10.5" width="20" height="20"/>
+                        <rect key="frame" x="5" y="10" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Oqq-rr-QQm" secondAttribute="height" multiplier="1:1" id="8Cw-4f-CN6"/>
                             <constraint firstAttribute="height" constant="20" id="DLP-1V-Nzf"/>
@@ -80,8 +80,8 @@
                 </subviews>
                 <color key="backgroundColor" red="0.8862745098" green="0.91372549020000005" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="hWu-YY-JQh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="F00-dS-AZV"/>
-                    <constraint firstAttribute="bottom" secondItem="hWu-YY-JQh" secondAttribute="bottom" constant="10" id="GeL-6Z-n2O"/>
+                    <constraint firstItem="hWu-YY-JQh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="F00-dS-AZV"/>
+                    <constraint firstAttribute="bottom" secondItem="hWu-YY-JQh" secondAttribute="bottom" constant="5" id="GeL-6Z-n2O"/>
                     <constraint firstItem="Oqq-rr-QQm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="PSJ-6t-Xzx"/>
                     <constraint firstItem="hWu-YY-JQh" firstAttribute="leading" secondItem="Oqq-rr-QQm" secondAttribute="trailing" constant="5" id="nOk-nZ-gdm"/>
                     <constraint firstItem="Oqq-rr-QQm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="uZT-6f-8Zt"/>

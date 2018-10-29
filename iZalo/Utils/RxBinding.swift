@@ -25,6 +25,19 @@ public func <-> <T>(property: ControlProperty<T>, variable: BehaviorRelay<T>) ->
     return Disposables.create(bindToUIDisposable, bindToVariable)
 }
 
+public func <-> (property: ControlProperty<String>, variable: BehaviorRelay<String>) -> Disposable {
+    let bindToUIDisposable = variable.asObservable()
+        .bind(to: property)
+    let bindToVariable = property
+        .subscribe(onNext: { n in
+            variable.accept(StringUtils.replaceWithEmojis(s: n))
+        }, onCompleted:  {
+            bindToUIDisposable.dispose()
+        })
+    
+    return Disposables.create(bindToUIDisposable, bindToVariable)
+}
+
 public func <-> <T>(property: ControlProperty<T>, variable: PublishRelay<T>) -> Disposable {
     let bindToUIDisposable = variable.asObservable()
         .bind(to: property)

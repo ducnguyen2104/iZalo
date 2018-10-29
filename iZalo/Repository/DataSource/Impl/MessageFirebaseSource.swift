@@ -96,6 +96,26 @@ class MessageFirebaseSource: MessageRemoteSource {
                         observer.onCompleted()
                     }
                 }
+            case Constant.fileMessage:
+                let fileRef = self.storageRef.child(" /\(request.url.lastPathComponent)")
+                fileRef.putFile(from: request.url, metadata: nil)
+                { metadata, error in
+                    guard let metadata = metadata else {
+                        // Uh-oh, an error occurred!
+                        return
+                    }
+                    // Metadata contains file metadata such as size, content-type.
+                    let size = metadata.size
+                    // You can also access to download URL after upload.
+                    fileRef.downloadURL { (url, error) in
+                        guard let downloadURL = url else {
+                            // Uh-oh, an error occurred!
+                            return
+                        }
+                        observer.onNext(downloadURL.absoluteString)
+                        observer.onCompleted()
+                    }
+                }
             default:
                 observer.onCompleted()
             }

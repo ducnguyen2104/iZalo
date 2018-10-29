@@ -31,8 +31,10 @@ final class ChatVM: ViewModelDelegate {
     
     public let emojis: [String] =
         ["😀", "😃", "😄", "😁", "😆", "😅", "😂",
-                         "🤣", "☺️", "😊", "😇", "🙂", "🙃", "😉",
-                         "😌", "😍", "😘", "😗", "😙", "😚", "😋"]
+                         "🤣", "☺️", "😊", "😇", "🐶", "🐱", "🐭",
+                         "🐹", "🐰", "🦊", "🐻", "🐼", "🐨", "🐯",
+                         "🦁", "🤲", "👐", "🙌", "👏", "🤝", "👍",
+                         "👎", "👊", "✊", "🤞", "✌️"]
     
     init(conversation: Conversation, currentUsername: String, displayLogic: ChatDisplayLogic) {
         self.conversation = conversation
@@ -130,6 +132,7 @@ final class ChatVM: ViewModelDelegate {
         
         input.sendImageTrigger
             .drive(onNext: { [unowned self] in
+                self.displayLogic?.setSendImage()
                 self.displayLogic?.gotoLibrary()
                 self.displayLogic?.showHideButtonContainer()
             })
@@ -145,6 +148,21 @@ final class ChatVM: ViewModelDelegate {
         input.sendLocationMKTrigger
             .drive(onNext: { [unowned self] in
                 self.displayLogic?.openPickLocationVC()
+                self.displayLogic?.showHideButtonContainer()
+            })
+            .disposed(by: self.disposeBag)
+        
+        input.sendLocationGGTrigger
+            .drive(onNext: { [unowned self] in
+                self.displayLogic?.openPlacePicker()
+                self.displayLogic?.showHideButtonContainer()
+            })
+            .disposed(by: self.disposeBag)
+        
+        input.sendFileTrigger
+            .drive(onNext: { [unowned self] in
+                self.displayLogic?.setSendFile()
+                self.displayLogic?.gotoLibrary()
                 self.displayLogic?.showHideButtonContainer()
             })
             .disposed(by: self.disposeBag)
@@ -175,6 +193,46 @@ final class ChatVM: ViewModelDelegate {
                 print("newUrl: \(newUrl)")
                 self.sendMessageUsecase
                     .execute(request: SendMessageRequest(message: Message(id: "\(self.currentUsername)\(timestamp)", senderId: self.currentUsername, conversationId: self.conversation.id, content: newUrl, type: Constant.imageMessage, timestamp: timestamp, timestampInString: "\(hour):\(minute)"), conversation:
+                        self.conversation))
+                    .asDriverOnErrorJustComplete()
+                    .drive()
+                    .disposed(by: self.disposeBag)
+            })
+            .asDriverOnErrorJustComplete()
+            .drive()
+            .disposed(by: self.disposeBag)
+    }
+    
+    func sendLocationMessage(lat: Double, long: Double) {
+        let date = Date()
+        let timestamp = Int(date.timeIntervalSince1970)
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: date)
+        let minute = calendar.component(.minute, from: date)
+        let message = Message(id:"\(self.currentUsername)\(timestamp)", senderId: self.currentUsername, conversationId: self.conversation.id, content: "\(lat),\(long)", type: Constant.locationMessage, timestamp: timestamp, timestampInString: "\(hour):\(minute)")
+        let sendMessageUseCase = SendMessageUsecase()
+        sendMessageUseCase
+            .execute(request: SendMessageRequest(message: message, conversation: self.conversation))
+            .asDriverOnErrorJustComplete()
+            .drive()
+            .disposed(by: self.disposeBag)
+    }
+    
+    func sendFileMessage(url: URL) {
+        let date = Date()
+        let timestamp = Int(date.timeIntervalSince1970)
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: date)
+        let minute = calendar.component(.minute, from: date)
+        let uploadFileMessageUseCase = UploadFileMessageUseCase()
+        let fileName = url.lastPathComponent
+        print("file name: \(fileName)")
+    
+        uploadFileMessageUseCase.execute(request: UploadFileMessageRequest(url: url, type: Constant.fileMessage))
+            .do(onNext: {(newUrl) in
+                print("newUrl: \(newUrl)")
+                self.sendMessageUsecase
+                    .execute(request: SendMessageRequest(message: Message(id: "\(self.currentUsername)\(timestamp)", senderId: self.currentUsername, conversationId: self.conversation.id, content: "\(newUrl),\(fileName)", type: Constant.fileMessage, timestamp: timestamp, timestampInString: "\(hour):\(minute)"), conversation:
                         self.conversation))
                     .asDriverOnErrorJustComplete()
                     .drive()
@@ -235,6 +293,8 @@ extension ChatVM {
         let sendImageTrigger: Driver<Void>
         let sendNameCardTrigger: Driver<Void>
         let sendLocationMKTrigger: Driver<Void>
+        let sendLocationGGTrigger: Driver<Void>
+        let sendFileTrigger: Driver<Void>
     }
     
     public struct Output {

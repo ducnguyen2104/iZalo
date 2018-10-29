@@ -39,6 +39,12 @@
 		971ED8DE217445F4001F8217 /* LoadCurrenUserInfoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971ED8DD217445F4001F8217 /* LoadCurrenUserInfoUseCase.swift */; };
 		971ED8E1217482F1001F8217 /* ChangeAvatarUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971ED8E0217482F1001F8217 /* ChangeAvatarUseCase.swift */; };
 		971ED8E321748E10001F8217 /* ChangeAvatarRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971ED8E221748E10001F8217 /* ChangeAvatarRequest.swift */; };
+		97215B872186AAC7000FB9D6 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97215B862186AAC7000FB9D6 /* StringUtils.swift */; };
+		97215B892186BD3D000FB9D6 /* ViewAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97215B882186BD3D000FB9D6 /* ViewAnimation.swift */; };
+		97215B8D2186F590000FB9D6 /* MyFileMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97215B8B2186F590000FB9D6 /* MyFileMessageCell.swift */; };
+		97215B8E2186F590000FB9D6 /* MyFileMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97215B8C2186F590000FB9D6 /* MyFileMessageCell.xib */; };
+		97215B9121870065000FB9D6 /* OthersFileMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97215B8F21870065000FB9D6 /* OthersFileMessageCell.swift */; };
+		97215B9221870065000FB9D6 /* OthersFileMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97215B9021870065000FB9D6 /* OthersFileMessageCell.xib */; };
 		972CAD46216EE238007972B6 /* AddContactRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972CAD45216EE238007972B6 /* AddContactRequest.swift */; };
 		972CAD48216EE322007972B6 /* AddContactUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972CAD47216EE322007972B6 /* AddContactUseCase.swift */; };
 		972CAD4A216F36FE007972B6 /* SettingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 972CAD49216F36FE007972B6 /* SettingVM.swift */; };
@@ -71,6 +77,13 @@
 		974E03A82161C238001597FF /* MessageFirebaseSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974E03A72161C238001597FF /* MessageFirebaseSource.swift */; };
 		974E03AA216210A6001597FF /* LoadMessageUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974E03A9216210A6001597FF /* LoadMessageUsecase.swift */; };
 		974E03AC216222C1001597FF /* LoadMessageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 974E03AB216222C1001597FF /* LoadMessageRequest.swift */; };
+		975FEA732181B8010044BE23 /* ViewLocationGGMapsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975FEA712181B8010044BE23 /* ViewLocationGGMapsVC.swift */; };
+		975FEA742181B8010044BE23 /* ViewLocationGGMapsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 975FEA722181B8010044BE23 /* ViewLocationGGMapsVC.xib */; };
+		975FEA762181C3D20044BE23 /* ViewLocationGGMapsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975FEA752181C3D20044BE23 /* ViewLocationGGMapsVM.swift */; };
+		975FEA792181CA760044BE23 /* MyLocationGGMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975FEA772181CA760044BE23 /* MyLocationGGMessageCell.swift */; };
+		975FEA7A2181CA760044BE23 /* MyLocationGGMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 975FEA782181CA760044BE23 /* MyLocationGGMessageCell.xib */; };
+		975FEA7D2181D9CF0044BE23 /* OthersLocationGGMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 975FEA7B2181D9CF0044BE23 /* OthersLocationGGMessageCell.swift */; };
+		975FEA7E2181D9CF0044BE23 /* OthersLocationGGMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 975FEA7C2181D9CF0044BE23 /* OthersLocationGGMessageCell.xib */; };
 		978596B4214A594C00516138 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 978596B3214A594C00516138 /* AppDelegate.swift */; };
 		978596B9214A594C00516138 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 978596B7214A594C00516138 /* Main.storyboard */; };
 		978596BB214A594E00516138 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 978596BA214A594E00516138 /* Assets.xcassets */; };
@@ -190,6 +203,13 @@
 		971ED8DD217445F4001F8217 /* LoadCurrenUserInfoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadCurrenUserInfoUseCase.swift; sourceTree = "<group>"; };
 		971ED8E0217482F1001F8217 /* ChangeAvatarUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAvatarUseCase.swift; sourceTree = "<group>"; };
 		971ED8E221748E10001F8217 /* ChangeAvatarRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeAvatarRequest.swift; sourceTree = "<group>"; };
+		97215B862186AAC7000FB9D6 /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
+		97215B882186BD3D000FB9D6 /* ViewAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAnimation.swift; sourceTree = "<group>"; };
+		97215B8A2186C771000FB9D6 /* iZalo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iZalo.entitlements; sourceTree = "<group>"; };
+		97215B8B2186F590000FB9D6 /* MyFileMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFileMessageCell.swift; sourceTree = "<group>"; };
+		97215B8C2186F590000FB9D6 /* MyFileMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyFileMessageCell.xib; sourceTree = "<group>"; };
+		97215B8F21870065000FB9D6 /* OthersFileMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthersFileMessageCell.swift; sourceTree = "<group>"; };
+		97215B9021870065000FB9D6 /* OthersFileMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OthersFileMessageCell.xib; sourceTree = "<group>"; };
 		972CAD45216EE238007972B6 /* AddContactRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactRequest.swift; sourceTree = "<group>"; };
 		972CAD47216EE322007972B6 /* AddContactUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactUseCase.swift; sourceTree = "<group>"; };
 		972CAD49216F36FE007972B6 /* SettingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVM.swift; sourceTree = "<group>"; };
@@ -222,6 +242,13 @@
 		974E03A72161C238001597FF /* MessageFirebaseSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageFirebaseSource.swift; sourceTree = "<group>"; };
 		974E03A9216210A6001597FF /* LoadMessageUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMessageUsecase.swift; sourceTree = "<group>"; };
 		974E03AB216222C1001597FF /* LoadMessageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadMessageRequest.swift; sourceTree = "<group>"; };
+		975FEA712181B8010044BE23 /* ViewLocationGGMapsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewLocationGGMapsVC.swift; sourceTree = "<group>"; };
+		975FEA722181B8010044BE23 /* ViewLocationGGMapsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewLocationGGMapsVC.xib; sourceTree = "<group>"; };
+		975FEA752181C3D20044BE23 /* ViewLocationGGMapsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewLocationGGMapsVM.swift; sourceTree = "<group>"; };
+		975FEA772181CA760044BE23 /* MyLocationGGMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLocationGGMessageCell.swift; sourceTree = "<group>"; };
+		975FEA782181CA760044BE23 /* MyLocationGGMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyLocationGGMessageCell.xib; sourceTree = "<group>"; };
+		975FEA7B2181D9CF0044BE23 /* OthersLocationGGMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OthersLocationGGMessageCell.swift; sourceTree = "<group>"; };
+		975FEA7C2181D9CF0044BE23 /* OthersLocationGGMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OthersLocationGGMessageCell.xib; sourceTree = "<group>"; };
 		978596B0214A594C00516138 /* iZalo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iZalo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		978596B3214A594C00516138 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		978596B8214A594C00516138 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -413,6 +440,16 @@
 			path = Setting;
 			sourceTree = "<group>";
 		};
+		975FEA702181B7C40044BE23 /* ViewLocationGGMaps */ = {
+			isa = PBXGroup;
+			children = (
+				975FEA712181B8010044BE23 /* ViewLocationGGMapsVC.swift */,
+				975FEA722181B8010044BE23 /* ViewLocationGGMapsVC.xib */,
+				975FEA752181C3D20044BE23 /* ViewLocationGGMapsVM.swift */,
+			);
+			path = ViewLocationGGMaps;
+			sourceTree = "<group>";
+		};
 		978596A7214A594C00516138 = {
 			isa = PBXGroup;
 			children = (
@@ -434,6 +471,7 @@
 		978596B2214A594C00516138 /* iZalo */ = {
 			isa = PBXGroup;
 			children = (
+				97215B8A2186C771000FB9D6 /* iZalo.entitlements */,
 				97DB46CD2151FF2D00F018DC /* Repository */,
 				97DB46C52151F55800F018DC /* Utils */,
 				97CF54BE214FB727007609BE /* Presentation */,
@@ -484,6 +522,7 @@
 		97CF54BE214FB727007609BE /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				975FEA702181B7C40044BE23 /* ViewLocationGGMaps */,
 				97F934BA21807845001533BE /* ViewLocation */,
 				97F3DB5821800A9200EAEF97 /* PickLocation */,
 				97896382217D8937001463E6 /* PickContact */,
@@ -526,6 +565,8 @@
 				972CAD4B216F4F3A007972B6 /* SubStringIndex.swift */,
 				970656B42176DD34002A5FF6 /* ImageUtils.swift */,
 				97F934AC218051D8001533BE /* NumberUtils.swift */,
+				97215B862186AAC7000FB9D6 /* StringUtils.swift */,
+				97215B882186BD3D000FB9D6 /* ViewAnimation.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -664,6 +705,14 @@
 				97F934B1218054D8001533BE /* MyLocationMessageCell.xib */,
 				97F934B62180722F001533BE /* OthersLocationMessageCell.swift */,
 				97F934B72180722F001533BE /* OthersLocationMessageCell.xib */,
+				975FEA772181CA760044BE23 /* MyLocationGGMessageCell.swift */,
+				975FEA782181CA760044BE23 /* MyLocationGGMessageCell.xib */,
+				975FEA7B2181D9CF0044BE23 /* OthersLocationGGMessageCell.swift */,
+				975FEA7C2181D9CF0044BE23 /* OthersLocationGGMessageCell.xib */,
+				97215B8B2186F590000FB9D6 /* MyFileMessageCell.swift */,
+				97215B8C2186F590000FB9D6 /* MyFileMessageCell.xib */,
+				97215B8F21870065000FB9D6 /* OthersFileMessageCell.swift */,
+				97215B9021870065000FB9D6 /* OthersFileMessageCell.xib */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -712,6 +761,7 @@
 				978596AD214A594C00516138 /* Frameworks */,
 				978596AE214A594C00516138 /* Resources */,
 				C148CB3EE3D40D9048C86782 /* [CP] Embed Pods Frameworks */,
+				402EAC2876DE1A0EEE34E620 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -735,16 +785,25 @@
 					978596AF214A594C00516138 = {
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 0940;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
 			buildConfigurationList = 978596AB214A594C00516138 /* Build configuration list for PBXProject "iZalo" */;
 			compatibilityVersion = "Xcode 9.3";
-			developmentRegion = en;
+			developmentRegion = vn;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				vn,
 			);
 			mainGroup = 978596A7214A594C00516138;
 			productRefGroup = 978596B1214A594C00516138 /* Products */;
@@ -768,6 +827,8 @@
 				97F934B92180722F001533BE /* OthersLocationMessageCell.xib in Resources */,
 				97D5528A217DC89000878A63 /* OthersNameCardMessageCell.xib in Resources */,
 				97F3DB5C21800ACC00EAEF97 /* PickLocationVC.xib in Resources */,
+				97215B9221870065000FB9D6 /* OthersFileMessageCell.xib in Resources */,
+				975FEA742181B8010044BE23 /* ViewLocationGGMapsVC.xib in Resources */,
 				978596BE214A594E00516138 /* LaunchScreen.storyboard in Resources */,
 				97896386217D8990001463E6 /* PickContactVC.xib in Resources */,
 				97133735216C450E000A609A /* SignupVC.xib in Resources */,
@@ -777,6 +838,7 @@
 				9736A3D821538D550085219D /* ContactVC.xib in Resources */,
 				971ED8DA21743150001F8217 /* SettingCell.xib in Resources */,
 				97CF54CA214FB7CE007609BE /* LoginVC.xib in Resources */,
+				97215B8E2186F590000FB9D6 /* MyFileMessageCell.xib in Resources */,
 				97391ABA2178847F00D5E81E /* EmojiCell.xib in Resources */,
 				9713373E216C8BD5000A609A /* AddFriendVC.xib in Resources */,
 				9736A3CE21538BF80085219D /* MainVC.xib in Resources */,
@@ -784,8 +846,10 @@
 				9796AF74215CE8DB007BFF85 /* OthersMessageCell.xib in Resources */,
 				97D55286217DB87900878A63 /* MyNameCardMessageCell.xib in Resources */,
 				970656C6217727BF002A5FF6 /* ViewImageVC.xib in Resources */,
+				975FEA7E2181D9CF0044BE23 /* OthersLocationGGMessageCell.xib in Resources */,
 				973CBE962153B9F700403D2D /* ContactCell.xib in Resources */,
 				97F934BE2180787B001533BE /* ViewLocationVC.xib in Resources */,
+				975FEA7A2181CA760044BE23 /* MyLocationGGMessageCell.xib in Resources */,
 				978596B9214A594C00516138 /* Main.storyboard in Resources */,
 				970656C1217718FC002A5FF6 /* OthersImageMessageCell.xib in Resources */,
 				97B55CFA2152370E0030F75D /* GoogleService-Info.plist in Resources */,
@@ -795,6 +859,32 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		402EAC2876DE1A0EEE34E620 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-iZalo/Pods-iZalo-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlacePicker/Frameworks/GooglePlacePicker.framework/Resources/GooglePlacePicker.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlacePicker.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iZalo/Pods-iZalo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		C148CB3EE3D40D9048C86782 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -878,11 +968,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97215B892186BD3D000FB9D6 /* ViewAnimation.swift in Sources */,
 				97BA589A215B2B3800327FA7 /* Contact.swift in Sources */,
 				97133748216CB729000A609A /* SearchUsernameUseCase.swift in Sources */,
 				970656C821772C2F002A5FF6 /* ViewImageVM.swift in Sources */,
+				97215B9121870065000FB9D6 /* OthersFileMessageCell.swift in Sources */,
 				973CBE952153B9F700403D2D /* ContactCell.swift in Sources */,
 				9736A3D721538D550085219D /* ContactVC.swift in Sources */,
+				975FEA762181C3D20044BE23 /* ViewLocationGGMapsVM.swift in Sources */,
 				97133737216C5A65000A609A /* SignupVM.swift in Sources */,
 				97896385217D8990001463E6 /* PickContactVC.swift in Sources */,
 				97D6D561215265600070E521 /* ViewController.swift in Sources */,
@@ -906,6 +999,7 @@
 				97F3DB5E2180190500EAEF97 /* PickLocationVM.swift in Sources */,
 				97896388217D9075001463E6 /* PickContactVM.swift in Sources */,
 				9736A3D221538D040085219D /* ChatHistoryVC.swift in Sources */,
+				975FEA7D2181D9CF0044BE23 /* OthersLocationGGMessageCell.swift in Sources */,
 				97E2C0E721588EB900FA9348 /* ChatHistoryVM.swift in Sources */,
 				97DB46E0215206A800F018DC /* UserLocalSource.swift in Sources */,
 				9713374A216CC013000A609A /* ContactSearchResult.swift in Sources */,
@@ -928,7 +1022,9 @@
 				97DB46C72151F57A00F018DC /* ViewModelDelegate.swift in Sources */,
 				970656C5217727BF002A5FF6 /* ViewImageVC.swift in Sources */,
 				97DB46CC2151FE3B00F018DC /* UseCase.swift in Sources */,
+				97215B8D2186F590000FB9D6 /* MyFileMessageCell.swift in Sources */,
 				972CAD48216EE322007972B6 /* AddContactUseCase.swift in Sources */,
+				975FEA732181B8010044BE23 /* ViewLocationGGMapsVC.swift in Sources */,
 				97E2C0E92158985900FA9348 /* LoadConversationUseCase.swift in Sources */,
 				97D6D55D215258EF0070E521 /* ValidateError.swift in Sources */,
 				97B55CFD215247DA0030F75D /* UserResponse.swift in Sources */,
@@ -955,9 +1051,11 @@
 				974E03A42161C06B001597FF /* MessageLocalSource.swift in Sources */,
 				97D55285217DB87900878A63 /* MyNameCardMessageCell.swift in Sources */,
 				97BA58AC215B42CB00327FA7 /* ContactRealm.swift in Sources */,
+				97215B872186AAC7000FB9D6 /* StringUtils.swift in Sources */,
 				97133739216C6255000A609A /* SignupUseCase.swift in Sources */,
 				97DB46D72152011300F018DC /* SignupRequest.swift in Sources */,
 				9796AF78215CEEF5007BFF85 /* MessageItem.swift in Sources */,
+				975FEA792181CA760044BE23 /* MyLocationGGMessageCell.swift in Sources */,
 				971ED8E1217482F1001F8217 /* ChangeAvatarUseCase.swift in Sources */,
 				973A61562164BDD3003B6047 /* LoadConversationAndContactRequest.swift in Sources */,
 				97BA58A2215B3F1600327FA7 /* ContactRepositoryImpl.swift in Sources */,
@@ -1140,7 +1238,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = iZalo/iZalo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3C85WG52WY;
 				INFOPLIST_FILE = iZalo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1160,7 +1260,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = iZalo/iZalo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3C85WG52WY;
 				INFOPLIST_FILE = iZalo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

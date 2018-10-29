@@ -20,10 +20,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bb9-RU-7N5">
-                        <rect key="frame" x="15.5" y="10" width="51" height="185.5"/>
+                        <rect key="frame" x="15.5" y="5" width="51" height="68.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4K-AU-McX">
-                                <rect key="frame" x="10" y="155.5" width="31" height="20"/>
+                                <rect key="frame" x="10" y="38.5" width="31" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="dAD-0r-isR"/>
                                 </constraints>
@@ -32,7 +32,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oj5-qs-YEw">
-                                <rect key="frame" x="10" y="10" width="187" height="140.5"/>
+                                <rect key="frame" x="10" y="10" width="31" height="23.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="oj5-qs-YEw" secondAttribute="height" multiplier="4:3" id="4pP-m0-U2e"/>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="190" id="Ueh-Ob-vNa"/>
@@ -56,8 +56,8 @@
                     <constraint firstAttribute="trailing" secondItem="bb9-RU-7N5" secondAttribute="trailing" constant="10" id="FZt-wu-sTu"/>
                     <constraint firstItem="bb9-RU-7N5" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="2/3" id="Kfx-nF-t9O"/>
                     <constraint firstItem="bb9-RU-7N5" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="XZD-0y-MlA"/>
-                    <constraint firstItem="bb9-RU-7N5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="ho1-OX-oqP"/>
-                    <constraint firstAttribute="bottom" secondItem="bb9-RU-7N5" secondAttribute="bottom" constant="10" id="inv-Es-FK9"/>
+                    <constraint firstItem="bb9-RU-7N5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="ho1-OX-oqP"/>
+                    <constraint firstAttribute="bottom" secondItem="bb9-RU-7N5" secondAttribute="bottom" constant="5" id="inv-Es-FK9"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

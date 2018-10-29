@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 import RxDataSources
 import ReverseExtension
+import GooglePlacePicker
 
 protocol ChatDisplayLogic: class {
     func goBack()
@@ -23,6 +24,9 @@ protocol ChatDisplayLogic: class {
     func hideAllExtraViews()
     func openPickContactVC()
     func openPickLocationVC()
+    func openPlacePicker()
+    func setSendImage()
+    func setSendFile()
 }
 
 class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -39,9 +43,12 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
     @IBOutlet weak var showHideButton: UIButton!
     @IBOutlet weak var sendNameCardButton: UIButton!
     @IBOutlet weak var sendLocationMKButton: UIButton!
+    @IBOutlet weak var sendLocationGGButton: UIButton!
+    @IBOutlet weak var sendFileButton: UIButton!
     @IBOutlet weak var textFieldView: UIView!
     @IBOutlet weak var emojiCollectionView: UICollectionView!
     @IBOutlet weak var emojiView: UIView!
+    @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
     
     private let contactRepository = ContactRepositoryFactory.sharedInstance
     public var isButtonContainerHidden = true
@@ -53,6 +60,7 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
     private var items: RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, MessageItem>>!
     private var emojis: RxCollectionViewSectionedReloadDataSource<SectionModel<String, EmojiItem>>!
     private var contactObservable: Observable<Contact>?
+    private var isSendImage = false
     
     class func instance(conversation: Conversation, currentUsername: String, contactObservable: Observable<Contact>) -> ChatVC {
         return ChatVC(conversation: conversation, currentUsername: currentUsername, contactObservable: contactObservable)
@@ -72,12 +80,15 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("b4 layout: \(self.buttonsContainer.frame)")
         setupLayout()
+        print("after layout: \(self.buttonsContainer.frame)")
         bindViewModel()
         // Do any additional setup after loading the view.
     }
 
     private func setupLayout() {
+        
         switch conversation.members.count {
         case 2: //2 members conversation
             conversationNameLabel.text = self.conversation.name
@@ -100,7 +111,10 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         self.tableView.register(UINib(nibName: "OthersNameCardMessageCell", bundle: nil), forCellReuseIdentifier: "OthersNameCardMessageCell")
         self.tableView.register(UINib(nibName: "MyLocationMessageCell", bundle: nil), forCellReuseIdentifier: "MyLocationMessageCell")
         self.tableView.register(UINib(nibName: "OthersLocationMessageCell", bundle: nil), forCellReuseIdentifier: "OthersLocationMessageCell")
-        
+        self.tableView.register(UINib(nibName: "MyLocationGGMessageCell", bundle: nil), forCellReuseIdentifier: "MyLocationGGMessageCell")
+        self.tableView.register(UINib(nibName: "OthersLocationGGMessageCell", bundle: nil), forCellReuseIdentifier: "OthersLocationGGMessageCell")
+        self.tableView.register(UINib(nibName: "MyFileMessageCell", bundle: nil), forCellReuseIdentifier: "MyFileMessageCell")
+        self.tableView.register(UINib(nibName: "OthersFileMessageCell", bundle: nil), forCellReuseIdentifier: "OthersFileMessageCell")
         self.tableView.separatorStyle = .none
         self.emojiCollectionView.register(UINib(nibName: "EmojiCell", bundle: nil), forCellWithReuseIdentifier: "EmojiCell")
         
@@ -134,11 +148,21 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
                 }
             case Constant.locationMessage:
                 if(item.message.senderId == self.currentUsername) {
-                    let cell = tv.dequeueReusableCell(withIdentifier: "MyLocationMessageCell", for: ip) as! MyLocationMessageCell
+                    let cell = tv.dequeueReusableCell(withIdentifier: "MyLocationGGMessageCell", for: ip) as! MyLocationGGMessageCell
                     cell.bind(item: item)
                     return cell
                 } else {
-                    let cell = tv.dequeueReusableCell(withIdentifier: "OthersLocationMessageCell", for: ip) as! OthersLocationMessageCell
+                    let cell = tv.dequeueReusableCell(withIdentifier: "OthersLocationGGMessageCell", for: ip) as! OthersLocationGGMessageCell
+                    cell.bind(item: item, contactObservable: self.contactObservable!)
+                    return cell
+                }
+            case Constant.fileMessage:
+                if(item.message.senderId == self.currentUsername) {
+                    let cell = tv.dequeueReusableCell(withIdentifier: "MyFileMessageCell", for: ip) as! MyFileMessageCell
+                    cell.bind(item: item)
+                    return cell
+                } else {
+                    let cell = tv.dequeueReusableCell(withIdentifier: "OthersFileMessageCell", for: ip) as! OthersFileMessageCell
                     cell.bind(item: item, contactObservable: self.contactObservable!)
                     return cell
                 }
@@ -157,7 +181,10 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         let _ = contactObservable!.subscribe(onNext: {(contact) in
                 self.conversationNameLabel.text = contact.name
             } )
-        self.buttonsContainer.isHidden = true
+//        self.buttonsContainer.isHidden = true
+        UIView.animate(withDuration: 0.5, animations: {
+//            self.buttonsContainer.frame = self.buttonsContainer.frame.offsetBy(dx: 0, dy: self.buttonsContainer.frame.height)
+        }, completion: nil)
         self.emojiView.isHidden = true
         self.tableView.rx.itemSelected.asDriver()
             .drive(onNext: {(ip) in
@@ -197,7 +224,8 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
                         print("error: nil lat or long")
                         return
                     }
-                    let vc = ViewLocationVC.instance(lat: lat!, long: long!)
+//                    let vc = ViewLocationVC.instance(lat: lat!, long: long!)
+                    let vc = ViewLocationGGMapsVC.instance(lat: lat!, long: long!)
                     self.navigationController?.pushViewController(vc, animated: true)
                 default:
                     return
@@ -230,7 +258,9 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
             emojiButtonTrigger: self.emojiButton.rx.tap.asDriver(),
             sendImageTrigger: self.sendImageButton.rx.tap.asDriver(),
             sendNameCardTrigger: self.sendNameCardButton.rx.tap.asDriver(),
-            sendLocationMKTrigger: self.sendLocationMKButton.rx.tap.asDriver())
+            sendLocationMKTrigger: self.sendLocationMKButton.rx.tap.asDriver(),
+            sendLocationGGTrigger: self.sendLocationGGButton.rx.tap.asDriver(),
+            sendFileTrigger: self.sendFileButton.rx.tap.asDriver())
         let output = self.viewModel.transform(input: input)
         
         output.fetching.drive(onNext: { [unowned self] (show) in
@@ -272,7 +302,12 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         data.write(toFile: localPath!, atomically: true)
         let photoURL = URL.init(fileURLWithPath: localPath!)
         print(photoURL)
-        self.viewModel.sendImageMessage(url: photoURL)
+        if(self.isSendImage) {
+            self.viewModel.sendImageMessage(url: photoURL)
+        }
+        else { //send file
+            self.viewModel.sendFileMessage(url: photoURL)
+        }
         dismiss(animated:true, completion: nil)
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -307,12 +342,27 @@ extension ChatVC: ChatDisplayLogic {
     func showHideButtonContainer() {
         switch self.isButtonContainerHidden {
         case true: //show it!
-            self.buttonsContainer.isHidden = false
+            print("b4 start \(self.buttonsContainer.frame)")
+            let animator = UIViewPropertyAnimator(duration: 0.1, curve: .linear, animations: {
+                self.buttonsContainer.frame = self.buttonsContainer.frame.offsetBy(dx: 0, dy: -self.buttonsContainer.frame.height)
+                self.tableView.frame = CGRect(x: self.tableView.frame.minX, y: self.tableView.frame.minY, width: self.tableView.frame.width, height: self.tableView.frame.height - self.buttonsContainer.frame.height)
+                })
+            animator.startAnimation()
+
+            print("after end \(self.buttonsContainer.frame)")
+            
             self.emojiView.isHidden = true
             self.isEmojiViewHidden = true
+            
         
         default:   //hide it!
-            self.buttonsContainer.isHidden = true
+            print("b4 start \(self.buttonsContainer.frame)")
+            let animator = UIViewPropertyAnimator(duration: 0.1, curve: .linear, animations: {
+                self.buttonsContainer.frame = self.buttonsContainer.frame.offsetBy(dx: 0, dy: self.buttonsContainer.frame.height)
+                self.tableView.frame = CGRect(x: self.tableView.frame.minX, y: self.tableView.frame.minY, width: self.tableView.frame.width, height: self.tableView.frame.height + self.buttonsContainer.frame.height)
+            })
+            animator.startAnimation()
+            print("after end \(self.buttonsContainer.frame) \n")
         }
         self.isButtonContainerHidden = !self.isButtonContainerHidden
     }
@@ -323,8 +373,10 @@ extension ChatVC: ChatDisplayLogic {
             self.emojiView.isHidden = false
             self.buttonsContainer.isHidden = true //hide buttons container
             self.isButtonContainerHidden = true
+            self.tableViewBottomConstraint.constant = -102
         default: //hide it!
             self.emojiView.isHidden = true
+            self.tableViewBottomConstraint.constant = 0
         }
         self.isEmojiViewHidden = !self.isEmojiViewHidden
     }
@@ -355,6 +407,26 @@ extension ChatVC: ChatDisplayLogic {
         let pickLocationVC = PickLocationVC.instance(currentUsername: self.currentUsername, conversation: self.conversation)
         self.navigationController?.pushViewController(pickLocationVC, animated: true)
     }
+    
+    func openPlacePicker() {
+        let config = GMSPlacePickerConfig(viewport: nil)
+        let placePicker = GMSPlacePickerViewController(config: config)
+        placePicker.delegate = self
+        placePicker.modalPresentationStyle = .popover
+        
+        placePicker.popoverPresentationController?.sourceView = self.sendLocationGGButton
+        placePicker.popoverPresentationController?.sourceRect = self.sendLocationGGButton.bounds
+        
+        self.present(placePicker, animated: true, completion: nil)
+    }
+    
+    func setSendImage() {
+        self.isSendImage = true
+    }
+    
+    func setSendFile() {
+        self.isSendImage = false
+    }
 }
 
 extension ChatVC: UITableViewDelegate {
@@ -362,3 +434,31 @@ extension ChatVC: UITableViewDelegate {
 //        print("scrollView.contentOffset.y =", scrollView.contentOffset.y)
     }
 }
+
+extension ChatVC : GMSPlacePickerViewControllerDelegate {
+    func placePicker(_ viewController: GMSPlacePickerViewController, didPick place: GMSPlace) {
+        // Create the next view controller we are going to display and present it.
+        let lat = NumberUtils.RoundDoubleTo6DigitsPrecision(input: place.coordinate.latitude)
+        let long = NumberUtils.RoundDoubleTo6DigitsPrecision(input: place.coordinate.longitude)
+        print("GG place picked: \(lat), \(long)")
+        
+        self.viewModel.sendLocationMessage(lat: lat, long: long)
+        
+        // Dismiss the place picker.
+        viewController.dismiss(animated: true, completion: nil)
+    }
+    
+    func placePicker(_ viewController: GMSPlacePickerViewController, didFailWithError error: Error) {
+        // In your own app you should handle this better, but for the demo we are just going to log
+        // a message.
+        NSLog("An error occurred while picking a place: \(error)")
+    }
+    
+    func placePickerDidCancel(_ viewController: GMSPlacePickerViewController) {
+        NSLog("The place picker was canceled by the user")
+        
+        // Dismiss the place picker.
+        viewController.dismiss(animated: true, completion: nil)
+    }
+}
+

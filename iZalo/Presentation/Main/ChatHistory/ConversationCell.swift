@@ -47,11 +47,17 @@ class ConversationCell: UITableViewCell {
             .replacingOccurrences(of: "</sup>", with: ""))
             """
         case Constant.imageMessage:
-            lastMessageLabel.text = " \(sender) đã gửi một ảnh"
+            self.lastMessageLabel.text = "\(sender): [Ảnh]"
         case Constant.voiceMessage:
-            lastMessageLabel.text = " \(sender) đã gửi một đoạn ghi âm"
+            self.lastMessageLabel.text = "\(sender): [Audio]"
         case Constant.videoMessage:
-            lastMessageLabel.text = " \(sender) đã gửi một video"
+            self.lastMessageLabel.text = "\(sender): [Video]"
+        case Constant.nameCardMessage:
+            self.lastMessageLabel.text = "\(sender): [Danh thiếp]"
+        case Constant.locationMessage:
+            self.lastMessageLabel.text = "\(sender): [Vị trí]"
+        case Constant.fileMessage:
+            self.lastMessageLabel.text = "\(sender): [Tập tin]"
         default:
             lastMessageLabel.text = item.conversation.lastMessage.content
         }
@@ -88,6 +94,8 @@ class ConversationCell: UITableViewCell {
                 self.lastMessageLabel.text = "\(sender): [Danh thiếp]"
             case Constant.locationMessage:
                 self.lastMessageLabel.text = "\(sender): [Vị trí]"
+            case Constant.fileMessage:
+                self.lastMessageLabel.text = "\(sender): [Tập tin]"
             default:
                 self.lastMessageLabel.text = item.conversation.lastMessage.content
             }

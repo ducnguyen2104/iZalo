@@ -74,8 +74,8 @@
                     <constraint firstItem="QAd-7E-nM2" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.5" id="30q-7W-rb4"/>
                     <constraint firstItem="QAd-7E-nM2" firstAttribute="bottom" secondItem="AyB-jc-JYM" secondAttribute="bottom" constant="5" id="8zO-oG-PDp"/>
                     <constraint firstAttribute="trailing" secondItem="QAd-7E-nM2" secondAttribute="trailing" constant="10" id="ECF-VN-Lyb"/>
-                    <constraint firstAttribute="bottom" secondItem="QAd-7E-nM2" secondAttribute="bottom" constant="10" id="Erm-LG-P9F"/>
-                    <constraint firstItem="QAd-7E-nM2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="yRU-Kq-y6w"/>
+                    <constraint firstAttribute="bottom" secondItem="QAd-7E-nM2" secondAttribute="bottom" constant="5" id="Erm-LG-P9F"/>
+                    <constraint firstItem="QAd-7E-nM2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="yRU-Kq-y6w"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

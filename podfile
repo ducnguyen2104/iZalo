@@ -1,5 +1,5 @@
 use_frameworks!
-
+source 'https://github.com/CocoaPods/Specs.git'
 target 'iZalo' do
     pod 'RxSwift',    '~> 4.0'
     pod 'RxCocoa',    '~> 4.0'
@@ -23,5 +23,9 @@ target 'iZalo' do
     pod 'DeepDiff'
     
     pod 'ReverseExtension'
+    
+    pod 'GooglePlaces'
+    pod 'GooglePlacePicker'
+    pod 'GoogleMaps'
     
 end
