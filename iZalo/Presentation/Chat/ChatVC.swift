@@ -181,11 +181,8 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         let _ = contactObservable!.subscribe(onNext: {(contact) in
                 self.conversationNameLabel.text = contact.name
             } )
-//        self.buttonsContainer.isHidden = true
-        UIView.animate(withDuration: 0.5, animations: {
-//            self.buttonsContainer.frame = self.buttonsContainer.frame.offsetBy(dx: 0, dy: self.buttonsContainer.frame.height)
-        }, completion: nil)
-        self.emojiView.isHidden = true
+
+//        self.emojiView.isHidden = true
         self.tableView.rx.itemSelected.asDriver()
             .drive(onNext: {(ip) in
                 self.tableView.deselectRow(at: ip, animated: false)
@@ -227,6 +224,14 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
 //                    let vc = ViewLocationVC.instance(lat: lat!, long: long!)
                     let vc = ViewLocationGGMapsVC.instance(lat: lat!, long: long!)
                     self.navigationController?.pushViewController(vc, animated: true)
+                
+                case Constant.fileMessage:
+                    let urlString = item.message.content.split(separator: ",")[0]
+                    guard let url = URL(string: String(urlString)) else {
+                        return
+                    }
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    
                 default:
                     return
                 }
@@ -342,27 +347,15 @@ extension ChatVC: ChatDisplayLogic {
     func showHideButtonContainer() {
         switch self.isButtonContainerHidden {
         case true: //show it!
-            print("b4 start \(self.buttonsContainer.frame)")
-            let animator = UIViewPropertyAnimator(duration: 0.1, curve: .linear, animations: {
-                self.buttonsContainer.frame = self.buttonsContainer.frame.offsetBy(dx: 0, dy: -self.buttonsContainer.frame.height)
-                self.tableView.frame = CGRect(x: self.tableView.frame.minX, y: self.tableView.frame.minY, width: self.tableView.frame.width, height: self.tableView.frame.height - self.buttonsContainer.frame.height)
-                })
-            animator.startAnimation()
-
-            print("after end \(self.buttonsContainer.frame)")
-            
-            self.emojiView.isHidden = true
-            self.isEmojiViewHidden = true
-            
-        
+            if !self.isEmojiViewHidden {
+                showButtonContainerAndHideEmojiView()
+                self.isEmojiViewHidden = true
+            }
+            else {
+                showButtonContainer()
+            }
         default:   //hide it!
-            print("b4 start \(self.buttonsContainer.frame)")
-            let animator = UIViewPropertyAnimator(duration: 0.1, curve: .linear, animations: {
-                self.buttonsContainer.frame = self.buttonsContainer.frame.offsetBy(dx: 0, dy: self.buttonsContainer.frame.height)
-                self.tableView.frame = CGRect(x: self.tableView.frame.minX, y: self.tableView.frame.minY, width: self.tableView.frame.width, height: self.tableView.frame.height + self.buttonsContainer.frame.height)
-            })
-            animator.startAnimation()
-            print("after end \(self.buttonsContainer.frame) \n")
+            hideButtonContainer()
         }
         self.isButtonContainerHidden = !self.isButtonContainerHidden
     }
@@ -370,13 +363,15 @@ extension ChatVC: ChatDisplayLogic {
     func showHideEmojiView() {
         switch self.isEmojiViewHidden {
         case true: //show it!
-            self.emojiView.isHidden = false
-            self.buttonsContainer.isHidden = true //hide buttons container
-            self.isButtonContainerHidden = true
-            self.tableViewBottomConstraint.constant = -102
+            if !self.isButtonContainerHidden {
+                showEmojiViewAndHideButtonsContainerView()
+                self.isButtonContainerHidden = true
+            }
+            else {
+                showEmojiView()
+            }
         default: //hide it!
-            self.emojiView.isHidden = true
-            self.tableViewBottomConstraint.constant = 0
+            hideEmojiView()
         }
         self.isEmojiViewHidden = !self.isEmojiViewHidden
     }
@@ -392,10 +387,14 @@ extension ChatVC: ChatDisplayLogic {
     }
     
     func hideAllExtraViews() {
-        self.buttonsContainer.isHidden = true //hide buttons container
-        self.isButtonContainerHidden = true
-        self.emojiView.isHidden = true
-        self.isEmojiViewHidden = true
+        if !self.isEmojiViewHidden {
+            hideEmojiView()
+            self.isEmojiViewHidden = true
+        }
+        if !self.isButtonContainerHidden {
+            hideButtonContainer()
+            self.isButtonContainerHidden = true
+        }
     }
     
     func openPickContactVC() {
@@ -426,6 +425,66 @@ extension ChatVC: ChatDisplayLogic {
     
     func setSendFile() {
         self.isSendImage = false
+    }
+    
+    private func showButtonContainer() {
+        let animator = UIViewPropertyAnimator(duration: 0.15, curve: .linear, animations: {
+            self.tableView.frame = CGRect(x: self.tableView.frame.minX, y: self.tableView.frame.minY, width: self.tableView.frame.width, height: self.tableView.frame.height - self.buttonsContainer.frame.height)
+            self.buttonsContainer.frame = self.buttonsContainer.frame.offsetBy(dx: 0, dy: -self.buttonsContainer.frame.height)
+        })
+        animator.startAnimation()
+    }
+    
+    private func hideButtonContainer() {
+        let animator = UIViewPropertyAnimator(duration: 0.15, curve: .linear, animations: {
+            self.tableView.frame = CGRect(x: self.tableView.frame.minX, y: self.tableView.frame.minY, width: self.tableView.frame.width, height: self.tableView.frame.height + self.buttonsContainer.frame.height)
+            self.buttonsContainer.frame = self.buttonsContainer.frame.offsetBy(dx: 0, dy: self.buttonsContainer.frame.height)
+        })
+        animator.startAnimation()
+    }
+    
+    private func showEmojiView() {
+        let animator = UIViewPropertyAnimator(duration: 0.15, curve: .linear, animations: {
+            self.tableView.frame = CGRect(x: self.tableView.frame.minX, y: self.tableView.frame.minY, width: self.tableView.frame.width, height: self.tableView.frame.height - self.emojiView.frame.height)
+            self.emojiView.frame = self.emojiView.frame.offsetBy(dx: 0, dy: -self.emojiView.frame.height)
+        })
+        animator.startAnimation()
+    }
+    
+    private func hideEmojiView() {
+        let animator = UIViewPropertyAnimator(duration: 0.15, curve: .linear, animations: {
+            self.tableView.frame = CGRect(x: self.tableView.frame.minX, y: self.tableView.frame.minY, width: self.tableView.frame.width, height: self.tableView.frame.height + self.emojiView.frame.height)
+            self.emojiView.frame = self.emojiView.frame.offsetBy(dx: 0, dy: self.emojiView.frame.height)
+        })
+        animator.startAnimation()
+    }
+    
+    private func showEmojiViewAndHideButtonsContainerView() {
+        let duration1 = 0.15 * (self.buttonsContainer.frame.height / self.emojiView.frame.height)
+        let animator1 = UIViewPropertyAnimator(duration: TimeInterval(duration1), curve: .linear, animations: {
+            self.emojiView.frame = self.emojiView.frame.offsetBy(dx: 0, dy: -self.buttonsContainer.frame.height)
+        })
+        animator1.startAnimation()
+        let animator2 = UIViewPropertyAnimator(duration: TimeInterval(0.15 - duration1), curve: .linear, animations: {
+            self.tableView.frame = CGRect(x: self.tableView.frame.minX, y: self.tableView.frame.minY, width: self.tableView.frame.width, height: self.tableView.frame.height + self.buttonsContainer.frame.height - self.emojiView.frame.height)
+            self.emojiView.frame = self.emojiView.frame.offsetBy(dx: 0, dy: -(self.emojiView.frame.height - self.buttonsContainer.frame.height))
+            self.buttonsContainer.frame = self.buttonsContainer.frame.offsetBy(dx: 0, dy: self.buttonsContainer.frame.height)
+        })
+        animator2.startAnimation(afterDelay: TimeInterval(duration1))
+    }
+    
+    private func showButtonContainerAndHideEmojiView() {
+        let duration1 = 0.15 * ((self.emojiView.frame.height - self.buttonsContainer.frame.height)/self.emojiView.frame.height)
+        let animator1 = UIViewPropertyAnimator(duration: TimeInterval(duration1), curve: .linear, animations: {
+            self.emojiView.frame = self.emojiView.frame.offsetBy(dx: 0, dy: self.emojiView.frame.height - self.buttonsContainer.frame.height)
+            self.tableView.frame = CGRect(x: self.tableView.frame.minX, y: self.tableView.frame.minY, width: self.tableView.frame.width, height: self.tableView.frame.height + self.emojiView.frame.height - self.buttonsContainer.frame.height)
+            self.buttonsContainer.frame = self.buttonsContainer.frame.offsetBy(dx: 0, dy: -self.buttonsContainer.frame.height)
+        })
+        animator1.startAnimation()
+        let animator2 = UIViewPropertyAnimator(duration: TimeInterval(0.15 - duration1), curve: .linear, animations: {
+            self.emojiView.frame = self.emojiView.frame.offsetBy(dx: 0, dy: self.buttonsContainer.frame.height)
+        })
+        animator2.startAnimation(afterDelay: TimeInterval(duration1))
     }
 }
 

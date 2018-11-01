@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -148,6 +148,33 @@
                         <constraint firstItem="Pvu-K8-tLs" firstAttribute="top" secondItem="J23-Yi-gvF" secondAttribute="top" id="vUz-ay-4cl"/>
                     </constraints>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BOw-PC-ax1">
+                    <rect key="frame" x="0.0" y="64" width="375" height="559"/>
+                    <color key="backgroundColor" red="0.8862745098" green="0.91372549020000005" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="84O-kg-ULo">
+                    <rect key="frame" x="0.0" y="623" width="375" height="102"/>
+                    <subviews>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="lCN-ne-sxt">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="102"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="DOU-x8-S40">
+                                <size key="itemSize" width="34" height="34"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                        </collectionView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="lCN-ne-sxt" secondAttribute="trailing" id="8x2-FY-riM"/>
+                        <constraint firstAttribute="height" constant="102" id="D4a-3B-BEL"/>
+                        <constraint firstItem="lCN-ne-sxt" firstAttribute="leading" secondItem="84O-kg-ULo" secondAttribute="leading" id="HeH-8S-C9E"/>
+                        <constraint firstAttribute="bottom" secondItem="lCN-ne-sxt" secondAttribute="bottom" id="dfi-ih-fHY"/>
+                        <constraint firstItem="lCN-ne-sxt" firstAttribute="top" secondItem="84O-kg-ULo" secondAttribute="top" id="rEA-gS-C38"/>
+                    </constraints>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bFL-9L-YHx">
                     <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                     <subviews>
@@ -197,36 +224,14 @@
                         <constraint firstItem="aAF-Wg-OEm" firstAttribute="centerY" secondItem="bFL-9L-YHx" secondAttribute="centerY" id="sml-qB-uZG"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BOw-PC-ax1">
-                    <rect key="frame" x="0.0" y="64" width="375" height="559"/>
-                    <color key="backgroundColor" red="0.8862745098" green="0.91372549020000005" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
-                </tableView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="84O-kg-ULo">
-                    <rect key="frame" x="0.0" y="521" width="375" height="102"/>
-                    <subviews>
-                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="lCN-ne-sxt">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="102"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="DOU-x8-S40">
-                                <size key="itemSize" width="34" height="34"/>
-                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            </collectionViewFlowLayout>
-                        </collectionView>
-                    </subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DRH-8K-Q76">
+                    <rect key="frame" x="0.0" y="667" width="375" height="0.0"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="trailing" secondItem="lCN-ne-sxt" secondAttribute="trailing" id="8x2-FY-riM"/>
-                        <constraint firstAttribute="height" constant="102" id="D4a-3B-BEL"/>
-                        <constraint firstItem="lCN-ne-sxt" firstAttribute="leading" secondItem="84O-kg-ULo" secondAttribute="leading" id="HeH-8S-C9E"/>
-                        <constraint firstAttribute="bottom" secondItem="lCN-ne-sxt" secondAttribute="bottom" id="dfi-ih-fHY"/>
-                        <constraint firstItem="lCN-ne-sxt" firstAttribute="top" secondItem="84O-kg-ULo" secondAttribute="top" id="rEA-gS-C38"/>
-                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="DRH-8K-Q76" secondAttribute="trailing" id="4xY-du-NWO"/>
                 <constraint firstItem="J23-Yi-gvF" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="9gX-aE-6aE"/>
                 <constraint firstItem="BOw-PC-ax1" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="BWh-Zg-f0O"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="tnq-wY-ijq" secondAttribute="bottom" id="Qab-Gx-EjS"/>
@@ -236,6 +241,8 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="BOw-PC-ax1" secondAttribute="trailing" id="cAt-Wv-edv"/>
                 <constraint firstItem="BOw-PC-ax1" firstAttribute="bottom" secondItem="bFL-9L-YHx" secondAttribute="top" id="cS0-eb-cig"/>
                 <constraint firstItem="lCN-ne-sxt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ddV-kY-fsz"/>
+                <constraint firstAttribute="bottom" secondItem="DRH-8K-Q76" secondAttribute="bottom" id="dvV-xP-noM"/>
+                <constraint firstItem="bFL-9L-YHx" firstAttribute="bottom" secondItem="DRH-8K-Q76" secondAttribute="top" id="fAl-bd-h5s"/>
                 <constraint firstItem="bFL-9L-YHx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="frC-Jr-QPf"/>
                 <constraint firstItem="tnq-wY-ijq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fvO-Hp-k7S"/>
                 <constraint firstItem="J23-Yi-gvF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="gvi-v5-bEw"/>
@@ -245,7 +252,8 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="bFL-9L-YHx" secondAttribute="trailing" id="nSo-ux-vyp"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="tnq-wY-ijq" secondAttribute="trailing" id="nr2-GQ-wDK"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="bFL-9L-YHx" secondAttribute="bottom" id="pwi-QJ-XSO"/>
-                <constraint firstItem="bFL-9L-YHx" firstAttribute="top" secondItem="84O-kg-ULo" secondAttribute="bottom" id="sxb-jT-Qbm"/>
+                <constraint firstItem="bFL-9L-YHx" firstAttribute="top" secondItem="84O-kg-ULo" secondAttribute="top" id="sxb-jT-Qbm"/>
+                <constraint firstItem="DRH-8K-Q76" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="wRD-TX-iNk"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="J23-Yi-gvF" secondAttribute="trailing" id="z05-17-2G7"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Cjz-aK-5R8" secondAttribute="trailing" id="zkg-s1-rJp"/>
             </constraints>

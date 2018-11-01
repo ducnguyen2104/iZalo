@@ -28,4 +28,5 @@ target 'iZalo' do
     pod 'GooglePlacePicker'
     pod 'GoogleMaps'
     
+    
 end

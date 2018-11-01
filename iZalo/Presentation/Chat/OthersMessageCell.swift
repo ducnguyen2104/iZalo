@@ -38,11 +38,9 @@ class OthersMessageCell: BaseMessageCell {
         let tags = ["<b>", "<i>", "<mark>", "<del>", "<ins>", "<sub>", "<sup>"]
         
         if(tags.contains(where: item.message.content.contains)) { //check if message contains one of these tags
-            print("html")
             let htmlString = stringProcessing(rawString: item.message.content)
             messageLabel.attributedText = htmlString
         } else {
-            print("not html")
             messageLabel.text = item.message.content
         }
         if !item.isTimeHidden {

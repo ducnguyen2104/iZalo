@@ -173,6 +173,7 @@ final class ChatVM: ViewModelDelegate {
                       emojiItems: self.emojiItems.asDriver())
     }
     
+    
     func sendImageMessage(url: URL) {
         let date = Date()
         let timestamp = Int(date.timeIntervalSince1970)
@@ -180,9 +181,10 @@ final class ChatVM: ViewModelDelegate {
         let hour = calendar.component(.hour, from: date)
         let minute = calendar.component(.minute, from: date)
         let uploadFileMessageUseCase = UploadFileMessageUseCase()
-//        self.messages.append(Message(id:"dummy\(self.currentUsername)\(timestamp)", senderId: self.currentUsername, conversationId: self.conversation.id, content: url.absoluteString, type: Constant.imageMessage, timestamp: timestamp, timestampInString: "\(hour):\(minute)"))
+//        self.messages.append(Message(id:"dummy\(self.currentUsername)\(timestamp)", senderId: self.currentUsername, conversationId: self.conversation.id, content: "Đang gửi...", type: Constant.textMessage, timestamp: timestamp, timestampInString: "\(hour):\(minute)"))
 //        Observable.just(self.messages)
 //            .do(onNext: {(messages) in
+//                print("append dummy message")
 //                self.items.accept(self.messagesToMessageItems(messages: messages))
 //            })
 //            .asDriverOnErrorJustComplete()
@@ -201,7 +203,7 @@ final class ChatVM: ViewModelDelegate {
             .asDriverOnErrorJustComplete()
             .drive()
             .disposed(by: self.disposeBag)
-    }
+        }
     
     func sendLocationMessage(lat: Double, long: Double) {
         let date = Date()

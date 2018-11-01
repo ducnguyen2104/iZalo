@@ -12,7 +12,9 @@ class MyFileMessageCell: UITableViewCell {
     @IBOutlet weak var messageContainerView: UIView!
     @IBOutlet weak var fileNameLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
+    @IBOutlet weak var downloadImageView: UIImageView!
     @IBOutlet weak var timestampLabelHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     override func awakeFromNib() {
         super.awakeFromNib()
         setupLayout()
@@ -20,6 +22,7 @@ class MyFileMessageCell: UITableViewCell {
     }
     
     private func setupLayout() {
+        self.activityIndicator.isHidden = true
         self.selectionStyle = .none
         self.messageContainerView.layer.cornerRadius = 10
         self.messageContainerView.layer.borderWidth = 0.1
@@ -39,11 +42,21 @@ class MyFileMessageCell: UITableViewCell {
         let underlineAttriString = NSAttributedString(string: String(fileName), attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.styleSingle.rawValue])
         self.fileNameLabel.attributedText = underlineAttriString
     }
+    
+    func showIndicator() {
+        self.downloadImageView.isHidden = true
+        self.activityIndicator.isHidden = false
+        self.activityIndicator.startAnimating()
+    }
+    
+    func hideIndicator() {
+        self.downloadImageView.isHidden = false
+        self.activityIndicator.isHidden = true
+        self.activityIndicator.stopAnimating()
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
 }

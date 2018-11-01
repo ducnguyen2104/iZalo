@@ -21,6 +21,7 @@ class MyImageMessageCell: UITableViewCell {
     }
     
     private func setupLayout() {
+        self.messageImageView.kf.indicatorType = .activity
         self.selectionStyle = .none
         self.messageContainerView.layer.cornerRadius = 10
         self.messageContainerView.layer.borderWidth = 0.1

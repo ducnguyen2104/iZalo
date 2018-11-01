@@ -22,13 +22,29 @@ class MessageRealmSource: MessageLocalSource {
         }
     }
     
-    func persistMessage(messages: [Message]) -> Observable<Bool> {
+    func persistMessages(messages: [Message]) -> Observable<Bool> {
         return Observable.deferred {
             let realm = try Realm()
             try realm.write {
                 realm.add(messages.map { MessageRealm.from(message: $0) }, update: true)
             }
             return Observable.just(true)
+        }
+    }
+    
+    func persistMessage(message: Message) -> Observable<[Message]> {
+        return Observable.deferred {
+            let realm = try Realm()
+            try realm.write {
+                realm.add( MessageRealm.from(message: message) , update: true)
+            }
+            let realmMessages = realm.objects(MessageRealm.self).filter("conversationId = '\(message.conversationId)'")
+            var messages: [Message] = []
+            for messageRealm in realmMessages {
+                messages.append(messageRealm.convert())
+            }
+            
+            return Observable.just(messages)
         }
     }
 }
