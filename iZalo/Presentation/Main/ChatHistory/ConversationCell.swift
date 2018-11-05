@@ -48,7 +48,7 @@ class ConversationCell: UITableViewCell {
             """
         case Constant.imageMessage:
             self.lastMessageLabel.text = "\(sender): [Ảnh]"
-        case Constant.voiceMessage:
+        case Constant.audioMessage:
             self.lastMessageLabel.text = "\(sender): [Audio]"
         case Constant.videoMessage:
             self.lastMessageLabel.text = "\(sender): [Video]"
@@ -86,7 +86,7 @@ class ConversationCell: UITableViewCell {
                 """
             case Constant.imageMessage:
                 self.lastMessageLabel.text = "\(sender): [Ảnh]"
-            case Constant.voiceMessage:
+            case Constant.audioMessage:
                 self.lastMessageLabel.text = "\(sender): [Audio]"
             case Constant.videoMessage:
                 self.lastMessageLabel.text = "\(sender): [Video]"

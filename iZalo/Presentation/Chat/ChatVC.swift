@@ -27,6 +27,7 @@ protocol ChatDisplayLogic: class {
     func openPlacePicker()
     func setSendImage()
     func setSendFile()
+    func countDown(ip: IndexPath, time: Int)
 }
 
 class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -62,6 +63,7 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
     private var contactObservable: Observable<Contact>?
     private var isSendImage = false
     private var tempImage: UIImage?
+    var countdownTimer: Timer!
     
     class func instance(conversation: Conversation, currentUsername: String, contactObservable: Observable<Contact>) -> ChatVC {
         return ChatVC(conversation: conversation, currentUsername: currentUsername, contactObservable: contactObservable)
@@ -116,6 +118,8 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         self.tableView.register(UINib(nibName: "OthersLocationGGMessageCell", bundle: nil), forCellReuseIdentifier: "OthersLocationGGMessageCell")
         self.tableView.register(UINib(nibName: "MyFileMessageCell", bundle: nil), forCellReuseIdentifier: "MyFileMessageCell")
         self.tableView.register(UINib(nibName: "OthersFileMessageCell", bundle: nil), forCellReuseIdentifier: "OthersFileMessageCell")
+        self.tableView.register(UINib(nibName: "MyAudioMessageCell", bundle: nil), forCellReuseIdentifier: "MyAudioMessageCell")
+        
         self.tableView.separatorStyle = .none
         self.emojiCollectionView.register(UINib(nibName: "EmojiCell", bundle: nil), forCellWithReuseIdentifier: "EmojiCell")
         
@@ -165,6 +169,17 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
                 } else {
                     let cell = tv.dequeueReusableCell(withIdentifier: "OthersFileMessageCell", for: ip) as! OthersFileMessageCell
                     cell.bind(item: item, contactObservable: self.contactObservable!)
+                    return cell
+                }
+            case Constant.audioMessage:
+                if(item.message.senderId == self.currentUsername) {
+                    let cell = tv.dequeueReusableCell(withIdentifier: "MyAudioMessageCell", for: ip) as! MyAudioMessageCell
+                    cell.bind(item: item)
+                    cell.stopAnimating()
+                    return cell
+                } else {
+                    let cell = tv.dequeueReusableCell(withIdentifier: "MyAudioMessageCell", for: ip) as! MyAudioMessageCell
+                    cell.bind(item: item)
                     return cell
                 }
             default:
@@ -233,6 +248,15 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
                     }
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     
+                case Constant.audioMessage:
+                    let cell = self.tableView.cellForRow(at: ip) as! MyAudioMessageCell
+                    if cell.isAnimating {
+                        cell.stopAnimating()
+                    }
+                    else {
+                        cell.startAnimating()
+                        self.viewModel.loadAndPlayAudio(path:  String(item.message.content.split(separator: ",")[0]), ip: ip)
+                    }
                 default:
                     return
                 }
@@ -429,6 +453,11 @@ extension ChatVC: ChatDisplayLogic {
         self.isSendImage = false
     }
     
+    func countDown(ip: IndexPath, time: Int) {
+//        let cell = self.tableView.cellForRow(at: ip) as! MyAudioMessageCell
+//        cell.startTimer(totalTime: time)
+    }
+
     private func showButtonContainer() {
         let animator = UIViewPropertyAnimator(duration: 0.15, curve: .linear, animations: {
             self.tableView.frame = CGRect(x: self.tableView.frame.minX, y: self.tableView.frame.minY, width: self.tableView.frame.width, height: self.tableView.frame.height - self.buttonsContainer.frame.height)

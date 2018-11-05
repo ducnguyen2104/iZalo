@@ -22,6 +22,8 @@ final class ChatVM: ViewModelDelegate {
     private let sendMessageUsecase = SendMessageUsecase()
     private let loadMessageUsecase = LoadMessageUseCase()
     private let persistMessageUseCase = PersistMessageUseCase()
+    private let loadAndPlayAudioUseCase = LoadAndPlayAudioUseCase()
+    
     let activityIndicator = ActivityIndicator()
     let errorTracker = ErrorTracker()
     var messages: [Message] = []
@@ -101,7 +103,8 @@ final class ChatVM: ViewModelDelegate {
                     let calendar = Calendar.current
                     let hour = calendar.component(.hour, from: date)
                     let minute = calendar.component(.minute, from: date)
-                    let message = Message(id: "\(self.currentUsername)\(timestamp)", senderId: self.currentUsername, conversationId: self.conversation.id, content: self.textMessage.value, type: Constant.textMessage, timestamp: timestamp, timestampInString: "\(hour):\(minute)")
+                    let timestampInString = minute >= 10 ? "\(hour):\(minute)" : "\(hour):0\(minute)"
+                    let message = Message(id: "\(self.currentUsername)\(timestamp)", senderId: self.currentUsername, conversationId: self.conversation.id, content: self.textMessage.value, type: Constant.textMessage, timestamp: timestamp, timestampInString: timestampInString)
                     return Observable.just(message)
                     }
                     .flatMap{ [unowned self] (msg) -> Observable<[Message]> in
@@ -173,23 +176,6 @@ final class ChatVM: ViewModelDelegate {
                 self.displayLogic?.setSendFile()
                 self.displayLogic?.gotoLibrary()
                 self.displayLogic?.showHideButtonContainer()
-//                let date = Date()
-//                let timestamp = Int(date.timeIntervalSince1970)
-//                let calendar = Calendar.current
-//                let hour = calendar.component(.hour, from: date)
-//                let minute = calendar.component(.minute, from: date)
-//                let message = Message(id: "\(self.currentUsername)\(timestamp)", senderId: self.currentUsername, conversationId: self.conversation.id, content: "dummy", type: Constant.textMessage, timestamp: timestamp, timestampInString: "\(hour):\(minute)")
-//                self.persistMessageUseCase.execute(request: message)
-//                    .do(onNext: { (messages) in
-//                        self.messages = messages
-//                        let items = self.messagesToMessageItems(messages:messages)
-//                        self.items.accept(items)
-//                    })
-//                    .trackActivity(self.activityIndicator)
-//                    .trackError(self.errorTracker)
-//                    .asDriverOnErrorJustComplete()
-//                    .drive()
-//                    .disposed(by: self.disposeBag)
             })
             .disposed(by: self.disposeBag)
         
@@ -206,8 +192,9 @@ final class ChatVM: ViewModelDelegate {
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: date)
         let minute = calendar.component(.minute, from: date)
+        let timestampInString = minute >= 10 ? "\(hour):\(minute)" : "\(hour):0\(minute)"
         let uploadFileMessageUseCase = UploadFileMessageUseCase()
-        sendMessageUsecase.execute(request: SendMessageRequest(message: Message(id: "\(self.currentUsername)\(timestamp)", senderId: self.currentUsername, conversationId: self.conversation.id, content: "url", type: Constant.imageMessage, timestamp: timestamp, timestampInString: "\(hour):\(minute)"), conversation:
+        sendMessageUsecase.execute(request: SendMessageRequest(message: Message(id: "\(self.currentUsername)\(timestamp)", senderId: self.currentUsername, conversationId: self.conversation.id, content: "url", type: Constant.imageMessage, timestamp: timestamp, timestampInString: timestampInString), conversation:
             self.conversation))
             .asDriverOnErrorJustComplete()
             .drive()
@@ -233,7 +220,8 @@ final class ChatVM: ViewModelDelegate {
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: date)
         let minute = calendar.component(.minute, from: date)
-        let message = Message(id:"\(self.currentUsername)\(timestamp)", senderId: self.currentUsername, conversationId: self.conversation.id, content: "\(lat),\(long)", type: Constant.locationMessage, timestamp: timestamp, timestampInString: "\(hour):\(minute)")
+        let timestampInString = minute >= 10 ? "\(hour):\(minute)" : "\(hour):0\(minute)"
+        let message = Message(id:"\(self.currentUsername)\(timestamp)", senderId: self.currentUsername, conversationId: self.conversation.id, content: "\(lat),\(long)", type: Constant.locationMessage, timestamp: timestamp, timestampInString: timestampInString)
         let sendMessageUseCase = SendMessageUsecase()
         sendMessageUseCase
             .execute(request: SendMessageRequest(message: message, conversation: self.conversation))
@@ -248,11 +236,12 @@ final class ChatVM: ViewModelDelegate {
         let calendar = Calendar.current
         let hour = calendar.component(.hour, from: date)
         let minute = calendar.component(.minute, from: date)
+        let timestampInString = minute >= 10 ? "\(hour):\(minute)" : "\(hour):0\(minute)"
         let uploadFileMessageUseCase = UploadFileMessageUseCase()
         let fileName = url.lastPathComponent
         print("file name: \(fileName)")
     
-        sendMessageUsecase.execute(request: SendMessageRequest(message: Message(id: "\(self.currentUsername)\(timestamp)", senderId: self.currentUsername, conversationId: self.conversation.id, content: "url,\(fileName)", type: Constant.fileMessage, timestamp: timestamp, timestampInString: "\(hour):\(minute)"), conversation:
+        sendMessageUsecase.execute(request: SendMessageRequest(message: Message(id: "\(self.currentUsername)\(timestamp)", senderId: self.currentUsername, conversationId: self.conversation.id, content: "url,\(fileName)", type: Constant.fileMessage, timestamp: timestamp, timestampInString: timestampInString), conversation:
             self.conversation))
         .asDriverOnErrorJustComplete()
         .drive()
@@ -271,6 +260,17 @@ final class ChatVM: ViewModelDelegate {
             .asDriverOnErrorJustComplete()
             .drive()
             .disposed(by: self.disposeBag)
+    }
+    
+    func loadAndPlayAudio(path: String, ip: IndexPath) {
+        return loadAndPlayAudioUseCase.execute(request: path)
+            .do(onNext: {(time) in
+                print(time)
+                self.displayLogic?.countDown(ip: ip, time: Int(time))
+            })
+        .asDriverOnErrorJustComplete()
+        .drive()
+        .disposed(by: self.disposeBag)
     }
     
     private func messagesToMessageItems(messages: [Message]) -> [MessageItem] {

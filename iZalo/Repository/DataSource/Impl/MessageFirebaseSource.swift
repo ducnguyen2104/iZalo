@@ -10,9 +10,10 @@ import Foundation
 import FirebaseDatabase
 import RxSwift
 import FirebaseStorage
+import AVKit
 
 class MessageFirebaseSource: MessageRemoteSource {
-    
+    var player: AVAudioPlayer?
     private let ref: DatabaseReference! = Database.database().reference()
     private let storageRef: StorageReference! = Storage.storage().reference()
     
@@ -23,7 +24,7 @@ class MessageFirebaseSource: MessageRemoteSource {
             var childUpdates:[String : Any] = [
                 "/message/\(request.message.conversationId)/\(request.message.id)" : request.messageToDictionary(),
                 "conversation/\(request.message.conversationId)" : request.conversationToDictionary(),
-                                ]
+                ]
             for user in request.conversation.members {
                 childUpdates["user/\(user)/conversations/\(request.conversation.id)"] = request.conversation.id
             }
@@ -49,27 +50,27 @@ class MessageFirebaseSource: MessageRemoteSource {
                 .queryOrdered(byChild: "timestamp")
                 .queryLimited(toLast: 15)
                 .observe(.value, with: { (datasnapshot) in
-                if(!(datasnapshot.value is NSNull)) {
-                    for data in ((datasnapshot.children.allObjects as? [DataSnapshot])!) {
-                        let value = MessageResponse(value: data.value as! NSDictionary)
-                        let message = value.convert()
-                        messageObjects.append(message)
-                        if (messageObjects.count == datasnapshot.childrenCount) { //check for last message
-                            if(messageObjects.count > 0) {
-                                print("load message: \(messageObjects.count)")
-                                observer.onNext(messageObjects.reversed())
-                                messageObjects = []
-                                //observer.onCompleted()
-                            } else {
-                                observer.onError(ParseDataError(parseClass: "MessageResponse", errorMessage: "Cuộc hội thoại không tồn tại"))
+                    if(!(datasnapshot.value is NSNull)) {
+                        for data in ((datasnapshot.children.allObjects as? [DataSnapshot])!) {
+                            let value = MessageResponse(value: data.value as! NSDictionary)
+                            let message = value.convert()
+                            messageObjects.append(message)
+                            if (messageObjects.count == datasnapshot.childrenCount) { //check for last message
+                                if(messageObjects.count > 0) {
+                                    print("load message: \(messageObjects.count)")
+                                    observer.onNext(messageObjects.reversed())
+                                    messageObjects = []
+                                    //observer.onCompleted()
+                                } else {
+                                    observer.onError(ParseDataError(parseClass: "MessageResponse", errorMessage: "Cuộc hội thoại không tồn tại"))
+                                }
                             }
                         }
                     }
-                }
-                else {
-                    observer.onNext([])
-                }
-            })
+                    else {
+                        observer.onNext([])
+                    }
+                })
             return Disposables.create()
         }
     }
@@ -98,7 +99,7 @@ class MessageFirebaseSource: MessageRemoteSource {
                     }
                 }
             case Constant.fileMessage:
-                let fileRef = self.storageRef.child(" /\(request.url.lastPathComponent)")
+                let fileRef = self.storageRef.child("file/\(request.url.lastPathComponent)")
                 fileRef.putFile(from: request.url, metadata: nil)
                 { metadata, error in
                     guard let metadata = metadata else {
@@ -122,6 +123,36 @@ class MessageFirebaseSource: MessageRemoteSource {
             }
             
             
+            return Disposables.create()
+        }
+    }
+    
+    func loadAndPlayAudio(url: String) -> Observable<TimeInterval> {
+        let fileURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("tempAudio.mp3")
+        
+        return Observable.create {[unowned self] (observer) in
+            let downloadTask = self.storageRef.child(url).getData(maxSize: 10*1024*1024){ (data, error) in
+                if let error = error {
+                    print(error)
+                } else {
+                    if let d = data {
+                        do {
+                            try d.write(to: fileURL)
+                            print("file url: \(fileURL)")
+                            self.player = try AVAudioPlayer(contentsOf: fileURL)
+                            guard self.player != nil else { return }
+                            self.player!.prepareToPlay()
+                            self.player!.volume = 1.0
+                            self.player!.play()
+                            observer.onNext(self.player!.duration)
+                        } catch {
+                            print(error)
+                        }
+                    }
+                }
+            }
+            downloadTask.observe(.success) { snapshot in
+            }
             return Disposables.create()
         }
     }

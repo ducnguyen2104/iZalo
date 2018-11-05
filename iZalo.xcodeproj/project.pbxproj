@@ -34,6 +34,9 @@
 		97133748216CB729000A609A /* SearchUsernameUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97133747216CB729000A609A /* SearchUsernameUseCase.swift */; };
 		9713374A216CC013000A609A /* ContactSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97133749216CC013000A609A /* ContactSearchResult.swift */; };
 		971E9835218FE37E005A526D /* PersistMessageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971E9834218FE37E005A526D /* PersistMessageUseCase.swift */; };
+		971E983821902BF3005A526D /* MyAudioMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971E983621902BF3005A526D /* MyAudioMessageCell.swift */; };
+		971E983921902BF3005A526D /* MyAudioMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 971E983721902BF3005A526D /* MyAudioMessageCell.xib */; };
+		971E983B21903F97005A526D /* LoadAndPlayAudioUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971E983A21903F97005A526D /* LoadAndPlayAudioUseCase.swift */; };
 		971ED8D921743150001F8217 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971ED8D721743150001F8217 /* SettingCell.swift */; };
 		971ED8DA21743150001F8217 /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 971ED8D821743150001F8217 /* SettingCell.xib */; };
 		971ED8DC21743380001F8217 /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971ED8DB21743380001F8217 /* SettingItem.swift */; };
@@ -199,6 +202,9 @@
 		97133747216CB729000A609A /* SearchUsernameUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsernameUseCase.swift; sourceTree = "<group>"; };
 		97133749216CC013000A609A /* ContactSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSearchResult.swift; sourceTree = "<group>"; };
 		971E9834218FE37E005A526D /* PersistMessageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistMessageUseCase.swift; sourceTree = "<group>"; };
+		971E983621902BF3005A526D /* MyAudioMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAudioMessageCell.swift; sourceTree = "<group>"; };
+		971E983721902BF3005A526D /* MyAudioMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyAudioMessageCell.xib; sourceTree = "<group>"; };
+		971E983A21903F97005A526D /* LoadAndPlayAudioUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadAndPlayAudioUseCase.swift; sourceTree = "<group>"; };
 		971ED8D721743150001F8217 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		971ED8D821743150001F8217 /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
 		971ED8DB21743380001F8217 /* SettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItem.swift; sourceTree = "<group>"; };
@@ -588,6 +594,7 @@
 				971ED8E0217482F1001F8217 /* ChangeAvatarUseCase.swift */,
 				970656B62176EA03002A5FF6 /* UploadImageMessageUseCase.swift */,
 				971E9834218FE37E005A526D /* PersistMessageUseCase.swift */,
+				971E983A21903F97005A526D /* LoadAndPlayAudioUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -716,6 +723,8 @@
 				97215B8C2186F590000FB9D6 /* MyFileMessageCell.xib */,
 				97215B8F21870065000FB9D6 /* OthersFileMessageCell.swift */,
 				97215B9021870065000FB9D6 /* OthersFileMessageCell.xib */,
+				971E983621902BF3005A526D /* MyAudioMessageCell.swift */,
+				971E983721902BF3005A526D /* MyAudioMessageCell.xib */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -839,6 +848,7 @@
 				97DFB55E215B90C30001ADFB /* ChatVC.xib in Resources */,
 				973CBE922153B63C00403D2D /* ConversationCell.xib in Resources */,
 				9736A3D821538D550085219D /* ContactVC.xib in Resources */,
+				971E983921902BF3005A526D /* MyAudioMessageCell.xib in Resources */,
 				971ED8DA21743150001F8217 /* SettingCell.xib in Resources */,
 				97CF54CA214FB7CE007609BE /* LoginVC.xib in Resources */,
 				97215B8E2186F590000FB9D6 /* MyFileMessageCell.xib in Resources */,
@@ -1031,6 +1041,7 @@
 				975FEA732181B8010044BE23 /* ViewLocationGGMapsVC.swift in Sources */,
 				97E2C0E92158985900FA9348 /* LoadConversationUseCase.swift in Sources */,
 				97D6D55D215258EF0070E521 /* ValidateError.swift in Sources */,
+				971E983B21903F97005A526D /* LoadAndPlayAudioUseCase.swift in Sources */,
 				97B55CFD215247DA0030F75D /* UserResponse.swift in Sources */,
 				97F934C021807D85001533BE /* ViewLocationVM.swift in Sources */,
 				970656B92176ED4B002A5FF6 /* UploadFileMessageRequest.swift in Sources */,
@@ -1072,6 +1083,7 @@
 				97E2C0E52158850800FA9348 /* ConversationItem.swift in Sources */,
 				97DB46EA21520D0700F018DC /* ErrorTracker.swift in Sources */,
 				97F934AD218051D8001533BE /* NumberUtils.swift in Sources */,
+				971E983821902BF3005A526D /* MyAudioMessageCell.swift in Sources */,
 				972CAD4C216F4F3A007972B6 /* SubStringIndex.swift in Sources */,
 				970656BC2176F5C8002A5FF6 /* MyImageMessageCell.swift in Sources */,
 				97E2C0F82158A46200FA9348 /* ConversationFirebaseSource.swift in Sources */,
