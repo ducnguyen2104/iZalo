@@ -11,7 +11,7 @@ import RxSwift
 
 protocol MessageLocalSource {
     func loadMessage() -> Observable<[Message]>
-    func persistMessages(messages: [Message]) -> Observable<Bool>
+    func persistMessages(messages: [Message]) -> Observable<[Message]>
     func persistMessage(message: Message) -> Observable<[Message]>
 }
 

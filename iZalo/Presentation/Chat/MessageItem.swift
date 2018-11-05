@@ -32,6 +32,13 @@ extension MessageItem: IdentifiableType {
 
 extension MessageItem: Equatable {
     static func == (lhs: MessageItem, rhs: MessageItem) -> Bool {
+        if lhs.message.type == Constant.fileMessage
+        || rhs.message.type == Constant.imageMessage {
+            return lhs.identity == rhs.identity
+                && lhs.message.content == rhs.message.content
+                && lhs.isTimeHidden == rhs.isTimeHidden
+                && lhs.isAvatarHidden == rhs.isAvatarHidden
+        }
             return lhs.identity == rhs.identity
                 && lhs.isTimeHidden == rhs.isTimeHidden
                 && lhs.isAvatarHidden == rhs.isAvatarHidden

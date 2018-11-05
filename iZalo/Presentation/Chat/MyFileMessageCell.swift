@@ -41,6 +41,11 @@ class MyFileMessageCell: UITableViewCell {
         let fileName = item.message.content.split(separator: ",")[1]
         let underlineAttriString = NSAttributedString(string: String(fileName), attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.styleSingle.rawValue])
         self.fileNameLabel.attributedText = underlineAttriString
+        if item.message.content.split(separator: ",")[0] == "url" {
+            showIndicator()
+        } else {
+            hideIndicator()
+        }
     }
     
     func showIndicator() {

@@ -13,6 +13,7 @@ protocol MessageRepository {
     func loadMessage(conversation: Conversation, username: String) -> Observable<[Message]>
     func sendMessage(request: SendMessageRequest) -> Observable<Bool>
     func uploadFile(request: UploadFileMessageRequest) -> Observable<String>
+    func persistMessage(message: Message) -> Observable<[Message]>
 }
 
 class MessageRepositoryFactory {

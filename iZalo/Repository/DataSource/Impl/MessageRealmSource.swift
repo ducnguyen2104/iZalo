@@ -22,13 +22,13 @@ class MessageRealmSource: MessageLocalSource {
         }
     }
     
-    func persistMessages(messages: [Message]) -> Observable<Bool> {
+    func persistMessages(messages: [Message]) -> Observable<[Message]> {
         return Observable.deferred {
             let realm = try Realm()
             try realm.write {
                 realm.add(messages.map { MessageRealm.from(message: $0) }, update: true)
             }
-            return Observable.just(true)
+            return Observable.just(messages.sorted(by: { $0.timestamp > $1.timestamp }))
         }
     }
     
@@ -44,7 +44,7 @@ class MessageRealmSource: MessageLocalSource {
                 messages.append(messageRealm.convert())
             }
             
-            return Observable.just(messages)
+            return Observable.just(messages.sorted(by: { $0.timestamp > $1.timestamp }))
         }
     }
 }

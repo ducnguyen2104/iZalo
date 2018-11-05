@@ -17,7 +17,7 @@ class MessageFirebaseSource: MessageRemoteSource {
     private let storageRef: StorageReference! = Storage.storage().reference()
     
     func sendMessage(request: SendMessageRequest) -> Observable<Bool> {
-        
+        print("firebase send message")
         return Observable.create { [unowned self] (observer) in
             self.ref.child("message").child(request.message.conversationId).child(request.message.id).setValue(request.messageToDictionary())
             var childUpdates:[String : Any] = [
@@ -34,6 +34,7 @@ class MessageFirebaseSource: MessageRemoteSource {
                     observer.onNext(false)
                 } else {
                     observer.onNext(true)
+                    print("firebase message sent")
                 }
             }
             return Disposables.create()

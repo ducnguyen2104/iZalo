@@ -33,6 +33,7 @@
 		97133746216CB611000A609A /* SearchUsernameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97133745216CB611000A609A /* SearchUsernameRequest.swift */; };
 		97133748216CB729000A609A /* SearchUsernameUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97133747216CB729000A609A /* SearchUsernameUseCase.swift */; };
 		9713374A216CC013000A609A /* ContactSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97133749216CC013000A609A /* ContactSearchResult.swift */; };
+		971E9835218FE37E005A526D /* PersistMessageUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971E9834218FE37E005A526D /* PersistMessageUseCase.swift */; };
 		971ED8D921743150001F8217 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971ED8D721743150001F8217 /* SettingCell.swift */; };
 		971ED8DA21743150001F8217 /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 971ED8D821743150001F8217 /* SettingCell.xib */; };
 		971ED8DC21743380001F8217 /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971ED8DB21743380001F8217 /* SettingItem.swift */; };
@@ -197,6 +198,7 @@
 		97133745216CB611000A609A /* SearchUsernameRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsernameRequest.swift; sourceTree = "<group>"; };
 		97133747216CB729000A609A /* SearchUsernameUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUsernameUseCase.swift; sourceTree = "<group>"; };
 		97133749216CC013000A609A /* ContactSearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactSearchResult.swift; sourceTree = "<group>"; };
+		971E9834218FE37E005A526D /* PersistMessageUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistMessageUseCase.swift; sourceTree = "<group>"; };
 		971ED8D721743150001F8217 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		971ED8D821743150001F8217 /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
 		971ED8DB21743380001F8217 /* SettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItem.swift; sourceTree = "<group>"; };
@@ -585,6 +587,7 @@
 				971ED8DD217445F4001F8217 /* LoadCurrenUserInfoUseCase.swift */,
 				971ED8E0217482F1001F8217 /* ChangeAvatarUseCase.swift */,
 				970656B62176EA03002A5FF6 /* UploadImageMessageUseCase.swift */,
+				971E9834218FE37E005A526D /* PersistMessageUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -1024,6 +1027,7 @@
 				97DB46CC2151FE3B00F018DC /* UseCase.swift in Sources */,
 				97215B8D2186F590000FB9D6 /* MyFileMessageCell.swift in Sources */,
 				972CAD48216EE322007972B6 /* AddContactUseCase.swift in Sources */,
+				971E9835218FE37E005A526D /* PersistMessageUseCase.swift in Sources */,
 				975FEA732181B8010044BE23 /* ViewLocationGGMapsVC.swift in Sources */,
 				97E2C0E92158985900FA9348 /* LoadConversationUseCase.swift in Sources */,
 				97D6D55D215258EF0070E521 /* ValidateError.swift in Sources */,

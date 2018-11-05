@@ -21,6 +21,7 @@ final class ChatVM: ViewModelDelegate {
     public let textMessage = BehaviorRelay<String>(value: "")
     private let sendMessageUsecase = SendMessageUsecase()
     private let loadMessageUsecase = LoadMessageUseCase()
+    private let persistMessageUseCase = PersistMessageUseCase()
     let activityIndicator = ActivityIndicator()
     let errorTracker = ErrorTracker()
     var messages: [Message] = []
@@ -100,16 +101,24 @@ final class ChatVM: ViewModelDelegate {
                     let calendar = Calendar.current
                     let hour = calendar.component(.hour, from: date)
                     let minute = calendar.component(.minute, from: date)
-                    return Observable.just(SendMessageRequest(message: Message(id: "\(self.currentUsername)\(timestamp)", senderId: self.currentUsername, conversationId: self.conversation.id, content: self.textMessage.value, type: Constant.textMessage, timestamp: timestamp, timestampInString: "\(hour):\(minute)"), conversation: self.conversation))
+                    let message = Message(id: "\(self.currentUsername)\(timestamp)", senderId: self.currentUsername, conversationId: self.conversation.id, content: self.textMessage.value, type: Constant.textMessage, timestamp: timestamp, timestampInString: "\(hour):\(minute)")
+                    return Observable.just(message)
                     }
-                    .flatMap{ [unowned self] (request) -> Observable<Bool> in
+                    .flatMap{ [unowned self] (msg) -> Observable<[Message]> in
+                        return self.persistMessageUseCase
+                        .execute(request: msg)
+                        .do(onNext: { (messages) in
+                            self.messages = messages
+                            let items = self.messagesToMessageItems(messages:messages)
+                            self.items.accept(items)
+                        })
+                        .trackActivity(self.activityIndicator)
+                        .trackError(self.errorTracker)
+                    }
+                    .flatMap { (msgs) -> Observable<Bool> in
                         return self.sendMessageUsecase
-                            .execute(request: request)
-                            .do(onNext: {[unowned self] (_) in
-                                self.displayLogic?.updateSendStatus()
-                                }, onError: {(_) in
-                                    print("error!!")
-                            })
+                            .execute(request: SendMessageRequest(message: msgs[0], conversation: self.conversation))
+                        
                     }
                     .trackActivity(self.activityIndicator)
                     .trackError(self.errorTracker)
@@ -164,6 +173,23 @@ final class ChatVM: ViewModelDelegate {
                 self.displayLogic?.setSendFile()
                 self.displayLogic?.gotoLibrary()
                 self.displayLogic?.showHideButtonContainer()
+//                let date = Date()
+//                let timestamp = Int(date.timeIntervalSince1970)
+//                let calendar = Calendar.current
+//                let hour = calendar.component(.hour, from: date)
+//                let minute = calendar.component(.minute, from: date)
+//                let message = Message(id: "\(self.currentUsername)\(timestamp)", senderId: self.currentUsername, conversationId: self.conversation.id, content: "dummy", type: Constant.textMessage, timestamp: timestamp, timestampInString: "\(hour):\(minute)")
+//                self.persistMessageUseCase.execute(request: message)
+//                    .do(onNext: { (messages) in
+//                        self.messages = messages
+//                        let items = self.messagesToMessageItems(messages:messages)
+//                        self.items.accept(items)
+//                    })
+//                    .trackActivity(self.activityIndicator)
+//                    .trackError(self.errorTracker)
+//                    .asDriverOnErrorJustComplete()
+//                    .drive()
+//                    .disposed(by: self.disposeBag)
             })
             .disposed(by: self.disposeBag)
         
@@ -181,15 +207,11 @@ final class ChatVM: ViewModelDelegate {
         let hour = calendar.component(.hour, from: date)
         let minute = calendar.component(.minute, from: date)
         let uploadFileMessageUseCase = UploadFileMessageUseCase()
-//        self.messages.append(Message(id:"dummy\(self.currentUsername)\(timestamp)", senderId: self.currentUsername, conversationId: self.conversation.id, content: "Đang gửi...", type: Constant.textMessage, timestamp: timestamp, timestampInString: "\(hour):\(minute)"))
-//        Observable.just(self.messages)
-//            .do(onNext: {(messages) in
-//                print("append dummy message")
-//                self.items.accept(self.messagesToMessageItems(messages: messages))
-//            })
-//            .asDriverOnErrorJustComplete()
-//            .drive()
-//            .disposed(by: self.disposeBag)
+        sendMessageUsecase.execute(request: SendMessageRequest(message: Message(id: "\(self.currentUsername)\(timestamp)", senderId: self.currentUsername, conversationId: self.conversation.id, content: "url", type: Constant.imageMessage, timestamp: timestamp, timestampInString: "\(hour):\(minute)"), conversation:
+            self.conversation))
+            .asDriverOnErrorJustComplete()
+            .drive()
+            .disposed(by: self.disposeBag)
         uploadFileMessageUseCase.execute(request: UploadFileMessageRequest(url: url, type: Constant.imageMessage))
             .do(onNext: {(newUrl) in
                 print("newUrl: \(newUrl)")
@@ -230,6 +252,12 @@ final class ChatVM: ViewModelDelegate {
         let fileName = url.lastPathComponent
         print("file name: \(fileName)")
     
+        sendMessageUsecase.execute(request: SendMessageRequest(message: Message(id: "\(self.currentUsername)\(timestamp)", senderId: self.currentUsername, conversationId: self.conversation.id, content: "url,\(fileName)", type: Constant.fileMessage, timestamp: timestamp, timestampInString: "\(hour):\(minute)"), conversation:
+            self.conversation))
+        .asDriverOnErrorJustComplete()
+        .drive()
+        .disposed(by: self.disposeBag)
+        
         uploadFileMessageUseCase.execute(request: UploadFileMessageRequest(url: url, type: Constant.fileMessage))
             .do(onNext: {(newUrl) in
                 print("newUrl: \(newUrl)")

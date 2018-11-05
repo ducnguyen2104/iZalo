@@ -35,13 +35,21 @@ class MessageRepositoryImpl: MessageRepository {
                 
                 return self.remoteSource
                     .getMessage(conversation: conversation, user: user)
+                    .flatMap{ [unowned self] (messages) -> Observable<[Message]> in
+                        return self.localSource.persistMessages(messages: messages)
+                }
                 
             }
         }
     }
 
     func sendMessage(request: SendMessageRequest) -> Observable<Bool> {
-        return remoteSource.sendMessage(request: request)
+        return self.remoteSource.sendMessage(request: request)
+        
+    }
+    
+    func persistMessage(message: Message) -> Observable<[Message]> {
+        return self.localSource.persistMessage(message: message)
     }
     
     func uploadFile(request: UploadFileMessageRequest) -> Observable<String> {

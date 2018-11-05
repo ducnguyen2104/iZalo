@@ -61,6 +61,7 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
     private var emojis: RxCollectionViewSectionedReloadDataSource<SectionModel<String, EmojiItem>>!
     private var contactObservable: Observable<Contact>?
     private var isSendImage = false
+    private var tempImage: UIImage?
     
     class func instance(conversation: Conversation, currentUsername: String, contactObservable: Observable<Contact>) -> ChatVC {
         return ChatVC(conversation: conversation, currentUsername: currentUsername, contactObservable: contactObservable)
@@ -129,7 +130,7 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
             case Constant.imageMessage:
                 if(item.message.senderId == self.currentUsername) {
                     let cell = tv.dequeueReusableCell(withIdentifier: "MyImageMessageCell", for: ip) as! MyImageMessageCell
-                    cell.bind(item: item)
+                    cell.bind(item: item, image: self.tempImage)
                     return cell
                 } else {
                     let cell = tv.dequeueReusableCell(withIdentifier: "OthersImageMessageCell", for: ip) as! OthersImageMessageCell
@@ -296,6 +297,7 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
             return
         }
         let resizedImage = ImageUtils.resizeImage(image: chosenImage!, targetSize: CGSize(width: min(chosenImage?.size.width ?? 0, 360), height: min(chosenImage?.size.height  ?? 0, 360)))
+        self.tempImage = resizedImage
         let imageURL = info[UIImagePickerControllerImageURL] as? URL
         guard imageURL != nil else {
             return
