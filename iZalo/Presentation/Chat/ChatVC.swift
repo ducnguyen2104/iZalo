@@ -64,6 +64,7 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
     private var isSendImage = false
     private var tempImage: UIImage?
     var countdownTimer: Timer!
+    private let loadAndPlayAudioUseCase = LoadAndPlayAudioUseCase()
     
     class func instance(conversation: Conversation, currentUsername: String, contactObservable: Observable<Contact>) -> ChatVC {
         return ChatVC(conversation: conversation, currentUsername: currentUsername, contactObservable: contactObservable)
@@ -251,11 +252,11 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
                 case Constant.audioMessage:
                     let cell = self.tableView.cellForRow(at: ip) as! MyAudioMessageCell
                     if cell.isAnimating {
-                        cell.stopAnimating()
+                        cell.stopPlaying()
                     }
                     else {
-                        cell.startAnimating()
-                        self.viewModel.loadAndPlayAudio(path:  String(item.message.content.split(separator: ",")[0]), ip: ip)
+                        cell.startPlaying(url: self.loadAndPlayAudioUseCase
+                            .execute(request: String(item.message.content.split(separator: ",")[0])), disposeBag: self.disposeBag)
                     }
                 default:
                     return
@@ -290,7 +291,8 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
             sendNameCardTrigger: self.sendNameCardButton.rx.tap.asDriver(),
             sendLocationMKTrigger: self.sendLocationMKButton.rx.tap.asDriver(),
             sendLocationGGTrigger: self.sendLocationGGButton.rx.tap.asDriver(),
-            sendFileTrigger: self.sendFileButton.rx.tap.asDriver())
+            sendFileTrigger: self.sendFileButton.rx.tap.asDriver(),
+            selectTrigger: self.tableView.rx.itemSelected.asDriver())
         let output = self.viewModel.transform(input: input)
         
         output.fetching.drive(onNext: { [unowned self] (show) in

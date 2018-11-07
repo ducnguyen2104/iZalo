@@ -264,9 +264,8 @@ final class ChatVM: ViewModelDelegate {
     
     func loadAndPlayAudio(path: String, ip: IndexPath) {
         return loadAndPlayAudioUseCase.execute(request: path)
-            .do(onNext: {(time) in
-                print(time)
-                self.displayLogic?.countDown(ip: ip, time: Int(time))
+            .do(onNext: {(url) in
+                
             })
         .asDriverOnErrorJustComplete()
         .drive()
@@ -325,6 +324,7 @@ extension ChatVM {
         let sendLocationMKTrigger: Driver<Void>
         let sendLocationGGTrigger: Driver<Void>
         let sendFileTrigger: Driver<Void>
+        let selectTrigger: Driver<IndexPath>
     }
     
     public struct Output {

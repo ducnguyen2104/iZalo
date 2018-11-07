@@ -14,9 +14,9 @@ class LoadAndPlayAudioUseCase: UseCase {
     private let repository : MessageRepository = MessageRepositoryFactory.sharedInstance
     
     public typealias TRequest = String
-    public typealias TResponse = TimeInterval
+    public typealias TResponse = URL
     
-    public func execute(request: String) -> Observable<TimeInterval> {
+    public func execute(request: String) -> Observable<URL> {
         return self.repository
             .loadAndPlayAudio(url: request)
     }

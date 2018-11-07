@@ -8,6 +8,8 @@
 
 import UIKit
 import Kingfisher
+import RxSwift
+import AVKit
 
 class MyAudioMessageCell: UITableViewCell {
 
@@ -18,9 +20,14 @@ class MyAudioMessageCell: UITableViewCell {
     @IBOutlet weak var playImageView: UIImageView!
     @IBOutlet weak var messageContainerView: UIView!
     public var isAnimating = false
+    public var isPausing = false
     private let loadAndPlayAudioUseCase = LoadAndPlayAudioUseCase()
     private var firebasePath: String?
     var countdownTimer: Timer!
+    var player: AVAudioPlayer?
+    var timer: Timer?
+    var duration: String?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setupLayout()
@@ -47,6 +54,7 @@ class MyAudioMessageCell: UITableViewCell {
             self.timestampLabel.isHidden = true
         }
         self.durationLabel.text = String(item.message.content.split(separator: ",")[1])
+        self.duration = String(item.message.content.split(separator: ",")[1])
     }
     
     func startAnimating() {
@@ -66,6 +74,72 @@ class MyAudioMessageCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func startPlaying(url: Observable<URL>, disposeBag: DisposeBag) {
+        print("startPlaying")
+        url.do(onNext: { (fileURL) in
+            do {
+                print("url: \(fileURL)")
+                self.player = try AVAudioPlayer(contentsOf: fileURL)
+                guard self.player != nil else { return }
+                self.player!.prepareToPlay()
+                self.player!.volume = 1.0
+                self.player!.play()
+                if(self.timer == nil) {
+                    self.timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updateAudioProgressView), userInfo: nil, repeats: true)
+                }
+                self.startAnimating()
+            }
+            catch
+            {
+                print("An error occurred while trying to extract audio file")
+            }
+        })
+        .asDriverOnErrorJustComplete()
+        .drive()
+        .disposed(by: disposeBag)
+    }
+    
+    func stopPlaying() {
+        if self.player != nil {
+            self.player?.stop()
+            self.player = nil
+        }
+        self.stopAnimating()
+        self.durationLabel.text = self.duration
+        if(self.timer != nil) {
+            self.timer!.invalidate()
+            self.timer = nil
+        }
+    }
+    
+    var count = 0
+    @objc public func updateAudioProgressView()
+    {
+        print("update \(count)")
+        count += 1
+        if self.player!.isPlaying
+        {
+            let (h,m,s) = secondsToHoursMinutesSeconds(seconds: Int(round(self.player!.duration - self.player!.currentTime)))
+            let hString = h < 10 ? "0\(h)" : "\(h)"
+            let mString = m < 10 ? "0\(m)" : "\(m)"
+            let sString = s < 10 ? "0\(s)" : "\(s)"
+            // Update progress
+            self.durationLabel.text = "\(hString):\(mString):\(sString)"
+        }
+        
+        else {
+            self.stopAnimating()
+            if(self.timer != nil) {
+                self.timer!.invalidate()
+                self.timer = nil
+            }
+            self.durationLabel.text = self.duration
+        }
+    }
+    
+    func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
+        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
+    }
     
 //    var totalTime: Int?
 //    public func startTimer(totalTime: Int) {

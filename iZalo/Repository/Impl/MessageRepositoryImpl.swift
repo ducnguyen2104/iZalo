@@ -56,7 +56,7 @@ class MessageRepositoryImpl: MessageRepository {
         return remoteSource.uploadFile(request: request)
     }
     
-    func loadAndPlayAudio(url: String) -> Observable<TimeInterval> {
+    func loadAndPlayAudio(url: String) -> Observable<URL> {
         return remoteSource.loadAndPlayAudio(url: url)
     }
 }

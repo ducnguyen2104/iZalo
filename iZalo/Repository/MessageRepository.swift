@@ -14,7 +14,7 @@ protocol MessageRepository {
     func sendMessage(request: SendMessageRequest) -> Observable<Bool>
     func uploadFile(request: UploadFileMessageRequest) -> Observable<String>
     func persistMessage(message: Message) -> Observable<[Message]>
-    func loadAndPlayAudio(url: String) -> Observable<TimeInterval>
+    func loadAndPlayAudio(url: String) -> Observable<URL>
 }
 
 class MessageRepositoryFactory {

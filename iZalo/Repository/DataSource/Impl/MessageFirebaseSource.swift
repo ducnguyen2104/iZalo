@@ -127,7 +127,7 @@ class MessageFirebaseSource: MessageRemoteSource {
         }
     }
     
-    func loadAndPlayAudio(url: String) -> Observable<TimeInterval> {
+    func loadAndPlayAudio(url: String) -> Observable<URL> {
         let fileURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("tempAudio.mp3")
         
         return Observable.create {[unowned self] (observer) in
@@ -139,12 +139,12 @@ class MessageFirebaseSource: MessageRemoteSource {
                         do {
                             try d.write(to: fileURL)
                             print("file url: \(fileURL)")
-                            self.player = try AVAudioPlayer(contentsOf: fileURL)
-                            guard self.player != nil else { return }
-                            self.player!.prepareToPlay()
-                            self.player!.volume = 1.0
-                            self.player!.play()
-                            observer.onNext(self.player!.duration)
+//                            self.player = try AVAudioPlayer(contentsOf: fileURL)
+//                            guard self.player != nil else { return }
+//                            self.player!.prepareToPlay()
+//                            self.player!.volume = 1.0
+//                            self.player!.play()
+                            observer.onNext(fileURL)
                         } catch {
                             print(error)
                         }
