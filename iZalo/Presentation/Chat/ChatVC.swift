@@ -11,6 +11,9 @@ import RxSwift
 import RxDataSources
 import ReverseExtension
 import GooglePlacePicker
+import AVFoundation
+import MediaPlayer
+import AVKit
 
 protocol ChatDisplayLogic: class {
     func goBack()
@@ -120,6 +123,7 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         self.tableView.register(UINib(nibName: "MyFileMessageCell", bundle: nil), forCellReuseIdentifier: "MyFileMessageCell")
         self.tableView.register(UINib(nibName: "OthersFileMessageCell", bundle: nil), forCellReuseIdentifier: "OthersFileMessageCell")
         self.tableView.register(UINib(nibName: "MyAudioMessageCell", bundle: nil), forCellReuseIdentifier: "MyAudioMessageCell")
+        self.tableView.register(UINib(nibName: "MyVideoMessageCell", bundle: nil), forCellReuseIdentifier: "MyVideoMessageCell")
         
         self.tableView.separatorStyle = .none
         self.emojiCollectionView.register(UINib(nibName: "EmojiCell", bundle: nil), forCellWithReuseIdentifier: "EmojiCell")
@@ -180,6 +184,16 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
                     return cell
                 } else {
                     let cell = tv.dequeueReusableCell(withIdentifier: "MyAudioMessageCell", for: ip) as! MyAudioMessageCell
+                    cell.bind(item: item)
+                    return cell
+                }
+            case Constant.videoMessage:
+                if(item.message.senderId == self.currentUsername) {
+                    let cell = tv.dequeueReusableCell(withIdentifier: "MyVideoMessageCell", for: ip) as! MyVideoMessageCell
+                    cell.bind(item: item)
+                    return cell
+                } else {
+                    let cell = tv.dequeueReusableCell(withIdentifier: "MyVideoMessageCell", for: ip) as! MyVideoMessageCell
                     cell.bind(item: item)
                     return cell
                 }
@@ -257,6 +271,16 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
                     else {
                         cell.startPlaying(url: self.loadAndPlayAudioUseCase
                             .execute(request: String(item.message.content.split(separator: ",")[0])), disposeBag: self.disposeBag)
+                    }
+                
+                case Constant.videoMessage:
+                    let url = String(item.message.content.split(separator: ",")[0])
+                    let player = AVPlayer(url: URL(string: url)!)
+                    let playerViewController = AVPlayerViewController()
+                    playerViewController.player = player
+                    self.present(playerViewController, animated: true)
+                    {
+                        playerViewController.player!.play()
                     }
                 default:
                     return

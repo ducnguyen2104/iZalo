@@ -158,6 +158,8 @@
 		97E2C0F62158A3A200FA9348 /* ConversationRemoteSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E2C0F52158A3A200FA9348 /* ConversationRemoteSource.swift */; };
 		97E2C0F82158A46200FA9348 /* ConversationFirebaseSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E2C0F72158A46200FA9348 /* ConversationFirebaseSource.swift */; };
 		97E2C0FA2158A5D300FA9348 /* ConversationLocalSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E2C0F92158A5D300FA9348 /* ConversationLocalSource.swift */; };
+		97E82F7121993A0A002FD0BD /* MyVideoMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E82F6F21993A0A002FD0BD /* MyVideoMessageCell.swift */; };
+		97E82F7221993A0A002FD0BD /* MyVideoMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97E82F7021993A0A002FD0BD /* MyVideoMessageCell.xib */; };
 		97F3DB5B21800ACC00EAEF97 /* PickLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F3DB5921800ACC00EAEF97 /* PickLocationVC.swift */; };
 		97F3DB5C21800ACC00EAEF97 /* PickLocationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97F3DB5A21800ACC00EAEF97 /* PickLocationVC.xib */; };
 		97F3DB5E2180190500EAEF97 /* PickLocationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F3DB5D2180190500EAEF97 /* PickLocationVM.swift */; };
@@ -329,6 +331,8 @@
 		97E2C0F52158A3A200FA9348 /* ConversationRemoteSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationRemoteSource.swift; sourceTree = "<group>"; };
 		97E2C0F72158A46200FA9348 /* ConversationFirebaseSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationFirebaseSource.swift; sourceTree = "<group>"; };
 		97E2C0F92158A5D300FA9348 /* ConversationLocalSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationLocalSource.swift; sourceTree = "<group>"; };
+		97E82F6F21993A0A002FD0BD /* MyVideoMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVideoMessageCell.swift; sourceTree = "<group>"; };
+		97E82F7021993A0A002FD0BD /* MyVideoMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyVideoMessageCell.xib; sourceTree = "<group>"; };
 		97F3DB5921800ACC00EAEF97 /* PickLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickLocationVC.swift; sourceTree = "<group>"; };
 		97F3DB5A21800ACC00EAEF97 /* PickLocationVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickLocationVC.xib; sourceTree = "<group>"; };
 		97F3DB5D2180190500EAEF97 /* PickLocationVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickLocationVM.swift; sourceTree = "<group>"; };
@@ -725,6 +729,8 @@
 				97215B9021870065000FB9D6 /* OthersFileMessageCell.xib */,
 				971E983621902BF3005A526D /* MyAudioMessageCell.swift */,
 				971E983721902BF3005A526D /* MyAudioMessageCell.xib */,
+				97E82F6F21993A0A002FD0BD /* MyVideoMessageCell.swift */,
+				97E82F7021993A0A002FD0BD /* MyVideoMessageCell.xib */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -852,6 +858,7 @@
 				971ED8DA21743150001F8217 /* SettingCell.xib in Resources */,
 				97CF54CA214FB7CE007609BE /* LoginVC.xib in Resources */,
 				97215B8E2186F590000FB9D6 /* MyFileMessageCell.xib in Resources */,
+				97E82F7221993A0A002FD0BD /* MyVideoMessageCell.xib in Resources */,
 				97391ABA2178847F00D5E81E /* EmojiCell.xib in Resources */,
 				9713373E216C8BD5000A609A /* AddFriendVC.xib in Resources */,
 				9736A3CE21538BF80085219D /* MainVC.xib in Resources */,
@@ -1098,6 +1105,7 @@
 				971ED8DC21743380001F8217 /* SettingItem.swift in Sources */,
 				97BA589E215B39FB00327FA7 /* LoadContactUseCase.swift in Sources */,
 				970656B72176EA03002A5FF6 /* UploadImageMessageUseCase.swift in Sources */,
+				97E82F7121993A0A002FD0BD /* MyVideoMessageCell.swift in Sources */,
 				97133746216CB611000A609A /* SearchUsernameRequest.swift in Sources */,
 				971ED8D921743150001F8217 /* SettingCell.swift in Sources */,
 				97E2C0F421589F0300FA9348 /* MessageRealm.swift in Sources */,
