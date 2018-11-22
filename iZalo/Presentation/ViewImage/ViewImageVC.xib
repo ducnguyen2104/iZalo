@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewImageVC" customModule="iZalo" customModuleProvider="target">
             <connections>
                 <outlet property="backButton" destination="cQ0-kC-FLg" id="f2Z-Xc-aQa"/>
-                <outlet property="mainImageView" destination="wn4-jV-9QF" id="XaU-mM-iTQ"/>
+                <outlet property="mainImageView" destination="rnY-7X-YYS" id="GaP-CI-dX9"/>
                 <outlet property="mainScrollView" destination="Ucf-G0-a2C" id="xLq-z2-sJs"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -49,23 +49,18 @@
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ucf-G0-a2C">
                     <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wn4-jV-9QF">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rnY-7X-YYS">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                     </subviews>
-                    <constraints>
-                        <constraint firstAttribute="trailing" secondItem="wn4-jV-9QF" secondAttribute="trailing" id="1UA-8i-0hO"/>
-                        <constraint firstItem="wn4-jV-9QF" firstAttribute="width" secondItem="Ucf-G0-a2C" secondAttribute="width" id="AUL-Vw-if6"/>
-                        <constraint firstItem="wn4-jV-9QF" firstAttribute="height" secondItem="Ucf-G0-a2C" secondAttribute="height" id="jZJ-Wh-FXP"/>
-                        <constraint firstItem="wn4-jV-9QF" firstAttribute="leading" secondItem="Ucf-G0-a2C" secondAttribute="leading" id="l94-jW-3W1"/>
-                    </constraints>
                 </scrollView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ZNF-R7-AEu" secondAttribute="trailing" id="0pV-xh-xLD"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Ucf-G0-a2C" secondAttribute="trailing" id="6xm-Cf-emB"/>
-                <constraint firstItem="Ucf-G0-a2C" firstAttribute="top" secondItem="gft-Pj-JbA" secondAttribute="bottom" id="7TJ-EF-hgI"/>
+                <constraint firstItem="Ucf-G0-a2C" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="44" id="7TJ-EF-hgI"/>
                 <constraint firstItem="gft-Pj-JbA" firstAttribute="top" secondItem="ZNF-R7-AEu" secondAttribute="bottom" id="KWd-S1-Z9z"/>
                 <constraint firstItem="gft-Pj-JbA" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Oki-sL-pkj"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gft-Pj-JbA" secondAttribute="trailing" id="b8j-lC-nBQ"/>

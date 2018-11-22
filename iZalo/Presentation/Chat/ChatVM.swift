@@ -90,7 +90,6 @@ final class ChatVM: ViewModelDelegate {
         input.sendTrigger
             .flatMap { [unowned self] () -> Driver<Bool> in
                 self.displayLogic?.hideKeyboard()
-                self.displayLogic?.clearInputTextField()
                 self.displayLogic?.hideAllExtraViews()
                 return Observable.deferred { [unowned self] in
                     guard !self.textMessage.value.isEmpty else {
@@ -114,6 +113,7 @@ final class ChatVM: ViewModelDelegate {
                             self.messages = messages
                             let items = self.messagesToMessageItems(messages:messages)
                             self.items.accept(items)
+                            self.displayLogic?.clearInputTextField()
                         })
                         .trackActivity(self.activityIndicator)
                         .trackError(self.errorTracker)

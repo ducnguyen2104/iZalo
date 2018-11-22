@@ -28,5 +28,5 @@ target 'iZalo' do
     pod 'GooglePlacePicker'
     pod 'GoogleMaps'
     
-    
+    pod 'IQKeyboardManagerSwift'
 end

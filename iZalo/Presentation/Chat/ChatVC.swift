@@ -14,6 +14,7 @@ import GooglePlacePicker
 import AVFoundation
 import MediaPlayer
 import AVKit
+import IQKeyboardManagerSwift
 
 protocol ChatDisplayLogic: class {
     func goBack()
@@ -34,7 +35,8 @@ protocol ChatDisplayLogic: class {
 }
 
 class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+    
+    @IBOutlet weak var customNavbar: UIView!
     @IBOutlet weak var conversationNameLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var backButton: UIButton!
@@ -53,6 +55,7 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
     @IBOutlet weak var emojiCollectionView: UICollectionView!
     @IBOutlet weak var emojiView: UIView!
     @IBOutlet weak var tableViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var textfieldViewBottomConstraint: NSLayoutConstraint!
     
     private let contactRepository = ContactRepositoryFactory.sharedInstance
     public var isButtonContainerHidden = true
@@ -87,14 +90,61 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("b4 layout: \(self.buttonsContainer.frame)")
         setupLayout()
-        print("after layout: \(self.buttonsContainer.frame)")
         bindViewModel()
-        // Do any additional setup after loading the view.
+        self.hideKeyboardWhenTappedAround()
     }
 
-    private func setupLayout() {
+//    @objc func keyboardWillShow(_ notification: Notification) {
+//        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+//            guard let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] else {
+//                return
+//            }
+//            guard let curve = notification.userInfo?[UIKeyboardAnimationCurveUserInfoKey] else {
+//                return
+//            }
+//            let keyboardRectangle = keyboardFrame.cgRectValue
+//            let keyboardHeight = keyboardRectangle.height
+//            let animator = UIViewPropertyAnimator(duration: (duration as! TimeInterval), curve: UIViewAnimationCurve(rawValue: curve as! Int)!, animations: {
+//                self.tableView.frame = CGRect(x: self.tableView.frame.minX, y: self.tableView.frame.minY, width: self.tableView.frame.width, height: self.tableView.frame.height - keyboardHeight)
+//                self.textFieldView.frame = self.buttonsContainer.frame.offsetBy(dx: 0, dy: -keyboardHeight)
+//            })
+//            animator.startAnimation(afterDelay: 0.1)
+//
+//        }
+//    }
+
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+            textfieldViewBottomConstraint.constant = -keyboardHeight
+            UIView.animate(withDuration: 0.5, animations: { () -> Void in
+                self.view.layoutIfNeeded()
+            })
+        }
+    }
+    
+//    @objc func keyboardWillShow(notification: NSNotification) {
+//        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+//            if self.view.frame.origin.y == 0{
+//                self.view.frame.origin.y -= keyboardSize.height
+//            }
+//        }
+//    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+            textfieldViewBottomConstraint.constant = 0
+            UIView.animate(withDuration: 0.5, animations: { () -> Void in
+                self.view.layoutIfNeeded()
+            })
+        }
+    }
+    func setupLayout() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         switch conversation.members.count {
         case 2: //2 members conversation
@@ -220,6 +270,7 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
                 let item = self.items.sectionModels[0].items[ip.row]
                 switch item.message.type {
                 case Constant.imageMessage:
+                    print("image message  ")
                     let vc = ViewImageVC.instance(url: item.message.content)
                     self.navigationController?.pushViewController(vc, animated: true)
                     
@@ -274,13 +325,23 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
                     }
                 
                 case Constant.videoMessage:
-                    let url = String(item.message.content.split(separator: ",")[0])
-                    let player = AVPlayer(url: URL(string: url)!)
-                    let playerViewController = AVPlayerViewController()
-                    playerViewController.player = player
-                    self.present(playerViewController, animated: true)
-                    {
-                        playerViewController.player!.play()
+//                    let url = String(item.message.content.split(separator: ",")[0])
+//                    let player = AVPlayer(url: URL(string: url)!)
+//                    let playerViewController = AVPlayerViewController()
+//                    playerViewController.player = player
+//                    self.present(playerViewController, animated: true)
+//                    {
+//                        playerViewController.player!.play()
+//                    }
+                    
+                    let cell = self.tableView.cellForRow(at: ip) as! MyVideoMessageCell
+                    if (!cell.isPlaying) {
+                        cell.playVideo()
+                    }
+                    else {
+                        cell.endVideo()
+                        let playerVC = IJKPlayerVC.instance(url: String(item.message.content.split(separator: ",")[0]))
+                        self.navigationController?.pushViewController(playerVC, animated: true)
                     }
                 default:
                     return
@@ -371,10 +432,17 @@ class ChatVC: BaseVC, UIImagePickerControllerDelegate, UINavigationControllerDel
         dismiss(animated: true, completion: nil)
     }
 
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if cell is MyVideoMessageCell {
+            (cell as! MyVideoMessageCell).endVideo()
+        }
+    }
+    
 }
 
 extension ChatVC: ChatDisplayLogic {
     func goBack() {
+        hideKeyboard()
         self.navigationController?.popViewController(animated: true)
         self.navigationController?.tabBarController?.tabBar.isHidden = false
     }
@@ -385,6 +453,7 @@ extension ChatVC: ChatDisplayLogic {
     
     func clearInputTextField() {
         self.inputTextField.text = ""
+        self.inputTextField.sendActions(for: .valueChanged)
     }
     
     func updateSendStatus() {
@@ -577,4 +646,15 @@ extension ChatVC : GMSPlacePickerViewControllerDelegate {
         viewController.dismiss(animated: true, completion: nil)
     }
 }
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
 
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}

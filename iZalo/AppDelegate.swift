@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 import GooglePlaces
 import GoogleMaps
+import IQKeyboardManagerSwift
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -23,6 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         GMSPlacesClient.provideAPIKey("AIzaSyAPXXKBgDXoCmCSG2JxHyQGf_DsU1-18sQ")
         GMSServices.provideAPIKey("AIzaSyAPXXKBgDXoCmCSG2JxHyQGf_DsU1-18sQ")
+//        IQKeyboardManager.shared.enable = true
+//        IQKeyboardManager.shared.enableAutoToolbar = false
+//        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         return true
     }
 
